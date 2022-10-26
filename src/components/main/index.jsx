@@ -1,15 +1,12 @@
 import styled from "styled-components";
+import Header from "../common/header";
 
 const Main = () => {
   return (
     <>
-      <Test>Main</Test>
+      <Header/>
     </>
   );
 };
-
-const Test = styled.div`
-  background: ${({ theme }) => theme.color.black};
-`;
 
 export default Main;
