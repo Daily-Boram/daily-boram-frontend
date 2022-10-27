@@ -10,10 +10,10 @@ const Header = () => {
           <Logo src={HeadLogo} alt="헤더 로고" />
         </HeaderLogo>
         <HeaderItems>
-          <Item src={Alram} alt="알람"/>
-          <Item src={User} alt=""/>
+          <Item src={Alram} alt="알람" />
+          <Item src={User} alt="" />
           <LoginBtn>
-              <Login>로그인</Login>
+            <Login>로그인</Login>
           </LoginBtn>
         </HeaderItems>
       </HeaderContainer>
@@ -42,6 +42,8 @@ const Logo = styled.img`
 `;
 
 const HeaderItems = styled.div`
+  display: flex;
+  align-items: center;
   display: flex;
   align-items: center;
 `;
