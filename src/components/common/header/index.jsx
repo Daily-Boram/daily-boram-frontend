@@ -1,22 +1,23 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { HeadLogo, Alram, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <HeaderContainer>
-      <HeaderLogo to="/">
-        <Logo src={HeadLogo} alt="header logo"/>
-      </HeaderLogo>
-      <HeaderItems>
-        <Item src={Alram}/>
-        <Item src={User}/>
-        <LoginBtn>
-          <Login>로그인</Login>
-        </LoginBtn>
-      </HeaderItems>
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        <HeaderLogo to="/">
+          <Logo src={HeadLogo} alt="헤더 로고" />
+        </HeaderLogo>
+        <HeaderItems>
+          <Item src={Alram} alt="알람"/>
+          <Item src={User} alt=""/>
+          <LoginBtn>
+              <Login>로그인</Login>
+          </LoginBtn>
+        </HeaderItems>
+      </HeaderContainer>
+    </>
   );
 };
 
@@ -25,7 +26,7 @@ const HeaderContainer = styled.div`
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
 
@@ -38,15 +39,11 @@ const HeaderLogo = styled(Link)`
 const Logo = styled.img`
   width: 120px;
   height: 75px;
-  margin-left: 340px;
 `;
-
-const UserBackground = styled.div``;
 
 const HeaderItems = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 340px;
 `;
 
 const Item = styled.img`
@@ -62,6 +59,7 @@ const Login = styled.p`
   font-weight: bold;
   font-size: 25px;
   color: ${({ theme }) => theme.color.main};
+  cursor: pointer;
 `;
 
 export default Header;
