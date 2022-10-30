@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const Popular = ({ topic, whiter, story }) => {
+const Popular = ({ workname, authorname, story }) => {
   return (
     <>
       <PopularBackground>
         <Img />
         <TopicBackground>
-          <Topic>{topic}</Topic>
-          <Whiter>{whiter}</Whiter>
+          <WorkName>{workname}</WorkName>
+          <AuthorName>{authorname}</AuthorName>
         </TopicBackground>
         <SimpleStory>{story}</SimpleStory>
       </PopularBackground>
@@ -17,7 +17,6 @@ const Popular = ({ topic, whiter, story }) => {
 
 const PopularBackground = styled.div`
   width: 330px;
-  margin-right: 30px;
 `;
 
 const Img = styled.div`
@@ -36,13 +35,13 @@ const TopicBackground = styled.div`
   margin-bottom: 3px;
 `;
 
-const Topic = styled.p`
+const WorkName = styled.p`
   font-size: 20px;
   font-weight: bold;
   margin-right: 8px;
 `;
 
-const Whiter = styled.p`
+const AuthorName = styled.p`
   color: ${({ theme }) => theme.color.gray02};
 `;
 
