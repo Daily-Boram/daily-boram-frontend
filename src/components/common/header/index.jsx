@@ -1,8 +1,16 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { HeadLogo, Alram, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
+import Modal from "../../Modal";
 
 const Header = () => {
+  const [modalOpen, setModalOpen] = useState(true);
+  
+  const showModal = () => {
+    setModalOpen(true);
+};
+
   return (
     <>
       <HeaderContainer>
@@ -10,11 +18,10 @@ const Header = () => {
           <Logo src={HeadLogo} alt="헤더 로고" />
         </HeaderLogo>
         <HeaderItems>
-          <Item src={Alram} alt="알람" />
-          <Item src={User} alt="" />
-          <LoginBtn>
-            <Login>로그인</Login>
-          </LoginBtn>
+          <Item src={Alram} alt="알람" onClick={showModal}/>
+          <Item src={User} alt="" onClick={showModal}/>
+          <Login onClick={showModal}>로그인</Login>
+          {modalOpen && <Modal setModalOpen={setModalOpen} />}
         </HeaderItems>
       </HeaderContainer>
     </>
@@ -31,7 +38,6 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderLogo = styled(Link)`
-  width: 100px;
   display: flex;
   align-items: center;
 `;
@@ -42,26 +48,22 @@ const Logo = styled.img`
 `;
 
 const HeaderItems = styled.div`
+  width: 190px;
   display: flex;
   align-items: center;
-  display: flex;
-  align-items: center;
+  justify-content: space-between;
 `;
 
 const Item = styled.img`
   cursor: pointer;
-  margin-left: 20px;
 `;
 
-const LoginBtn = styled.div`
-  margin-left: 20px;
-`;
-
-const Login = styled.p`
+const Login = styled.button`
   font-weight: bold;
   font-size: 25px;
-  color: ${({ theme }) => theme.color.main};
   cursor: pointer;
+  background-color:  ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.main};
 `;
 
 export default Header;
