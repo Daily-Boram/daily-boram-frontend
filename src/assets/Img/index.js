@@ -5,3 +5,6 @@ export { default as Refresh } from "./refresh.svg";
 export { default as Search } from "./search.svg";
 export { default as User } from "./user.svg";
 export { default as Good } from "./good.svg";
+export { default as SpacePhoto } from "./spacephoto.svg";
+export { default as Close } from "./close.svg";
+export { default as NaverRogo } from "./naverrogo.svg";
