@@ -1,5 +1,6 @@
 import { Close, NaverRogo } from "../../assets/Img";
 import styled from "styled-components";
+import Fade from "react-reveal/Fade";
 
 const Modal = ({ setModalOpen }) => {
   const closeModal = () => {
@@ -9,21 +10,23 @@ const Modal = ({ setModalOpen }) => {
   return (
     <>
       <ModalContainer onClick={closeModal}>
-        <LoginModal onClick={(e) => e.stopPropagation()}>
-          <CloseLine>
-            <CloseBtn src={Close} onClick={closeModal} />
-          </CloseLine>
-          <LoginPage>
-            <Loginhead>
-              <LoginText>LOGIN</LoginText>
-              <Line />
-            </Loginhead>
-            <NaverBtn>
-              <Rogo src={NaverRogo} />
-              <Text>네이버 시작하기</Text>
-            </NaverBtn>
-          </LoginPage>
-        </LoginModal>
+        <Fade buttom>
+          <LoginModal onClick={(e) => e.stopPropagation()}>
+            <CloseLine>
+              <CloseBtn src={Close} onClick={closeModal} />
+            </CloseLine>
+            <LoginPage>
+              <Loginhead>
+                <LoginText>LOGIN</LoginText>
+                <Line />
+              </Loginhead>
+              <NaverBtn>
+                <Rogo src={NaverRogo} />
+                <Text>네이버 시작하기</Text>
+              </NaverBtn>
+            </LoginPage>
+          </LoginModal>
+        </Fade>
       </ModalContainer>
     </>
   );
