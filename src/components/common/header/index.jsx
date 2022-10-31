@@ -6,10 +6,10 @@ import Modal from "../../Modal";
 
 const Header = () => {
   const [modalOpen, setModalOpen] = useState(true);
-  
+
   const showModal = () => {
     setModalOpen(true);
-};
+  };
 
   return (
     <>
@@ -18,9 +18,11 @@ const Header = () => {
           <Logo src={HeadLogo} alt="헤더 로고" />
         </HeaderLogo>
         <HeaderItems>
-          <Item src={Alram} alt="알람" onClick={showModal}/>
-          <Item src={User} alt="" onClick={showModal}/>
-          <Login onClick={showModal}>로그인</Login>
+          <Item src={Alram} alt="알람" onClick={showModal} />
+          <Item src={User} alt="" onClick={showModal} />
+          <LoginBtn>
+            <LoginP onClick={showModal}>로그인</LoginP>
+          </LoginBtn>
           {modalOpen && <Modal setModalOpen={setModalOpen} />}
         </HeaderItems>
       </HeaderContainer>
@@ -38,6 +40,7 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderLogo = styled(Link)`
+  width: 100px;
   display: flex;
   align-items: center;
 `;
@@ -58,11 +61,13 @@ const Item = styled.img`
   cursor: pointer;
 `;
 
-const Login = styled.button`
+const LoginBtn = styled.div``;
+
+const LoginP = styled.p`
   font-weight: bold;
   font-size: 25px;
   cursor: pointer;
-  background-color:  ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.white};
   color: ${({ theme }) => theme.color.main};
 `;
 
