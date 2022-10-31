@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../works/popularworks";
@@ -5,6 +6,13 @@ import Works from "../works";
 import { Refresh, Search } from "../../assets/Img";
 
 const Main = () => {
+  const [Selected, setSelected] = useState("");
+  const selectList = ["인기순", "최신순", "조회순", "벌점순"];
+
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
+  };
+
   return (
     <>
       <Header />
@@ -15,8 +23,10 @@ const Main = () => {
         </SearchBar>
         <BestWorkBackground>
           <BestWork>
+          <LeftDiv>
             <Daily>늘보람</Daily>
             <Popular>인기글</Popular>
+          </LeftDiv>
           </BestWork>
           <WorksBackground>
             <PopularWorks
@@ -38,12 +48,21 @@ const Main = () => {
         </BestWorkBackground>
         <AllWorks>
           <BestWork>
-            <Daily>늘보람</Daily>
-            <Popular>추천 글 보기</Popular>
-            <RefreshBtn>
-              <BtnName>새로고침</BtnName>
-              <RefreshIcon src={Refresh} />
-            </RefreshBtn>
+            <LeftDiv>
+              <Daily>늘보람</Daily>
+              <Popular>추천 글 보기</Popular>
+              <RefreshBtn>
+                <BtnName>새로고침</BtnName>
+                <RefreshIcon src={Refresh} />
+              </RefreshBtn>
+            </LeftDiv>
+            <Select onChange={handleSelect} value={Selected}>
+              {selectList.map((item) => (
+                <Option value={item} key={item}>
+                  {item}
+                </Option>
+              ))}
+            </Select>
           </BestWork>
           <Choose>
             <Genre>전체</Genre>
@@ -84,7 +103,7 @@ const Main = () => {
 
 const MainPage = styled.div`
   width: 100%;
-  height: 210vh;
+  height: 200vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,8 +138,15 @@ const BestWorkBackground = styled.div`
 const BestWork = styled.p`
   width: 1050px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 12px;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
+`;
+
+const LeftDiv = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Daily = styled.p`
@@ -134,6 +160,8 @@ const Popular = styled.p`
   font-size: 38px;
   font-weight: 800;
   margin-left: 8px;
+  margin-bottom: 8px;
+  margin-right: 7px;
 `;
 
 const WorksBackground = styled.div`
@@ -152,21 +180,36 @@ const AllWorks = styled.div`
 `;
 
 const RefreshBtn = styled.div`
-  width: 100px;
+  width: 130px;
   height: 40px;
   display: flex;
+  align-items: center;
   cursor: pointer;
 `;
 
 const BtnName = styled.p`
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
+  margin-right: 10px;
   color: ${({ theme }) => theme.color.main};
 `;
 
 const RefreshIcon = styled.img`
   width: 20px;
   height: 24px;
+`;
+
+const Select = styled.select`
+  width: 90px;
+  font-size: 21px;
+  margin-top: 7px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.color.main};
+  cursor: pointer;
+`;
+
+const Option = styled.option`
+  font-weight: 700;
 `;
 
 const Choose = styled.div`
