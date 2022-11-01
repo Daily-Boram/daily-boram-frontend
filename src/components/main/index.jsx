@@ -3,11 +3,10 @@ import styled from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../works/popularworks";
 import Works from "../works";
-import { Refresh, Search } from "../../assets/Img";
+import { Refresh, Search } from "../../assets/Img"; 
 
 const Main = () => {
   const [Selected, setSelected] = useState("");
-  const selectList = ["인기순", "최신순", "조회순", "벌점순"];
 
   const handleSelect = (e) => {
     setSelected(e.target.value);
@@ -57,11 +56,8 @@ const Main = () => {
               </RefreshBtn>
             </LeftDiv>
             <Select onChange={handleSelect} value={Selected}>
-              {selectList.map((item) => (
-                <Option value={item} key={item}>
-                  {item}
-                </Option>
-              ))}
+                <Option>인기순</Option>
+                <Option>최신순</Option>
             </Select>
           </BestWork>
           <Choose>
@@ -108,7 +104,6 @@ const MainPage = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  padding: 0px 400px 0px 400px;
 `;
 
 const SearchBar = styled.div`
@@ -116,8 +111,8 @@ const SearchBar = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  border: 2px solid ${({ theme }) => theme.color.main};
   border-radius: 30px;
+  border: 2px solid ${({ theme }) => theme.color.main};
 `;
 
 const Input = styled.input`
@@ -210,6 +205,7 @@ const Select = styled.select`
 
 const Option = styled.option`
   font-weight: 700;
+  cursor: pointer;
 `;
 
 const Choose = styled.div`
