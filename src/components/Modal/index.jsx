@@ -1,19 +1,17 @@
 import { Close, NaverRogo } from "../../assets/Img";
 import styled from "styled-components";
-import Fade from "react-reveal/Fade";
 
-const Modal = ({ setModalOpen }) => {
+const Modal = ({ setModalOpen, modalOpen }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
 
   return (
     <>
-      <ModalContainer onClick={closeModal}>
-        <Fade buttom>
-          <LoginModal onClick={(e) => e.stopPropagation()}>
+      <ModalContainer modalVisible={modalOpen} onClick={closeModal}>
+          <LoginModal modalVisible={modalOpen} onClick={(e) => e.stopPropagation()}>
             <CloseLine>
-              <CloseBtn src={Close} onClick={closeModal} />
+              <CloseBtn src={Close} onClick={closeModal}/>
             </CloseLine>
             <LoginPage>
               <Loginhead>
@@ -21,12 +19,11 @@ const Modal = ({ setModalOpen }) => {
                 <Line />
               </Loginhead>
               <NaverBtn>
-                <Rogo src={NaverRogo} />
+                <img src={NaverRogo} alt="네이버로고" />
                 <Text>네이버 시작하기</Text>
               </NaverBtn>
             </LoginPage>
           </LoginModal>
-        </Fade>
       </ModalContainer>
     </>
   );
@@ -39,10 +36,27 @@ const ModalContainer = styled.div`
   left: 0;
   z-index: 10;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  @keyframes fadeIn {
+    0% {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    100% {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    100% {
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+  animation: ${(props) => (props.modalVisible ? "fadeIn" : "fadeOut")} 0.6s;
 `;
 
 const LoginModal = styled.div`
@@ -54,6 +68,23 @@ const LoginModal = styled.div`
   align-items: center;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.color.white};
+  @keyframes slideIn {
+    0% {
+      transform: translateY(150%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+  @keyframes slideOut {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(130%);
+    }
+  }
+  animation: ${(props) => (props.modalVisible ? "slideIn" : "slideOut")} 0.6s;
 `;
 
 const CloseLine = styled.div`
@@ -107,8 +138,6 @@ const NaverBtn = styled.div`
   border-radius: 5px;
   cursor: pointer;
 `;
-
-const Rogo = styled.img``;
 
 const Text = styled.p`
   width: 60%;
