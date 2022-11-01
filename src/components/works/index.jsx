@@ -28,6 +28,7 @@ const Works = ({ workname, authorname }) => {
 
 const WorkBackground = styled.div`
   width: 240px;
+  cursor: pointer;
 `;
 
 const Photo = styled.img`

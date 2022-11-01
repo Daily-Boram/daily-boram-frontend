@@ -17,6 +17,7 @@ const Popular = ({ workname, authorname, story }) => {
 
 const PopularBackground = styled.div`
   width: 330px;
+  cursor: pointer;
 `;
 
 const Img = styled.div`
