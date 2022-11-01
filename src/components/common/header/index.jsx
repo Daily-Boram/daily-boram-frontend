@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import Modal from "../../Modal";
 
 const Header = () => {
-  const [modalOpen, setModalOpen] = useState(true);
+  const [login, setLogin] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const showModal = () => {
     setModalOpen(true);
@@ -18,14 +19,16 @@ const Header = () => {
           <Logo src={HeadLogo} alt="헤더 로고" />
         </HeaderLogo>
         <HeaderItems>
-          <Item src={Alram} alt="알람" onClick={showModal} />
-          <Item src={User} alt="" onClick={showModal} />
-          <LoginBtn>
+          <Item src={Alram} alt="알람" onClick={modalOpen ? showModal : null} />
+          <Item src={User} alt="유저" onClick={modalOpen ? showModal : null} />
+          {!login ? (
             <LoginP onClick={showModal}>로그인</LoginP>
-          </LoginBtn>
-          {modalOpen && <Modal setModalOpen={setModalOpen} />}
+          ) : (
+            <NameText setLogin={setLogin}>마을회장최씨</NameText>
+          )}
         </HeaderItems>
       </HeaderContainer>
+      {modalOpen && <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />}
     </>
   );
 };
@@ -51,7 +54,6 @@ const Logo = styled.img`
 `;
 
 const HeaderItems = styled.div`
-  width: 190px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,15 +61,21 @@ const HeaderItems = styled.div`
 
 const Item = styled.img`
   cursor: pointer;
+  margin-right: 20px;
 `;
 
-const LoginBtn = styled.div``;
-
 const LoginP = styled.p`
-  font-weight: bold;
   font-size: 25px;
+  font-weight: bold;
   cursor: pointer;
   background-color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.main};
+`;
+
+const NameText = styled.p`
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
   color: ${({ theme }) => theme.color.main};
 `;
 
