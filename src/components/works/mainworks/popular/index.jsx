@@ -1,16 +1,19 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Popular = ({ workname, authorname, story }) => {
   return (
     <>
-      <PopularBackground>
-        <Img />
-        <TopicBackground>
-          <WorkName>{workname}</WorkName>
-          <AuthorName>{authorname}</AuthorName>
-        </TopicBackground>
-        <SimpleStory>{story}</SimpleStory>
-      </PopularBackground>
+      <Link to='/work' style={{ textDecoration: "none" }}>
+        <PopularBackground>
+          <Img />
+          <TopicBackground>
+            <WorkName>{workname}</WorkName>
+            <AuthorName>{authorname}</AuthorName>
+          </TopicBackground>
+          <SimpleStory>{story}</SimpleStory>
+        </PopularBackground>
+      </Link>
     </>
   );
 };
