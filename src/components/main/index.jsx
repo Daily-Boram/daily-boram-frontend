@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../common/header";
-import PopularWorks from "../works/popularworks";
-import Works from "../works";
+import PopularWorks from "../works/mainworks/popular";
+import Works from "../works/mainworks/worksList";
 import { Refresh, Search } from "../../assets/Img"; 
 
 const Main = () => {
