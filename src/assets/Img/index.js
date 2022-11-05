@@ -9,6 +9,6 @@ export { default as SpacePhoto } from "./spacephoto.svg";
 export { default as SpacePhoto2 } from "./spacephoto2.svg";
 export { default as SpacePhoto3 } from "./spacephoto3.svg";
 export { default as Close } from "./close.svg";
-export { default as NaverRogo } from "./naverrogo.svg";
+export { default as NaverLogo } from "./naverlogo.svg";
 export { default as Arrow } from "./arrow.svg";
 export { default as BigGood } from "./biggood.svg";
