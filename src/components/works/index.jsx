@@ -146,8 +146,7 @@ const Explanation = styled.p`
 const Information = styled.div`
   display: flex;
   cursor: pointer;
-  margin-top: 5px;
-  margin-bottom: 50px;
+  margin: 5px 0px 50px 0px;
 `;
 
 const InformationP = styled.p`
