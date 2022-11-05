@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Popular = ({ workname, authorname, story }) => {
   return (
     <>
-      <PopularBackground>
+      <PopularBackground to="/work" style={{ textDecoration: "none" }}>
         <Img />
         <TopicBackground>
           <WorkName>{workname}</WorkName>
@@ -15,7 +16,7 @@ const Popular = ({ workname, authorname, story }) => {
   );
 };
 
-const PopularBackground = styled.div`
+const PopularBackground = styled(Link)`
   width: 330px;
   cursor: pointer;
 `;
