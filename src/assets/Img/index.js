@@ -12,3 +12,4 @@ export { default as Close } from "./close.svg";
 export { default as NaverLogo } from "./naverlogo.svg";
 export { default as Arrow } from "./arrow.svg";
 export { default as BigGood } from "./biggood.svg";
+export { default as TrueGood } from "./truegood.svg";
