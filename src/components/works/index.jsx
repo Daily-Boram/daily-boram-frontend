@@ -1,14 +1,22 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { SpacePhoto2, Arrow, BigGood } from "../../assets/Img";
+import { SpacePhoto2, Arrow, BigGood, TrueGood } from "../../assets/Img";
 import Header from "../common/header";
 import ContatsList from "./contantsList";
 
 const WorkPage = () => {
-  const [like, setLike] = useState(0);
+  const [like, setLike] = useState(false);
+  const [likeNum, setLikeNum] = useState(0);
+  const [textColor, setTextColor] = useState("#A7A7A7");
 
   const onIncrease = () => {
-    setLike(like + 1);
+    setLike(!like);
+    setLikeNum(like ? likeNum - 1 : likeNum + 1);
+    if(textColor === "#A7A7A7") {
+      setTextColor("#4E9EFD");
+    } else {
+      setTextColor("#A7A7A7");
+    }
   };
 
   return (
@@ -35,16 +43,13 @@ const WorkPage = () => {
             </Explanation>
             <Information>
               <InformationP>작품정보</InformationP>
-              <img src={Arrow} alt="작품정보 들어가는 화살표" />
+              <Icon src={Arrow} alt="작품정보 들어가는 화살표" />
             </Information>
             <Like onClick={onIncrease}>
-              <GoodIcon src={BigGood} />
-              <Number>{like}</Number>
+              <GoodIcon src={like ? TrueGood : BigGood} />
+              <Number style={{color: textColor}}>{likeNum}</Number>
             </Like>
           </Right>
-          <FirstBtnBackground>
-            <FirstBtn>첫회 읽기</FirstBtn>
-          </FirstBtnBackground>
         </AboutWork>
         <Contants>
           <ContatsList
@@ -88,8 +93,8 @@ const WorkContainer = styled.div`
 const AboutWork = styled.div`
   width: 1050px;
   display: flex;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 180px;
+  margin-bottom: 50px;
 `;
 
 const Photo = styled.img`
@@ -145,7 +150,6 @@ const Explanation = styled.p`
 
 const Information = styled.div`
   display: flex;
-  cursor: pointer;
   margin: 5px 0px 50px 0px;
 `;
 
@@ -156,26 +160,14 @@ const InformationP = styled.p`
   margin-right: 12px;
 `;
 
+const Icon = styled.img`
+  cursor: pointer;
+`;
+
 const Like = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-`;
-
-const FirstBtnBackground = styled.div`
-  height: 420px;
-  display: flex;
-  align-items: end;
-`;
-
-const FirstBtn = styled.button`
-  width: 160px;
-  height: 60px;
-  font-size: 24px;
-  border-radius: 10px;
-  cursor: pointer;
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.main};
 `;
 
 const GoodIcon = styled.img`

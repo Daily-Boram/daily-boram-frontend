@@ -26,6 +26,9 @@ const ContantsListContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  :hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const Photo = styled.img`
