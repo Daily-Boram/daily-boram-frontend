@@ -41,6 +41,7 @@ const WorkName = styled.p`
   font-size: 20px;
   font-weight: bold;
   margin-right: 8px;
+  color: ${({ theme }) => theme.color.black};
 `;
 
 const AuthorName = styled.p`
@@ -49,6 +50,9 @@ const AuthorName = styled.p`
 
 const SimpleStory = styled.p`
   color: ${({ theme }) => theme.color.gray02};
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 export default Popular;

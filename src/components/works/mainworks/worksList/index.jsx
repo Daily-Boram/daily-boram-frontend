@@ -55,6 +55,7 @@ const WorkName = styled.p`
   font-size: 20px;
   font-weight: bold;
   margin-right: 6px;
+  color: ${({ theme }) => theme.color.black};
 `;
 
 const AuthorName = styled.p`
