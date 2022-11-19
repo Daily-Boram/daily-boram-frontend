@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../works/mainworks/popular";
 import Works from "../works/mainworks/worksList";
-import { Refresh, Search } from "../../assets/Img"; 
+import { Refresh, Search } from "../../assets/Img";
 
 const Main = () => {
   const [Selected, setSelected] = useState("");
@@ -22,10 +22,10 @@ const Main = () => {
         </SearchBar>
         <BestWorkBackground>
           <BestWork>
-          <LeftDiv>
-            <Daily>늘보람</Daily>
-            <Popular>인기글</Popular>
-          </LeftDiv>
+            <LeftDiv>
+              <Daily>늘보람</Daily>
+              <Popular>인기글</Popular>
+            </LeftDiv>
           </BestWork>
           <WorksBackground>
             <PopularWorks
@@ -56,8 +56,9 @@ const Main = () => {
               </RefreshBtn>
             </LeftDiv>
             <Select onChange={handleSelect} value={Selected}>
-                <Option>인기순</Option>
-                <Option>최신순</Option>
+              <Option>랜덤</Option>
+              <Option>인기순</Option>
+              <Option>최신순</Option>
             </Select>
           </BestWork>
           <Choose>
@@ -74,7 +75,7 @@ const Main = () => {
             <Genre>무협/사극</Genre>
           </Choose>
           <WorksBackground>
-            <Works workname="우주혁명" authorname="232" />
+            <Works workname="우주혁명" authorname="232" genre="개그"/>
             <Works workname="은하혁명" authorname="232" />
             <Works workname="우주혁명" authorname="232" />
             <Works workname="은하혁명" authorname="232" />
@@ -103,7 +104,6 @@ const MainPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
 `;
 
 const SearchBar = styled.div`
@@ -112,7 +112,7 @@ const SearchBar = styled.div`
   display: flex;
   align-items: center;
   border-radius: 30px;
-  margin-top: 5%;
+  margin-top: 180px;
   border: 2px solid ${({ theme }) => theme.color.main};
 `;
 
@@ -129,6 +129,7 @@ const SearchBtn = styled.img`
 
 const BestWorkBackground = styled.div`
   height: 370px;
+  margin-top: 80px;
 `;
 
 const BestWork = styled.p`
@@ -173,6 +174,7 @@ const AllWorks = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 60px;
 `;
 
 const RefreshBtn = styled.div`
