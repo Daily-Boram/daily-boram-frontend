@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Modal from "../../Modal";
 
 const Header = () => {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
 
   const showModal = () => {
@@ -19,15 +19,17 @@ const Header = () => {
           <Logo src={HeadLogo} alt="헤더 로고" />
         </HeaderLogo>
         <HeaderItems>
-          <Item src={Alram} alt="알람" onClick={modalOpen ? showModal : null} />
-          <Item src={User} alt="유저" onClick={modalOpen ? showModal : null} />
+          <Item src={Alram} alt="알람" onClick={modalOpen ? null : showModal} />
+          <Item src={User} alt="유저" onClick={modalOpen ? null : showModal} />
           {!login ? (
             <LoginP onClick={showModal}>로그인</LoginP>
           ) : (
-            <NameText setLogin={setLogin}>마을회장최씨</NameText>
+            <Link to='/mypage' style={{ textDecoration: "none" }}>
+              <NameText setLogin={setLogin}>마을회장최씨</NameText>
+            </Link>
           )}
         </HeaderItems>
-      </HeaderContainer>
+      </HeaderContainer> 
       {modalOpen && <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />}
     </>
   );
@@ -40,7 +42,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   position: fixed;
-  background: ${({theme}) => theme.color.white};
+  background: ${({ theme }) => theme.color.white};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
 
@@ -79,6 +81,9 @@ const NameText = styled.p`
   font-weight: bold;
   cursor: pointer;
   color: ${({ theme }) => theme.color.main};
+  :hover {
+    color: ${({ theme }) => theme.color.c04};
+  }
 `;
 
 export default Header;

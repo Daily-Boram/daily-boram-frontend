@@ -7,25 +7,23 @@ const Modal = ({ setModalOpen, modalOpen }) => {
   };
 
   return (
-    <>
-      <ModalContainer modalVisible={modalOpen} onClick={closeModal}>
-          <LoginModal modalVisible={modalOpen} onClick={(e) => e.stopPropagation()}>
-            <CloseLine>
-              <CloseBtn src={Close} onClick={closeModal}/>
-            </CloseLine>
-            <LoginPage>
-              <Loginhead>
-                <LoginText>LOGIN</LoginText>
-                <Line />
-              </Loginhead>
-              <NaverBtn>
-                <img src={NaverLogo} alt="네이버로고" />
-                <Text>네이버 시작하기</Text>
-              </NaverBtn>
-            </LoginPage>
-          </LoginModal>
-      </ModalContainer>
-    </>
+    <ModalContainer modalVisible={modalOpen} onClick={closeModal}>
+      <LoginModal modalVisible={modalOpen} onClick={(e) => e.stopPropagation()}>
+        <CloseLine>
+          <CloseBtn src={Close} onClick={closeModal} />
+        </CloseLine>
+        <LoginPage>
+          <Loginhead>
+            <LoginText>LOGIN</LoginText>
+            <Line />
+          </Loginhead>
+          <NaverBtn>
+            <img src={NaverLogo} alt="네이버로고" />
+            <Text>네이버 시작하기</Text>
+          </NaverBtn>
+        </LoginPage>
+      </LoginModal>
+    </ModalContainer>
   );
 };
 
