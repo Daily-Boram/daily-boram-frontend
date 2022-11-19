@@ -2,30 +2,28 @@ import styled from "styled-components";
 import { SpacePhoto, Good } from "../../../../assets/Img";
 import { Link } from "react-router-dom";
 
-const Works = ({ workname, authorname }) => {
+const Works = ({ workname, authorname, genre }) => {
   return (
-    <>
-      <Link to="/work" style={{ textDecoration: "none" }}>
-        <WorkBackground>
-          <Photo src={SpacePhoto} />
-          <FirstLine>
-            <Writer>
-              <WorkName>{workname}</WorkName>
-              <AuthorName>{authorname}</AuthorName>
-            </Writer>
-            <Like>
-              <GoodPhoto src={Good} />
-              <LikeNumber>1.1K</LikeNumber>
-            </Like>
-          </FirstLine>
-          <SecondLine>
-            <Genre>일상</Genre>
-            <Genre>개그</Genre>
-            <Genre>판타지</Genre>
-          </SecondLine>
-        </WorkBackground>
-      </Link>
-    </>
+    <Link to="/work" style={{ textDecoration: "none" }}>
+      <WorkBackground>
+        <Photo src={SpacePhoto} />
+        <FirstLine>
+          <Writer>
+            <WorkName>{workname}</WorkName>
+            <AuthorName>{authorname}</AuthorName>
+          </Writer>
+          <Like>
+            <GoodPhoto src={Good} />
+            <LikeNumber>1.1K</LikeNumber>
+          </Like>
+        </FirstLine>
+        <SecondLine>
+          <Genre>{genre}</Genre>
+          <Genre>{genre}</Genre>
+          <Genre>{genre}</Genre>
+        </SecondLine>
+      </WorkBackground>
+    </Link>
   );
 };
 

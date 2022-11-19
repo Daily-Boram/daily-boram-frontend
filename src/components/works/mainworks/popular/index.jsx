@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 
 const Popular = ({ workname, authorname, story }) => {
   return (
-    <>
-      <PopularBackground to="/work" style={{ textDecoration: "none" }}>
-        <Img />
-        <TopicBackground>
-          <WorkName>{workname}</WorkName>
-          <AuthorName>{authorname}</AuthorName>
-        </TopicBackground>
-        <SimpleStory>{story}</SimpleStory>
-      </PopularBackground>
-    </>
+    <PopularBackground to="/work" style={{ textDecoration: "none" }}>
+      <Img />
+      <TopicBackground>
+        <WorkName>{workname}</WorkName>
+        <AuthorName>{authorname}</AuthorName>
+      </TopicBackground>
+      <SimpleStory>{story}</SimpleStory>
+    </PopularBackground>
   );
 };
 

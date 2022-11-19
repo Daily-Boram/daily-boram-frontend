@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StyleProvider from "./styles";
 import Main from "./components/main";
 import WorkPage from "./components/works";
+import MyPage from "./components/mypage/myImformation";
+import MyWork from "./components/mypage/mywork";
 
 const App = () => {
   return (
@@ -10,6 +12,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/work" element={<WorkPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mywork" element={<MyWork />} />
         </Routes>
       </BrowserRouter>
     </StyleProvider>
