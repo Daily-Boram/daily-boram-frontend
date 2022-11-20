@@ -56,6 +56,7 @@ const Main = () => {
               </RefreshBtn>
             </LeftDiv>
             <Select onChange={handleSelect} value={Selected}>
+                <Option>랜덤</Option>
                 <Option>인기순</Option>
                 <Option>최신순</Option>
             </Select>
@@ -103,7 +104,6 @@ const MainPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
 `;
 
 const SearchBar = styled.div`
@@ -112,7 +112,7 @@ const SearchBar = styled.div`
   display: flex;
   align-items: center;
   border-radius: 30px;
-  margin-top: 5%;
+  margin: 180px 0px 80px 0px;
   border: 2px solid ${({ theme }) => theme.color.main};
 `;
 
@@ -129,6 +129,7 @@ const SearchBtn = styled.img`
 
 const BestWorkBackground = styled.div`
   height: 370px;
+  margin-bottom: 60px;
 `;
 
 const BestWork = styled.p`
