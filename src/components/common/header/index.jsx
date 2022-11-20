@@ -87,3 +87,4 @@ const NameText = styled.p`
 `;
 
 export default Header;
+    
