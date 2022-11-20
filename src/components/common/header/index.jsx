@@ -76,7 +76,7 @@ const LoginP = styled.p`
 
 const NameText = styled.p`
   font-size: 25px;
-  font-weight: bold;
+  font-weight: bold;  
   cursor: pointer;
   color: ${({ theme }) => theme.color.main};
 `;

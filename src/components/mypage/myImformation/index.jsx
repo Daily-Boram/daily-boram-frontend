@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../../common/header";
-import Purchase from "./purchseList";
+import Purchase from "./purchaseList";
 import { Link } from "react-router-dom";
 import Works from "../../works/mainworks/worksList";
 import { Pencil, Camera, Check, Error, UserPicture, Good, SpacePhoto, Plus } from "../../../assets/Img";
