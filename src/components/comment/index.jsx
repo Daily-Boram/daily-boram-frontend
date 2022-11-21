@@ -43,6 +43,8 @@ const Comment = () => {
   );
 };
 
+export default Comment;
+
 const EndLine = styled.hr`
   width: 1050px;
   border: 1px solid ${({ theme }) => theme.color.gray02};
@@ -149,5 +151,3 @@ const Title = styled.span`
   line-height: 58px;
   margin-right: 10px;
 `;
-
-export default Comment;

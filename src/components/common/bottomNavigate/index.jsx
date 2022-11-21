@@ -24,6 +24,8 @@ const BottomNavigate = () => {
   );
 };
 
+export default BottomNavigate;
+
 const _BlankText = styled.span`
   font-family: "Noto Sans KR";
   font-style: normal;
@@ -71,5 +73,3 @@ const _OptionWrapper = styled.div`
   align-items: center;
   cursor: pointer;
 `;
-
-export default BottomNavigate;
