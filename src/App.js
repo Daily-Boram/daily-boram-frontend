@@ -13,9 +13,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/work" element={<WorkPage />} />
-          <Route path="/comment" element={<Comment />} />
           {/* <Route path="/mypage" element={<MyPage />} />
           <Route path="/mywork" element={<MyWork />} /> */}
+          <Route path="/comment" element={<Comment />} />
         </Routes>
       </BrowserRouter>
     </StyleProvider>
