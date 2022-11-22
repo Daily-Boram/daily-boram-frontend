@@ -2,53 +2,61 @@ import { useState } from "react";
 import styled from "styled-components";
 import Header from "../../common/header";
 import Purchase from "./purchaseList";
+import Works from "./work";
+import Select from "./select";
 import { Link } from "react-router-dom";
-import Works from "../../works/mainworks/worksList";
-import { Pencil, Camera, Check, Error, UserPicture, Good, SpacePhoto, Plus } from "../../../assets/Img";
+import { Pencil, Camera, DoubleCheck, DoubleError, UserPicture, Plus } from "../../../assets/Img";
 
 const MyPage = () => {
-  const [check, setCheck] = useState(false);
+  const [check, setCheck] = useState(true);
 
   return (
     <>
       <Header />
       <MyPageContainer>
-        <Items>
-          <Item style={{ color: "#4E9EFD" }}>내 정보</Item>
-          <Link to="/mywork" style={{ textDecoration: "none" }}>
-          <Item>내 작품</Item>
-          </Link>
-          <Item>구매 내역</Item>
-        </Items>
+        <Select />
         <MyInfo>
           <Introduce>
-            <Picture src={UserPicture} alt="유저 이미지"></Picture>
+            <Picture src={UserPicture} alt="유저 이미지"/>
             <Introduction>
               <User>
                 <Name>최성현</Name>
                 {!check ? (
-                  <CheckBtn src={Error} alt="에러버튼" />
+                  <CheckBtn src={DoubleError} alt="에러버튼" />
                 ) : (
-                  <CheckBtn src={Check} setCheck={setCheck} alt="체크버튼" />
+                  <CheckBtn src={DoubleCheck} setCheck={setCheck} alt="체크버튼" />
                 )}
-                <img src={Pencil} alt="글쓰기" />
+                <UserCreateIcon src={Pencil} alt="이름쓰기" />
               </User>
               <Contents placeholder="소개글을 작성해주세요."></Contents>
             </Introduction>
           </Introduce>
           <Title>내 작품</Title>
           <MyWork>
-            <Works workname="우주 혁명" authorname="232"/>
-            <RegistrationBtn to='/mywork' style={{ textDecoration: "none" }}>
-              <img src={Plus} alt="등록 버튼"/>
+            <Works workname="우주혁명" authorname="232" like="2.1K"/>
+            <Works workname="우주혁명" authorname="232" like="2.1K"/>
+            <RegistrationBtn to="/mywork">
+              <img src={Plus} alt="등록 버튼" />
               <Explanation>새 작품 등록하기</Explanation>
             </RegistrationBtn>
           </MyWork>
           <Title>구매 내역</Title>
-          <Purchase title="우주혁명 3화" subtitle="아름다운 행성" price="300글자"/>
-          <Purchase title="우주혁명 3화" subtitle="아름다운 행성" price="300글자"/>
-          <Purchase title="우주혁명 3화" subtitle="아름다운 행성" price="300글자"/>
-        </MyInfo> 
+          <Purchase
+            title="우주혁명 3화"
+            subtitle="아름다운 행성"
+            price="300글자"
+          />
+          <Purchase
+            title="우주혁명 8화"
+            subtitle="아름다운 행성"
+            price="300글자"
+          />
+          <Purchase
+            title="우주혁명 12화"
+            subtitle="집에가고싶다"
+            price="300글자"
+          />
+        </MyInfo>
       </MyPageContainer>
     </>
   );
@@ -59,26 +67,6 @@ const MyPageContainer = styled.div`
   height: 1800px;
   display: flex;
   justify-content: center;
-`;
-
-const Items = styled.div`
-  width: 240px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  margin: 180px 30px 0px 0px;
-  border-top: 1px solid ${({ theme }) => theme.color.gray02};
-`;
-
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  font-size: 25px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.color.gray02};
-  border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
-  cursor: pointer;
 `;
 
 const MyInfo = styled.div`
@@ -120,7 +108,11 @@ const Name = styled.p`
 `;
 
 const CheckBtn = styled.img`
-  margin: 0px 315px 0px 20px;
+  margin: 0px 315px 0px 15px;
+`;
+
+const UserCreateIcon = styled.img`
+  cursor: pointer;
 `;
 
 const Contents = styled.input`
@@ -136,6 +128,7 @@ const Title = styled.p`
 `;
 
 const MyWork = styled.p`
+  height: 300px;
   display: flex;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
@@ -147,8 +140,9 @@ const RegistrationBtn = styled(Link)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0px 0px 60px 30px;
+  margin: 0px 0px 60px 0px;
   border-radius: 5px;
+  text-decoration: none;
   background-color: ${({ theme }) => theme.color.graymain};
 `;
 
