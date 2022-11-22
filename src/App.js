@@ -5,6 +5,7 @@ import WorkPage from "./components/works";
 // import MyPage from "./components/mypage/myImformation";
 // import MyWork from "./components/mypage/mywork";
 import Comment from "./components/comment";
+import SeeNovel from "./components/seeNovel";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           {/* <Route path="/mypage" element={<MyPage />} />
           <Route path="/mywork" element={<MyWork />} /> */}
           <Route path="/comment" element={<Comment />} />
+          <Route path="/seeNovel" element={<SeeNovel />} />
         </Routes>
       </BrowserRouter>
     </StyleProvider>
