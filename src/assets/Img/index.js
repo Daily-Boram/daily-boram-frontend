@@ -22,3 +22,7 @@ export { default as Plus } from "./plus.svg";
 export { default as BeforeEpisode } from "./before_episode.svg";
 export { default as Comment } from "./comment.png";
 export { default as NextEpisode } from "./next_episode.svg";
+export { default as Spacephoto4 } from "./spacephoto4.png";
+export { default as AngleBracket } from "./anglebracket.svg";
+export { default as Character1 } from "./Character1.png";
+export { default as Character2 } from "./Character2.png";
