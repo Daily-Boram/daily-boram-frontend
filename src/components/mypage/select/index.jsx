@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Select = () => {
+  const location = useLocation();
   return (
     <SelectContainer>
-      <Link to="/mypage">
-        <Option>내 정보</Option>
-      </Link>
-      <Link to="/mywork">
-        <Option>내 작품</Option>
-      </Link>
+      <MyLink to="/mypage">
+        <Option isSelected={location.pathname === "/mypage"}>내 정보</Option>
+      </MyLink>
+      <MyLink to="/mywork">
+        <Option isSelected={location.pathname === "/mywork"}>내 작품</Option>
+      </MyLink>
       <Option>구매 내역</Option>
     </SelectContainer>
   );
@@ -22,9 +23,6 @@ const SelectContainer = styled.div`
   flex-direction: column;
   margin: 180px 30px 0px 0px;
   border-top: 1px solid ${({ theme }) => theme.color.gray02};
-  div:first-child {
-    color: ${({ theme }) => theme.color.main};
-  }
 `;
 
 const Option = styled.div`
@@ -33,9 +31,14 @@ const Option = styled.div`
   height: 50px;
   font-size: 25px;
   font-weight: bold;
-  color: ${({ theme }) => theme.color.gray02};
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.color.main : theme.color.gray02};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
   cursor: pointer;
+`;
+
+const MyLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export default Select;

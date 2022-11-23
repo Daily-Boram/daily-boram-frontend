@@ -11,6 +11,7 @@ const Purchase = ({ title, subtitle, price }) => {
     </PurchaseContainer>
   );
 };
+
 export default Purchase;
 
 const PurchaseContainer = styled.div`
@@ -22,7 +23,7 @@ const PurchaseContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
 
-const TitleWrapper = styled.div`
+const TitleWrapper = styled.span`
   width: 300px;
   display: flex;
   justify-content: space-between;
