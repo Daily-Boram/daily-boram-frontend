@@ -1,4 +1,4 @@
-export { default as Alram } from "./alram.svg";
+export { default as AlramBtn } from "./alrambtn.svg";
 export { default as ContentsBtn } from "./contentsBtn.svg";
 export { default as HeadLogo } from "./headlogo.svg";
 export { default as MainRefresh } from "./main_refresh.svg";
@@ -21,3 +21,4 @@ export { default as Plus } from "./plus.svg";
 export { default as UserPicture } from "./userpicture.png";
 export { default as MyWorkRefresh } from "./mywork_refresh.svg";
 export { default as CharacterPlus } from "./character_plus.svg";
+export { default as MeatBalls } from "./meatballs.svg";
