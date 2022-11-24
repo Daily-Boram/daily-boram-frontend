@@ -6,6 +6,7 @@ import WorkPage from "./components/works";
 // import MyWork from "./components/mypage/mywork";
 import Comment from "./components/comment";
 import SeeNovel from "./components/seeNovel";
+import MakeNovel from "./components/makeNovel";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/mywork" element={<MyWork />} /> */}
           <Route path="/comment" element={<Comment />} />
           <Route path="/seeNovel" element={<SeeNovel />} />
+          <Route path="/makeNovel" element={<MakeNovel />} />
         </Routes>
       </BrowserRouter>
     </StyleProvider>
