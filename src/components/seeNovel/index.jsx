@@ -9,26 +9,6 @@ import {
   Character2,
 } from "../../assets/Img";
 
-const ScriptCharacter = () => {
-  const DummyScript = [
-    {
-      name: "공주영",
-      script: "",
-      img: "",
-    },
-    {
-      name: "나레이터",
-      script: "",
-      img: "",
-    },
-    {
-      name: "왕자림",
-      script: "",
-      img: "",
-    },
-  ];
-};
-
 function SeeNovel() {
   return (
     <>
@@ -51,60 +31,20 @@ function SeeNovel() {
             <ScriptWrapper>
               <Character>
                 <img src={Character1} />
-                <CharacterScript>
-                  “ 왕자림 나쁜년 니가 그러고도 사람이야?? 어떻게 나한테 그럴
-                  수가 있는데? ”{" "}
-                </CharacterScript>
+                <CharacterScript>Yo what's up</CharacterScript>
               </Character>
               <CharacterName>공주영</CharacterName>
             </ScriptWrapper>
 
-            <Narration>
-              관계를 정리 후 난 내 상황부터 돌아보기 시작했다. 내가 얼마나
-              해놓은게 없는지만 알게 됐다.
-              <br /> 난 정말 쉴 틈 없이 노려해야만 했다. 2학년 마지막 날 넌 다시
-              나를 찾아 왔다.
-            </Narration>
+            <Narration>Your mom is bitch</Narration>
 
             <ScriptWrapper>
               <Character>
                 <img src={Character2} />
-                <CharacterScript>
-                  “ 나는 너랑 끝내기 싫어 너 없이 못 지내 난.. ”{" "}
-                </CharacterScript>
+                <CharacterScript>smash my ass 🍑</CharacterScript>
               </Character>
               <CharacterName>왕자림</CharacterName>
             </ScriptWrapper>
-            <Narration>
-              아니. 나 없이 지낼 수 있어 너. 그리고 나도 그게 필요해..
-            </Narration>
-
-            <ScriptWrapper>
-              <Character>
-                <img src={Character1} />
-                <CharacterScript>
-                  “ 미안. 나는 너랑 만날 생각 없어. 넌 나랑 끝내기 싫은 게
-                  아니라 그냥 못 끝내는거야.. 정 때문에 그래..”
-                </CharacterScript>
-              </Character>
-              <CharacterName>공주영</CharacterName>
-            </ScriptWrapper>
-
-            <Narration>
-              애초에 우리는 너의 동정심으로 만나게 된 거니까.. 너처럼 예쁘고
-              멋진 사람이 나 같은 놈을 왜 만나 줬겠어
-            </Narration>
-
-            <ScriptWrapper>
-              <Character>
-                <img src={Character1} />
-                <CharacterScript>
-                  “너 맘 약하잖아 불쌍한 거 못 지나치고...”
-                </CharacterScript>
-              </Character>
-              <CharacterName>공주영</CharacterName>
-            </ScriptWrapper>
-            <Narration>양민지를 한 번에 놓지 못한 것처럼.</Narration>
           </ScriptContainer>
         </Wrapper>
       </MainContainer>
@@ -115,6 +55,7 @@ function SeeNovel() {
 
 const MainContainer = styled.div`
   width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
 `;
@@ -169,7 +110,7 @@ const Anglebracket = styled.img`
 `;
 
 const Line = styled.hr`
-  margin: 15px 0px 40px 0px;
+  margin: 15px 0px 25px 0px;
   border: solid ${({ theme }) => theme.color.gray02};
 `;
 
