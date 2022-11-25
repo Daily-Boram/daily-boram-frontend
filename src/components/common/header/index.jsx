@@ -3,7 +3,7 @@ import { useState } from "react";
 import { HeadLogo, AlramBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
 import Modal from "../../Modal";
-import Alram from "../../Alram";
+import Alram from "../../Alram/all";
 
 const Header = () => {
   const [login, setLogin] = useState(true);
@@ -27,16 +27,8 @@ const Header = () => {
         <HeaderItems>
           {!login ? (
             <>
-              <Item
-                src={AlramBtn}
-                alt="알람"
-                onClick={showModal}
-              />
-              <Item
-                src={User}
-                alt="유저"
-                onClick={showModal}
-              />
+              <Item src={AlramBtn} alt="알람" onClick={showModal} />
+              <Item src={User} alt="유저" onClick={showModal} />
               <LoginP onClick={showModal}>로그인</LoginP>
             </>
           ) : (
