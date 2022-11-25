@@ -30,18 +30,21 @@ const Main = () => {
           <WorksBackground>
             <PopularWorks
               workname="연애혁명"
-              authonname="232"
+              authorname="232"
               story="평범하면서 금사빠인 고등학생 순정남 공주영은 까칠하고 차가운 여학생 왕자림을 보고 사랑에 빠져버린다...."
+              like="2.1K"
             />
             <PopularWorks
               workname="싸움 독학"
               authorname="박태준"
               story="힘없고 가진거 하나 없이 맞고만 살던 나였는데...우연히 비밀의 뉴튜브를 발견하게 되고 갑자기 떼돈을 벌었다."
+              like="3.2K"
             />
             <PopularWorks
               workname="김부장"
               authorname="정종택"
               story="“제발 안경 쓴 아저씨는 건들지 말자…”오직 자신의 딸 '민지'를 위해 특수요원직을 관두고 평범함을..."
+              like="5.6K"
             />
           </WorksBackground>
         </BestWorkBackground>
@@ -52,7 +55,7 @@ const Main = () => {
               <Popular>추천 글 보기</Popular>
               <RefreshBtn>
                 <BtnName>새로고침</BtnName>
-                <RefreshIcon src={Refresh} />
+                <RefreshIcon src={MainRefresh} />
               </RefreshBtn>
             </LeftDiv>
             <Select onChange={handleSelect} value={Selected}>

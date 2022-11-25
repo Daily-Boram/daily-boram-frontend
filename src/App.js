@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StyleProvider from "./styles";
 import Main from "./components/main";
 import WorkPage from "./components/works";
-// import MyPage from "./components/mypage/myImformation";
-// import MyWork from "./components/mypage/mywork";
-import Comment from "./components/comment";
-import SeeNovel from "./components/seeNovel";
 import MakeNovel from "./components/makeNovel";
+import SeeNovel from "./components/seeNovel";
+import Comment from "./components/comment";
+// import MyWork from "./components/mypage/mywork";
+// import MyPage from "./components/mypage/myImformation";
 
 const App = () => {
   return (
