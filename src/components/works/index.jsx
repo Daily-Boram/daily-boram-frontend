@@ -35,16 +35,16 @@ const WorkPage = () => {
               <Genre>#일상</Genre>
               <Genre>#개그</Genre>
               <Genre>#판타지</Genre>
-              <Genre>#드라마</Genre>
+              <Genre>#로맨스</Genre>
             </GenreList>
             <Like onClick={onIncrease}>
               <GoodIcon src={like ? TrueGood : BigGood} />
-              <Number style={{color: textColor}}>{likeNum}</Number>
+              <Number style={{ color: textColor }}>{likeNum}</Number>
             </Like>
           </Right>
         </AboutWork>
         <div>
-          <ContentsList
+          <ContatsList
             number="01"
             title="맞은편의 행성"
             date="2022.10.16"
@@ -63,7 +63,7 @@ const WorkPage = () => {
             title="아름다운 행성"
             date="2022.10.24"
             likenumber="90"
-            price="300글자"
+            price="200글자"
           />
           <ContentsList
             number="04"
@@ -72,7 +72,7 @@ const WorkPage = () => {
             likenumber="211"
             price="300글자"
           />
-          <ContentsList
+          <ContatsList
             number="05"
             title="김민성,털"
             date="2022.11.4"
@@ -151,7 +151,7 @@ const Genre = styled.p`
 const Explanation = styled.p`
   width: 450px;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Like = styled.div`

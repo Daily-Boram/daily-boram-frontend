@@ -13,6 +13,7 @@ export { default as NaverLogo } from "./naverlogo.svg";
 export { default as Arrow } from "./arrow.svg";
 export { default as BigGood } from "./biggood.svg";
 export { default as TrueGood } from "./truegood.svg";
+<<<<<<< HEAD
 export { default as DoubleCheck } from "./double_check.svg";
 export { default as DoubleError } from "./double_error.svg";
 export { default as Pencil } from "./pencil.svg";
@@ -22,3 +23,23 @@ export { default as UserPicture } from "./userpicture.png";
 export { default as MyWorkRefresh } from "./mywork_refresh.svg";
 export { default as CharacterPlus } from "./character_plus.svg";
 export { default as MeatBalls } from "./meatballs.svg";
+=======
+export { default as Camera } from "./camera.svg";
+export { default as Check } from "./check.svg";
+export { default as Error } from "./error.svg";
+export { default as Pencil } from "./pencil.svg";
+export { default as UserPicture } from "./userpicture.png";
+export { default as Plus } from "./plus.svg";
+export { default as BeforeEpisode } from "./before_episode.svg";
+export { default as Comment } from "./comment.png";
+export { default as NextEpisode } from "./next_episode.svg";
+export { default as Spacephoto4 } from "./spacephoto4.png";
+export { default as AngleBracket } from "./anglebracket.svg";
+export { default as Character1 } from "./Character1.png";
+export { default as Character2 } from "./Character2.png";
+export { default as GreyRefresh } from "./greyRefresh.png";
+export { default as Add } from "./add.png";
+export { default as BlueCheck } from "./blueCheck.png";
+export { default as Narrator } from "./narrator.png";
+export { default as Delete } from "./delete.png";
+>>>>>>> main
