@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../common/header";
-import PopularWorks from "../works/mainworks/popular";
-import Works from "../works/mainworks/worksList";
-import { Refresh, Search } from "../../assets/Img";
+import PopularWorks from "../main/mainworks/popular";
+import Works from "../main/mainworks/worksList";
+import { MainRefresh, Search } from "../../assets/Img";
 
 const Main = () => {
   const [Selected, setSelected] = useState("");

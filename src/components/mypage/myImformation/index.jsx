@@ -16,6 +16,8 @@ import {
 
 const MyPage = () => {
   const [check, setCheck] = useState(true);
+  const [introduction, setIntroduction] = useState("");
+
 
   return (
     <>
@@ -24,7 +26,10 @@ const MyPage = () => {
         <Select />
         <MyInfo>
           <Introduce>
-            <Picture src={UserPicture} alt="유저 이미지" />
+            <UserImage>
+              <CameraImage src={Camera} />
+              <Picture src={UserPicture} alt="유저 이미지" />
+            </UserImage>
             <Introduction>
               <User>
                 <Name>최성현</Name>
@@ -39,7 +44,18 @@ const MyPage = () => {
                 )}
                 <UserCreateIcon src={Pencil} alt="이름쓰기" />
               </User>
-              <Contents placeholder="소개글을 작성해주세요."></Contents>
+              <ContentsInput length={introduction.length}>
+                <textarea
+                  placeholder="소개글을 작성해주세요."
+                  type="text"
+                  maxLength={100}
+                  onChange={(e) => {
+                    setIntroduction(e.target.value);
+                  }}
+                  value={introduction}
+                />
+                <span>{introduction.length}/100</span>
+              </ContentsInput>
             </Introduction>
           </Introduce>
           <Title>내 작품</Title>
@@ -95,6 +111,17 @@ const Introduce = styled.div`
   margin-top: 180px;
 `;
 
+const UserImage = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: end;
+`;
+
+const CameraImage = styled.img`
+  position: absolute;
+  margin: 5px 35px 0px 0px;
+`;
+
 const Picture = styled.img`
   margin-right: 30px;
 `;
@@ -136,6 +163,30 @@ const Contents = styled.textarea`
   font-weight: bold;
   ::placeholder {
     font-size: 16px;
+  }
+`;
+
+const ContentsInput = styled.div`
+  width: 510px;
+  height: 185px;
+  margin: 15px 0px 0px 15px;
+
+  textarea {
+    width: 430px;
+    height: 155px;
+    resize: none;
+    font-size: 16px;
+    font-weight: bold;
+    ::placeholder {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    color: ${({theme}) => theme.color.gray02};
+    color: ${(props) => props.length < 100 ? ({ theme }) => theme.color.gray02 : ({ theme }) => theme.color.error};
   }
 `;
 

@@ -1,15 +1,21 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { HeadLogo, Alram, User } from "../../../assets/Img";
+import { HeadLogo, AlramBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
-import Modal from "../../Modal";
+import Modal from "../../modal";
+import Alram from "../../Alram/all";
 
 const Header = () => {
   const [login, setLogin] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [alramOpen, setAlramOpen] = useState(false);
 
   const showModal = () => {
-    setModalOpen(true);
+    setModalOpen(modalOpen ? null : true);
+  };
+
+  const showAlram = () => {
+    setAlramOpen(alramOpen ? false : true);
   };
 
   return (
@@ -19,18 +25,33 @@ const Header = () => {
           <Logo src={HeadLogo} alt="헤더 로고" />
         </HeaderLogo>
         <HeaderItems>
-          <Item src={Alram} alt="알람" onClick={modalOpen ? null : showModal} />
-          <Item src={User} alt="유저" onClick={modalOpen ? null : showModal} />
           {!login ? (
-            <LoginP onClick={showModal}>로그인</LoginP>
+            <>
+              <Item
+                src={AlramBtn}
+                alt="알람"
+                onClick={showModal}
+              />
+              <Item
+                src={User}
+                alt="유저"
+                onClick={showModal}
+              />
+              <LoginP onClick={showModal}>로그인</LoginP>
+            </>
           ) : (
-            <Link to='/mypage' style={{ textDecoration: "none" }}>
-              <NameText setLogin={setLogin}>마을회장최씨</NameText>
-            </Link>
+            <>
+              <Item onClick={showAlram} src={AlramBtn} alt="알람" />
+              <MyPageLink to="/mypage">
+                <Item src={User} alt="유저" />
+                <NameText setLogin={setLogin}>마을회장최씨</NameText>
+              </MyPageLink>
+            </>
           )}
         </HeaderItems>
-      </HeaderContainer> 
+      </HeaderContainer>
       {modalOpen && <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />}
+      {alramOpen && <Alram alramOpen={alramOpen} setAlramOpen={setAlramOpen} />}
     </>
   );
 };
@@ -68,6 +89,12 @@ const Item = styled.img`
   margin-right: 20px;
 `;
 
+const MyPageLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+`;
+
 const LoginP = styled.p`
   font-size: 25px;
   font-weight: bold;
@@ -87,4 +114,3 @@ const NameText = styled.p`
 `;
 
 export default Header;
-    

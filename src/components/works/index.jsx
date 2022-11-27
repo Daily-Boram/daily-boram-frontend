@@ -44,7 +44,7 @@ const WorkPage = () => {
           </Right>
         </AboutWork>
         <div>
-          <ContatsList
+          <ContentsList
             number="01"
             title="맞은편의 행성"
             date="2022.10.16"
@@ -72,7 +72,7 @@ const WorkPage = () => {
             likenumber="211"
             price="300글자"
           />
-          <ContatsList
+          <ContentsList
             number="05"
             title="김민성,털"
             date="2022.11.4"
