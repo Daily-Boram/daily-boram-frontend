@@ -27,16 +27,8 @@ const Header = () => {
         <HeaderItems>
           {!login ? (
             <>
-              <Item
-                src={AlramBtn}
-                alt="알람"
-                onClick={showModal}
-              />
-              <Item
-                src={User}
-                alt="유저"
-                onClick={showModal}
-              />
+              <Item src={AlramBtn} alt="알람" onClick={showModal} />
+              <Item src={User} alt="유저" onClick={showModal} />
               <LoginP onClick={showModal}>로그인</LoginP>
             </>
           ) : (
@@ -115,5 +107,3 @@ const NameText = styled.p`
     color: ${({ theme }) => theme.color.c04};
   }
 `;
-
-export default Header;

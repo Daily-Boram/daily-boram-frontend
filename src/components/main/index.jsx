@@ -237,5 +237,3 @@ const Genre = styled.button`
     background-color: ${({ theme }) => theme.color.c02};
   }
 `;
-
-export default Main;

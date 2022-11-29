@@ -1,7 +1,7 @@
 import Select from "../select";
 import Header from "../../common/header";
 import Character from "../../character";
-import TagBox from "./tagBox";
+import TagBox from "./tagbox";
 import styled from "styled-components";
 import { useState } from "react";
 import PickImage from "../../pickImage";

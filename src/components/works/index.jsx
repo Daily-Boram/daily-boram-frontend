@@ -109,6 +109,7 @@ const WorkContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
 
 const AboutWork = styled.div`
   width: 1050px;
