@@ -33,12 +33,17 @@ const Header = () => {
   );
 };
 
+export default Header;
+
 const HeaderContainer = styled.div`
   width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: fixed;
+  z-index: 1;
+  background: ${({ theme }) => theme.color.white};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
 

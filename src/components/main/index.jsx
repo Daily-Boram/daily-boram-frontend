@@ -97,6 +97,8 @@ const Main = () => {
   );
 };
 
+export default Main;
+
 const MainPage = styled.div`
   width: 100%;
   height: 200vh;
