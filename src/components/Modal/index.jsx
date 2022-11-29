@@ -1,4 +1,4 @@
-import { Close, NaverRogo } from "../../assets/Img";
+import { Close, NaverLogo } from "../../assets/Img";
 import styled from "styled-components";
 
 const Modal = ({ setModalOpen, modalOpen }) => {
@@ -7,25 +7,23 @@ const Modal = ({ setModalOpen, modalOpen }) => {
   };
 
   return (
-    <>
-      <ModalContainer modalVisible={modalOpen} onClick={closeModal}>
-          <LoginModal modalVisible={modalOpen} onClick={(e) => e.stopPropagation()}>
-            <CloseLine>
-              <CloseBtn src={Close} onClick={closeModal}/>
-            </CloseLine>
-            <LoginPage>
-              <Loginhead>
-                <LoginText>LOGIN</LoginText>
-                <Line />
-              </Loginhead>
-              <NaverBtn>
-                <img src={NaverRogo} alt="네이버로고" />
-                <Text>네이버 시작하기</Text>
-              </NaverBtn>
-            </LoginPage>
-          </LoginModal>
-      </ModalContainer>
-    </>
+    <ModalContainer modalVisible={modalOpen} onClick={closeModal}>
+      <LoginModal modalVisible={modalOpen} onClick={(e) => e.stopPropagation()}>
+        <CloseLine>
+          <CloseBtn src={Close} onClick={closeModal} />
+        </CloseLine>
+        <LoginPage>
+          <Loginhead>
+            <LoginText>LOGIN</LoginText>
+            <Line />
+          </Loginhead>
+          <NaverBtn>
+            <img src={NaverLogo} alt="네이버로고" />
+            <Text>네이버 시작하기</Text>
+          </NaverBtn>
+        </LoginPage>
+      </LoginModal>
+    </ModalContainer>
   );
 };
 

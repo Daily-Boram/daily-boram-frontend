@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../common/header";
-import PopularWorks from "../works/popularworks";
-import Works from "../works";
-import { Refresh, Search } from "../../assets/Img"; 
+import PopularWorks from "../main/mainworks/popular";
+import Works from "../main/mainworks/worksList";
+import { MainRefresh, Search } from "../../assets/Img";
 
 const Main = () => {
   const [Selected, setSelected] = useState("");
@@ -22,26 +22,29 @@ const Main = () => {
         </SearchBar>
         <BestWorkBackground>
           <BestWork>
-          <LeftDiv>
-            <Daily>늘보람</Daily>
-            <Popular>인기글</Popular>
-          </LeftDiv>
+            <LeftDiv>
+              <Daily>늘보람</Daily>
+              <Popular>인기글</Popular>
+            </LeftDiv>
           </BestWork>
           <WorksBackground>
             <PopularWorks
               workname="연애혁명"
-              authonname="232"
+              authorname="232"
               story="평범하면서 금사빠인 고등학생 순정남 공주영은 까칠하고 차가운 여학생 왕자림을 보고 사랑에 빠져버린다...."
+              like="2.1K"
             />
             <PopularWorks
               workname="싸움 독학"
               authorname="박태준"
               story="힘없고 가진거 하나 없이 맞고만 살던 나였는데...우연히 비밀의 뉴튜브를 발견하게 되고 갑자기 떼돈을 벌었다."
+              like="3.2K"
             />
             <PopularWorks
               workname="김부장"
               authorname="정종택"
               story="“제발 안경 쓴 아저씨는 건들지 말자…”오직 자신의 딸 '민지'를 위해 특수요원직을 관두고 평범함을..."
+              like="5.6K"
             />
           </WorksBackground>
         </BestWorkBackground>
@@ -52,12 +55,13 @@ const Main = () => {
               <Popular>추천 글 보기</Popular>
               <RefreshBtn>
                 <BtnName>새로고침</BtnName>
-                <RefreshIcon src={Refresh} />
+                <RefreshIcon src={MainRefresh} />
               </RefreshBtn>
             </LeftDiv>
             <Select onChange={handleSelect} value={Selected}>
-                <Option>인기순</Option>
-                <Option>최신순</Option>
+              <Option>랜덤</Option>
+              <Option>인기순</Option>
+              <Option>최신순</Option>
             </Select>
           </BestWork>
           <Choose>
@@ -74,7 +78,7 @@ const Main = () => {
             <Genre>무협/사극</Genre>
           </Choose>
           <WorksBackground>
-            <Works workname="우주혁명" authorname="232" />
+            <Works workname="우주혁명" authorname="232" genre="개그"/>
             <Works workname="은하혁명" authorname="232" />
             <Works workname="우주혁명" authorname="232" />
             <Works workname="은하혁명" authorname="232" />
@@ -101,11 +105,10 @@ export default Main;
 
 const MainPage = styled.div`
   width: 100%;
-  height: 200vh;
+  height: 210vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
 `;
 
 const SearchBar = styled.div`
@@ -114,6 +117,7 @@ const SearchBar = styled.div`
   display: flex;
   align-items: center;
   border-radius: 30px;
+  margin-top: 180px;
   border: 2px solid ${({ theme }) => theme.color.main};
 `;
 
@@ -130,6 +134,7 @@ const SearchBtn = styled.img`
 
 const BestWorkBackground = styled.div`
   height: 370px;
+  margin-top: 80px;
 `;
 
 const BestWork = styled.p`
@@ -174,6 +179,7 @@ const AllWorks = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 60px;
 `;
 
 const RefreshBtn = styled.div`

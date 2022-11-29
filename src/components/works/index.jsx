@@ -109,47 +109,78 @@ const WorkContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+const AboutWork = styled.div`
+  width: 1050px;
+  display: flex;
+  margin-top: 180px;
 `;
 
 const Photo = styled.img`
-  width: 240px;
-  height: 240px;
+  width: 360px;
+  height: 360px;
 `;
 
-const FirstLine = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 5px;
+const Right = styled.div`
+  height: 400px;
+  margin-left: 40px;
 `;
 
 const Writer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: end;
+  margin-bottom: 15px;
 `;
 
-const WorkName = styled.p`
-  font-size: 20px;
+const Title = styled.p`
+  font-size: 55px;
   font-weight: bold;
-  margin-right: 6px;
+  margin-right: 15px;
 `;
 
 const AuthorName = styled.p`
-  font-size: 14px;
+  font-size: 25px;
   font-weight: bold;
+  margin-bottom: 10px;
+  color: ${({ theme }) => theme.color.gray03};
+`;
+
+const GenreList = styled.div`
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+const Genre = styled.p`
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
   color: ${({ theme }) => theme.color.graymain};
+  :hover {
+    color: ${({ theme }) => theme.color.main};
+  }
+`;
+
+const Explanation = styled.p`
+  width: 450px;
+  font-size: 16px;
+  margin-bottom: 10px;
 `;
 
 const Like = styled.div`
   display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
 
-const GoodPhoto = styled.img`
-  margin-right: 5px;
+const GoodIcon = styled.img`
+  width: 36px;
+  height: 36px;
 `;
 
-const LikeNumber = styled.p`
-  font-size: 15px;
+const Number = styled.p`
+  font-size: 20px;
   font-weight: bold;
   color: ${({ theme }) => theme.color.main};
 `;

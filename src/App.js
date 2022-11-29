@@ -5,8 +5,11 @@ import WorkPage from "./components/works";
 import Posts from "./components/common/pagination/Posts";
 import MakeNovel from "./components/makeNovel";
 import SeeNovel from "./components/seeNovel";
+import Comment from "./components/comment";
+import MyWork from "./components/mypage/mywork";
+import MyPage from "./components/mypage/myImformation";
 
-const App = () => {
+const App = () => { 
   return (
     <StyleProvider>
       <BrowserRouter>

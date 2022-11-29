@@ -17,7 +17,7 @@ import {
 const MyPage = () => {
   const [check, setCheck] = useState(true);
   const [introduction, setIntroduction] = useState("");
-
+  
   return (
     <>
       <Header />
