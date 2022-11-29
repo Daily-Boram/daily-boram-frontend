@@ -20,6 +20,8 @@ const Works = ({ workname, authorname, like }) => {
   );
 };
 
+export default Works;
+
 const WorkContainer = styled(Link)`
   text-decoration: none;
   width: 240px;
@@ -68,5 +70,3 @@ const LikeNumber = styled.p`
   font-weight: bold;
   color: ${({ theme }) => theme.color.main};
 `;
-
-export default Works;

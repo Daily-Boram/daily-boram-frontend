@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StyleProvider from "./styles";
 import Main from "./components/main";
 import WorkPage from "./components/works";
+import Posts from "./components/common/pagination/Posts";
 import MakeNovel from "./components/makeNovel";
 import SeeNovel from "./components/seeNovel";
 import Comment from "./components/comment";

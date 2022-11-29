@@ -1,13 +1,24 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SpacePhoto2, BigGood, TrueGood } from "../../assets/Img";
 import Header from "../common/header";
 import ContentsList from "../common/contents";
+import Pagination from "../common/pagination";
 
 const WorkPage = () => {
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(0);
   const [textColor, setTextColor] = useState("#A7A7A7");
+  const [posts, setPosts] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  }, []);
 
   const onIncrease = () => {
     setLike(!like);
@@ -80,21 +91,24 @@ const WorkPage = () => {
             price="300글자"
           />
         </div>
+        <Pagination
+          total={posts.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
       </WorkContainer>
-      <SelectPage>
-        <SelectBtn>1</SelectBtn>
-      </SelectPage>
     </>
   );
 };
 
+export default WorkPage;
+
 const WorkContainer = styled.div`
   width: 100%;
-  height: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
 
 const AboutWork = styled.div`
   width: 1050px;
@@ -168,26 +182,5 @@ const GoodIcon = styled.img`
 const Number = styled.p`
   font-size: 20px;
   font-weight: bold;
-  margin-left: 15px;
+  color: ${({ theme }) => theme.color.main};
 `;
-
-const SelectPage = styled.div`
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SelectBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.c02};
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-`;
-
-export default WorkPage;

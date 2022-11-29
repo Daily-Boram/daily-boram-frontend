@@ -17,8 +17,7 @@ import {
 const MyPage = () => {
   const [check, setCheck] = useState(true);
   const [introduction, setIntroduction] = useState("");
-
-
+  
   return (
     <>
       <Header />
@@ -90,6 +89,8 @@ const MyPage = () => {
     </>
   );
 };
+
+export default MyPage;
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -227,5 +228,3 @@ const Purchases = styled.div`
     border-top: 1px solid ${({ theme }) => theme.color.gray02};
   }
 `;
-
-export default MyPage;

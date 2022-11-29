@@ -2,9 +2,9 @@ import Select from "../select";
 import Header from "../../common/header";
 import Character from "../../character";
 import TagBox from "./tagBox";
-import WorkPickImage from "../../pickImage/workpickimage";
 import styled from "styled-components";
 import { useState } from "react";
+import PickImage from "../../pickImage";
 
 const MyWork = () => {
   const [characterState, setCharacterState] = useState([]);
@@ -52,7 +52,8 @@ const MyWork = () => {
             />
             <span>{myWorkState.contents.length} / 400</span>
           </ContentsBackground>
-          <WorkPickImage
+          <PickImage
+            type="imageOnly"
             title="작품 대표 이미지"
             subTitle="위 입력하신 정보를 기반으로 AI가 일러스트를 그립니다. 원하는 그림을 선택해 주세요!"
             image={myWorkState.characterImage}
@@ -62,16 +63,20 @@ const MyWork = () => {
               setMyWorkState(temp);
             }}
           />
-          <Character
-            characterState={characterState}
-            setCharacterState={setCharacterState}
-          />
+          <CharacterWrapper>
+            <Character
+              characterState={characterState}
+              setCharacterState={setCharacterState}
+            />
+          </CharacterWrapper>
           <RegistrationBtn>새 작품 등록하기</RegistrationBtn>
         </MyInfo>
       </MyWorkContainer>
     </>
   );
 };
+
+export default MyWork;
 
 const MyWorkContainer = styled.div`
   width: 100%;
@@ -181,4 +186,10 @@ const RegistrationBtn = styled.button`
   }
 `;
 
-export default MyWork;
+const CharacterWrapper = styled.div`
+  margin-top: 40px;
+  
+  form {
+    transform: translateX(-270px);
+  }
+`;

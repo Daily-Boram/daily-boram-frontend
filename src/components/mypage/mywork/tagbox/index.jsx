@@ -38,6 +38,8 @@ const TagBox = () => {
   );
 };
 
+export default TagBox;
+
 const CheckBox = styled.div`
   width: 780px;
   height: 112px;
@@ -78,5 +80,3 @@ const Label = styled.label`
   font-size: 22px;
   font-weight: bold;
 `;
-
-export default TagBox;

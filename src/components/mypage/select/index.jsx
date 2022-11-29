@@ -16,6 +16,8 @@ const Select = () => {
   );
 };
 
+export default Select;
+
 const SelectContainer = styled.div`
   width: 240px;
   height: 150px;
@@ -40,5 +42,3 @@ const Option = styled.div`
 const MyLink = styled(Link)`
   text-decoration: none;
 `;
-
-export default Select;

@@ -45,31 +45,13 @@ function PickImage({
       <h1>{title}</h1>
       <h2>{subTitle}</h2>
       <div>
-        <Text length={inputState.description.length}>
-          {type === "thumbnail" && (
-            <textarea
-              placeholder="원하는 그림을 글로 묘사해주세요!"
-              autoComplete="DoNotAutoComplete"
-              maxLength={300}
-              onChange={(e) => {
-                let temp = Object.assign({}, inputState);
-                temp.description = e.currentTarget.value;
-                setInputState(temp);
-              }}
-              value={inputState.description}
-            />
-          )}
-          {type === "character" && (
-            <span>
-              <input
-                placeholder="등장인물 이름을 정해주세요!"
-                autoComplete="DoNotAutoComplete"
-                onChange={(e) => setName(e.currentTarget.value)}
-                value={name}
-              />
+        {type !== "imageOnly" && (
+          <Text length={inputState.description.length} type={type}>
+            {type === "thumbnail" && (
               <textarea
-                placeholder="원하는 캐릭터의 모습을 글로 묘사해주세요!"
+                placeholder="원하는 그림을 글로 묘사해주세요!"
                 autoComplete="DoNotAutoComplete"
+                maxLength={300}
                 onChange={(e) => {
                   let temp = Object.assign({}, inputState);
                   temp.description = e.currentTarget.value;
@@ -77,10 +59,30 @@ function PickImage({
                 }}
                 value={inputState.description}
               />
-            </span>
-          )}
-          <span>{inputState.description.length} / 300</span>
-        </Text>
+            )}
+            {type === "character" && (
+              <span>
+                <input
+                  placeholder="등장인물 이름을 정해주세요!"
+                  autoComplete="DoNotAutoComplete"
+                  onChange={(e) => setName(e.currentTarget.value)}
+                  value={name}
+                />
+                <textarea
+                  placeholder="원하는 캐릭터의 모습을 글로 묘사해주세요!"
+                  autoComplete="DoNotAutoComplete"
+                  onChange={(e) => {
+                    let temp = Object.assign({}, inputState);
+                    temp.description = e.currentTarget.value;
+                    setInputState(temp);
+                  }}
+                  value={inputState.description}
+                />
+              </span>
+            )}
+            <span>{inputState.description.length} / 300</span>
+          </Text>
+        )}
         <img
           src={
             image

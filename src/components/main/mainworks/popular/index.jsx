@@ -21,6 +21,8 @@ const Popular = ({ workname, authorname, story, like }) => {
   );
 };
 
+export default Popular;
+
 const PopularBackground = styled(Link)`
   width: 330px;
   cursor: pointer;
@@ -78,5 +80,3 @@ const SimpleStory = styled.p`
     text-decoration: underline;
   }
 `;
-
-export default Popular;

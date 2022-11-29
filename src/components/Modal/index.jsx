@@ -27,6 +27,8 @@ const Modal = ({ setModalOpen, modalOpen }) => {
   );
 };
 
+export default Modal;
+
 const ModalContainer = styled.div`
   width: 100%;
   height: 100vh;

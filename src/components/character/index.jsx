@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Add } from "../../assets/Img";
 import PickImage from "../pickImage";
 
-function Character({ characterState, setCharacterState }) {
+function Character({ characterState, setCharacterState, type }) {
   const [characterAddState, setCharacterAddState] = useState(false);
   const [inputState, setInputState] = useState({
     characterName: "",
@@ -32,7 +32,7 @@ function Character({ characterState, setCharacterState }) {
         <PickImage
           title="등장인물 만들기"
           subTitle="입력하신 정보를 기반으로 AI가 일러스트를 그립니다. 원하는 그림을 선택해 주세요!"
-          type="character"
+          type={type ? type : "character"}
           name={inputState.characterName}
           setName={(characterName) => {
             let temp = Object.assign({}, inputState);
@@ -74,7 +74,7 @@ const Wrapper = styled.div`
   ul {
     margin-top: 10px;
 
-    width: 1050px;
+    width: 780px;
 
     display: flex;
 
