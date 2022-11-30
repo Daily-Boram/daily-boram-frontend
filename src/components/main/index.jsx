@@ -1,16 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../main/mainworks/popular";
 import Works from "../main/mainworks/worksList";
 import { MainRefresh, Search } from "../../assets/Img";
+import { auth } from "../../api/auth";
 
 const Main = () => {
   const [Selected, setSelected] = useState("");
-
+  const choose = [
+    "전체",
+    "일상",
+    "개그",
+    "판타지",
+    "액션",
+    "드라마",
+    "순정",
+    "감성",
+    "스릴러",
+    "스포츠",
+    "무협/사극",
+  ];
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
+  useEffect(() => {
+    const urlParam = new URL(window.location.href).searchParams.get("code");
+    if (urlParam) {
+      auth(urlParam)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      console.log("로그인이 되어있지 않음");
+    }
+  }, []);
 
   return (
     <>
@@ -65,20 +90,12 @@ const Main = () => {
             </Select>
           </BestWork>
           <Choose>
-            <Genre>전체</Genre>
-            <Genre>일상</Genre>
-            <Genre>개그</Genre>
-            <Genre>판타지</Genre>
-            <Genre>액션</Genre>
-            <Genre>드라마</Genre>
-            <Genre>순정</Genre>
-            <Genre>감성</Genre>
-            <Genre>스릴러</Genre>
-            <Genre>스포츠</Genre>
-            <Genre>무협/사극</Genre>
+            {choose.map((v, i) => (
+              <Genre key={i}>{v}</Genre>
+            ))}
           </Choose>
           <WorksBackground>
-            <Works workname="우주혁명" authorname="232" genre="개그"/>
+            <Works workname="우주혁명" authorname="232" genre="개그" />
             <Works workname="은하혁명" authorname="232" />
             <Works workname="우주혁명" authorname="232" />
             <Works workname="은하혁명" authorname="232" />
