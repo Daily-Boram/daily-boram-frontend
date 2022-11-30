@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../main/mainworks/popular";
 import Works from "../main/mainworks/worksList";
+import seeSeries from "../../api/main/seeSeries";
 import { MainRefresh, Search } from "../../assets/Img";
 import { auth } from "../../api/auth";
 
@@ -21,6 +22,14 @@ const Main = () => {
     "스포츠",
     "무협/사극",
   ];
+  const [seeSeriesState, setSeeSeriesState] = useState({
+    id: 0,
+    image: "",
+    title: "",
+    nickname: "",
+    introduce: "",
+    like: 0,
+  });
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
@@ -35,6 +44,14 @@ const Main = () => {
     } else {
       console.log("로그인이 되어있지 않음");
     }
+  }, []);
+
+  useEffect(() => {
+    seeSeries("", "")
+      .then((res) => {
+        setSeeSeriesState(res);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   return (
