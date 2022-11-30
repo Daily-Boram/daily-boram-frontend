@@ -6,7 +6,7 @@ import Modal from "../../modal";
 import Alram from "../../Alram/all";
 
 const Header = () => {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [alramOpen, setAlramOpen] = useState(false);
 
@@ -27,16 +27,8 @@ const Header = () => {
         <HeaderItems>
           {!login ? (
             <>
-              <Item
-                src={AlramBtn}
-                alt="알람"
-                onClick={showModal}
-              />
-              <Item
-                src={User}
-                alt="유저"
-                onClick={showModal}
-              />
+              <Item src={AlramBtn} alt="알람" onClick={showModal} />
+              <Item src={User} alt="유저" onClick={showModal} />
               <LoginP onClick={showModal}>로그인</LoginP>
             </>
           ) : (

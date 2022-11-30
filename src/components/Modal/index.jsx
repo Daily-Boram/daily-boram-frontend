@@ -2,6 +2,8 @@ import { Close, NaverLogo } from "../../assets/Img";
 import styled from "styled-components";
 
 const Modal = ({ setModalOpen, modalOpen }) => {
+  const url =
+    "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=qrILHZxEvO2vLhCaw2uU&redirect_uri=http://localhost:3000/login/oauth2/code/naver&scope=name,email,gender,age,mobile,birthyear,birthday&state=STATE";
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -17,7 +19,7 @@ const Modal = ({ setModalOpen, modalOpen }) => {
             <LoginText>LOGIN</LoginText>
             <Line />
           </Loginhead>
-          <NaverBtn>
+          <NaverBtn href={url}>
             <img src={NaverLogo} alt="네이버로고" />
             <Text>네이버 시작하기</Text>
           </NaverBtn>
@@ -128,7 +130,7 @@ const Line = styled.div`
   background-color: #4e9efd;
 `;
 
-const NaverBtn = styled.div`
+const NaverBtn = styled.a`
   width: 400px;
   height: 50px;
   background-color: #00c73c;
