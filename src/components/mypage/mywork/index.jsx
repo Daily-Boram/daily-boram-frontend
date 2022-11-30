@@ -1,7 +1,7 @@
 import Select from "../select";
 import Header from "../../common/header";
 import Character from "../../character";
-import TagBox from "./tagBox";
+import TagBox from "./tagbox";
 import styled from "styled-components";
 import { useState } from "react";
 import PickImage from "../../pickImage";
@@ -115,10 +115,8 @@ const InputBackground = styled.div`
 
     margin-left: 30px;
 
-    color: ${(props) =>
-      props.length < 25
-        ? ({ theme }) => theme.color.gray02
-        : ({ theme }) => theme.color.error};
+    color: ${({ theme, length }) =>
+      length < 25 ? theme.color.gray02 : theme.color.error}
   }
 `;
 
@@ -147,7 +145,7 @@ const ContentsBackground = styled.div`
     font-size: 18px;
     font-weight: bold;
 
-    margin-left: 13px;
+    margin-left: 45px;
 
     color: ${(props) =>
       props.length < 400
@@ -157,7 +155,7 @@ const ContentsBackground = styled.div`
 `;
 
 const ContentsInput = styled.textarea`
-  width: 750px;
+  width: 720px;
   height: 100%;
   resize: none;
   font-size: 20px;
@@ -188,7 +186,7 @@ const RegistrationBtn = styled.button`
 
 const CharacterWrapper = styled.div`
   margin-top: 40px;
-  
+
   form {
     transform: translateX(-270px);
   }

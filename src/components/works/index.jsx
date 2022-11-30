@@ -109,6 +109,7 @@ const WorkContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
 
 const AboutWork = styled.div`
   width: 1050px;
@@ -182,5 +183,5 @@ const GoodIcon = styled.img`
 const Number = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: ${({ theme }) => theme.color.main};
+  margin-left: 15px;
 `;

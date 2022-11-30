@@ -145,5 +145,3 @@ const Text = styled.p`
   font-size: 20px;
   color: ${({ theme }) => theme.color.white};
 `;
-
-export default Modal;

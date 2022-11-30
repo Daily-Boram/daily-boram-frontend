@@ -1,16 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../main/mainworks/popular";
 import Works from "../main/mainworks/worksList";
+import seeSeries from "../../api/main/seeSeries";
 import { MainRefresh, Search } from "../../assets/Img";
 
 const Main = () => {
   const [Selected, setSelected] = useState("");
+  const [seeSeriesState, setSeeSeriesState] = useState({
+    id: 0,
+    image: "",
+    title: "",
+    nickname: "",
+    introduce: "",
+    like: 0,
+  });
 
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
+
+  useEffect(() => {
+    seeSeries("", "")
+      .then((res) => {
+        setSeeSeriesState(res);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <>
@@ -78,7 +95,7 @@ const Main = () => {
             <Genre>무협/사극</Genre>
           </Choose>
           <WorksBackground>
-            <Works workname="우주혁명" authorname="232" genre="개그"/>
+            <Works workname="우주혁명" authorname="232" genre="개그" />
             <Works workname="은하혁명" authorname="232" />
             <Works workname="우주혁명" authorname="232" />
             <Works workname="은하혁명" authorname="232" />
@@ -237,5 +254,3 @@ const Genre = styled.button`
     background-color: ${({ theme }) => theme.color.c02};
   }
 `;
-
-export default Main;

@@ -115,5 +115,3 @@ const NameText = styled.p`
     color: ${({ theme }) => theme.color.c04};
   }
 `;
-
-export default Header;
