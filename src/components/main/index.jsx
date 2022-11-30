@@ -25,6 +25,7 @@ const Main = () => {
     seeSeries("", "")
       .then((res) => {
         setSeeSeriesState(res);
+        console.log(seeSeries);
       })
       .catch((err) => console.error(err));
   }, []);
