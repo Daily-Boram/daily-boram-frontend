@@ -1,14 +1,22 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HeadLogo, AlramBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
 import Modal from "../../modal";
 import Alram from "../../Alram/all";
+import { my } from "../../../api/my";
 
 const Header = () => {
   const [login, setLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [alramOpen, setAlramOpen] = useState(false);
+  const [user, setUser] = useState({
+    nickname: "",
+    image: "",
+    introduce: "",
+    notice_list: [],
+    purchase_list: [],
+  });
 
   const showModal = () => {
     setModalOpen(modalOpen ? null : true);
@@ -17,6 +25,15 @@ const Header = () => {
   const showAlram = () => {
     setAlramOpen(alramOpen ? false : true);
   };
+
+  useEffect(() => {
+    my()
+      .then((res) => {
+        setLogin(true);
+        setUser(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <>
@@ -36,7 +53,7 @@ const Header = () => {
               <Item onClick={showAlram} src={AlramBtn} alt="알람" />
               <MyPageLink to="/mypage">
                 <Item src={User} alt="유저" />
-                <NameText setLogin={setLogin}>마을회장최씨</NameText>
+                <NameText setLogin={setLogin}>{user.nickname}</NameText>
               </MyPageLink>
             </>
           )}
@@ -57,7 +74,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   background: ${({ theme }) => theme.color.white};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
