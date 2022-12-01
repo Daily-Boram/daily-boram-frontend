@@ -40,6 +40,7 @@ const Main = () => {
         .then((res) => {
           console.log(res);
           localStorage.setItem("access_token", res.data.access_token);
+          window.location.replace("/");
         })
         .catch((err) => console.error(err));
     } else {
