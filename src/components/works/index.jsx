@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { SpacePhoto2, BigGood, TrueGood } from "../../assets/Img";
+import {
+  SpacePhoto2,
+  BigGood,
+  TrueGood,
+  ContentsRegistrationPlus,
+} from "../../assets/Img";
 import Header from "../common/header";
 import ContentsList from "../common/contents";
 import Pagination from "../common/pagination";
+import { Link } from "react-router-dom";
 
 const WorkPage = () => {
+  const [writer, setWriter] = useState(true);
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(0);
   const [textColor, setTextColor] = useState("#A7A7A7");
@@ -54,6 +61,19 @@ const WorkPage = () => {
             </Like>
           </Right>
         </AboutWork>
+        {!writer ? (
+          <></>
+        ) : (
+          <BtnContainer to="/makeNovel" setWriter={setWriter}>
+            <Line></Line>
+            <ContentsRegistrationBtn>
+              <div>
+                <img src={ContentsRegistrationPlus} />
+                <p>회차 등록하기</p>
+              </div>
+            </ContentsRegistrationBtn>
+          </BtnContainer>
+        )}
         <div>
           <ContentsList
             number="01"
@@ -185,4 +205,40 @@ const Number = styled.p`
   font-weight: bold;
   color: ${({ theme }) => theme.color.main};
   margin-left: 15px;
+`;
+
+const BtnContainer = styled(Link)`
+  text-decoration: none;
+`;
+
+const Line = styled.div`
+  width: 1050px;
+  border: 1px solid ${({ theme }) => theme.color.graymain};
+  margin-bottom: 10px;
+`;
+
+const ContentsRegistrationBtn = styled.div`
+  width: 1050px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: ${({ theme }) => theme.color.c02};
+  transition: 0.5s;
+  :hover {
+    background-color: ${({theme}) => theme.color.c04};
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  p {
+    color: ${({ theme }) => theme.color.white};
+    margin-top: 10px;
+  }
 `;
