@@ -39,19 +39,12 @@ const Main = () => {
       auth(urlParam)
         .then((res) => {
           console.log(res);
+          localStorage.setItem("access_token", res.data.access_token);
         })
         .catch((err) => console.error(err));
     } else {
       console.log("로그인이 되어있지 않음");
     }
-  }, []);
-
-  useEffect(() => {
-    seeSeries("", "")
-      .then((res) => {
-        setSeeSeriesState(res);
-      })
-      .catch((err) => console.error(err));
   }, []);
 
   return (
