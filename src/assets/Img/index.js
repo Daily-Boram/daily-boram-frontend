@@ -36,3 +36,4 @@ export { default as Add } from "./add.png";
 export { default as BlueCheck } from "./blueCheck.png";
 export { default as Narrator } from "./narrator.png";
 export { default as Delete } from "./delete.png";
+export { default as ContentsRegistrationPlus } from "./contentsregistrationplus.svg";
