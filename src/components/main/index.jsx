@@ -39,6 +39,7 @@ const Main = () => {
       auth(urlParam)
         .then((res) => {
           console.log(res);
+          localStorage.setItem("access_token", res.data.access_token);
         })
         .catch((err) => console.error(err));
     } else {

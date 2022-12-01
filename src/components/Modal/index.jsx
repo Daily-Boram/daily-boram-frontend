@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Modal = ({ setModalOpen, modalOpen }) => {
   const url =
-    "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=qrILHZxEvO2vLhCaw2uU&redirect_uri=http://localhost:3000/login/oauth2/code/naver&scope=name,email,gender,age,mobile,birthyear,birthday&state=STATE";
+    "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=qrILHZxEvO2vLhCaw2uU&redirect_uri=http://localhost:3000&scope=name,email,gender,age,mobile,birthyear,birthday&state=STATE";
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -138,6 +138,7 @@ const NaverBtn = styled.a`
   align-items: center;
   justify-content: space-around;
   border-radius: 5px;
+  text-decoration: none;
   cursor: pointer;
 `;
 
