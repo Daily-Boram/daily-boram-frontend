@@ -6,30 +6,16 @@ import Works from "../main/mainworks/worksList";
 import seeSeries from "../../api/main/seeSeries";
 import { MainRefresh, Search } from "../../assets/Img";
 import { auth } from "../../api/auth";
+import { choose } from "../../constance/choose";
+import { seeAllSeries } from "../../api/seeAllSeris";
 
 const Main = () => {
-  const [Selected, setSelected] = useState("");
-  const choose = [
-    "전체",
-    "일상",
-    "개그",
-    "판타지",
-    "액션",
-    "드라마",
-    "순정",
-    "감성",
-    "스릴러",
-    "스포츠",
-    "무협/사극",
-  ];
-  const [seeSeriesState, setSeeSeriesState] = useState({
-    id: 0,
-    image: "",
-    title: "",
-    nickname: "",
-    introduce: "",
-    like: 0,
+  const [selected, setSelected] = useState("");
+  const [list, setList] = useState({
+    popular_list: [],
+    series_list: [],
   });
+
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
@@ -49,11 +35,8 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    seeSeries("", "")
-      .then((res) => {
-        setSeeSeriesState(res);
-        console.log(seeSeries);
-      })
+    seeAllSeries(selected, "")
+      .then((res) => setList(res.data))
       .catch((err) => console.error(err));
   }, []);
 
@@ -73,24 +56,16 @@ const Main = () => {
             </LeftDiv>
           </BestWork>
           <WorksBackground>
-            <PopularWorks
-              workname="연애혁명"
-              authorname="232"
-              story="평범하면서 금사빠인 고등학생 순정남 공주영은 까칠하고 차가운 여학생 왕자림을 보고 사랑에 빠져버린다...."
-              like="2.1K"
-            />
-            <PopularWorks
-              workname="싸움 독학"
-              authorname="박태준"
-              story="힘없고 가진거 하나 없이 맞고만 살던 나였는데...우연히 비밀의 뉴튜브를 발견하게 되고 갑자기 떼돈을 벌었다."
-              like="3.2K"
-            />
-            <PopularWorks
-              workname="김부장"
-              authorname="정종택"
-              story="“제발 안경 쓴 아저씨는 건들지 말자…”오직 자신의 딸 '민지'를 위해 특수요원직을 관두고 평범함을..."
-              like="5.6K"
-            />
+            {list.popular_list.map((e, i) => (
+              <PopularWorks
+                key={i}
+                workname={e.title}
+                authorname={e.nickname}
+                story={e.introduce}
+                like={e.like}
+                image={e.image}
+              />
+            ))}
           </WorksBackground>
         </BestWorkBackground>
         <AllWorks>
@@ -103,7 +78,7 @@ const Main = () => {
                 <RefreshIcon src={MainRefresh} />
               </RefreshBtn>
             </LeftDiv>
-            <Select onChange={handleSelect} value={Selected}>
+            <Select onChange={handleSelect} value={selected}>
               <Option>랜덤</Option>
               <Option>인기순</Option>
               <Option>최신순</Option>
@@ -115,22 +90,9 @@ const Main = () => {
             ))}
           </Choose>
           <WorksBackground>
-            <Works workname="우주혁명" authorname="232" genre="개그" />
-            <Works workname="은하혁명" authorname="232" />
-            <Works workname="우주혁명" authorname="232" />
-            <Works workname="은하혁명" authorname="232" />
-          </WorksBackground>
-          <WorksBackground>
-            <Works workname="우주혁명" authorname="232" />
-            <Works workname="은하혁명" authorname="232" />
-            <Works workname="우주혁명" authorname="232" />
-            <Works workname="은하혁명" authorname="232" />
-          </WorksBackground>
-          <WorksBackground>
-            <Works workname="우주혁명" authorname="232" />
-            <Works workname="은하혁명" authorname="232" />
-            <Works workname="우주혁명" authorname="232" />
-            <Works workname="은하혁명" authorname="232" />
+            {list.series_list.map((e) => (
+              <Works key={e.id} workname={e.title} authorname={e.nickname} genre={e.genre}/>
+            ))}
           </WorksBackground>
         </AllWorks>
       </MainPage>
@@ -209,6 +171,7 @@ const WorksBackground = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 50px;
+  flex-wrap: wrap;
 `;
 
 const AllWorks = styled.div`

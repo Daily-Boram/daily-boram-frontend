@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Good } from "../../../../assets/Img";
 
-const Popular = ({ workname, authorname, story, like }) => {
+const Popular = ({ workname, authorname, story, like, image }) => {
   return (
     <PopularBackground to="/work">
-      <Img />
+      <Img src={image} />
       <TopicBackground>
         <Writer>
           <WorkName>{workname}</WorkName>
@@ -29,7 +29,7 @@ const PopularBackground = styled(Link)`
   text-decoration: none;
 `;
 
-const Img = styled.div`
+const Img = styled.img`
   width: 330px;
   height: 200px;
   background-color: ${({ theme }) => theme.color.graymain};

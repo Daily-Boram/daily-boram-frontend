@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../common/header";
 import Purchase from "./purchaseList";
@@ -12,12 +12,52 @@ import {
   DoubleError,
   UserPicture,
   Plus,
+  DefaultProfile,
 } from "../../../assets/Img";
+import { my } from "../../../api/my";
+import { updateProfileAxios } from "../../../api/updateProfile";
 
 const MyPage = () => {
   const [check, setCheck] = useState(true);
+  const [modify, setModify] = useState(false);
   const [introduction, setIntroduction] = useState("");
-  
+  const [user, setUser] = useState({
+    nickname: "",
+    image: "",
+    introduce: "",
+    is_mine: true,
+    notice_list: [],
+    purchase_list: [],
+  });
+  const [update, setUpdate] = useState({
+    nickname: "",
+    image: "",
+    introduce: "",
+  });
+  const userSet = () => {
+    my()
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.error(err));
+  };
+  useEffect(() => {
+    userSet();
+  }, []);
+
+  const updateProfile = () => {
+    updateProfileAxios(update.nickname, update.introduce)
+      .then(() => {
+        console.log("nice");
+        setUpdate({
+          nickname: "",
+          image: "",
+          introduce: "",
+        });
+        userSet();
+      })
+      .catch((err) => console.error(err));
+  };
   return (
     <>
       <Header />
@@ -26,12 +66,34 @@ const MyPage = () => {
         <MyInfo>
           <Introduce>
             <UserImage>
-              <CameraImage src={Camera} />
-              <Picture src={UserPicture} alt="유저 이미지" />
+              <Picture
+                src={
+                  modify
+                    ? update.image
+                      ? update.image
+                      : user.image
+                    : DefaultProfile
+                }
+                alt="유저 이미지"
+              />
             </UserImage>
             <Introduction>
               <User>
-                <Name>최성현</Name>
+                {modify ? (
+                  <NameInput
+                    value={update.nickname}
+                    name="nickname"
+                    onChange={(e) => {
+                      const { value, name } = e.target;
+                      setUpdate({
+                        ...update,
+                        [name]: value,
+                      });
+                    }}
+                  />
+                ) : (
+                  <Name>{user.nickname}</Name>
+                )}
                 {!check ? (
                   <CheckBtn src={DoubleError} alt="에러버튼" />
                 ) : (
@@ -41,26 +103,63 @@ const MyPage = () => {
                     alt="체크버튼"
                   />
                 )}
-                <UserCreateIcon src={Pencil} alt="이름쓰기" />
+                {modify ? (
+                  <CompleteButton
+                    onClick={() => {
+                      updateProfile();
+                      setModify(false);
+                    }}
+                  >
+                    완료
+                  </CompleteButton>
+                ) : (
+                  <UserCreateIcon
+                    onClick={() => setModify(true)}
+                    src={Pencil}
+                    alt="이름쓰기"
+                  />
+                )}
               </User>
               <ContentsInput length={introduction.length}>
-                <textarea
-                  placeholder="소개글을 작성해주세요."
-                  type="text"
-                  maxLength={100}
-                  onChange={(e) => {
-                    setIntroduction(e.target.value);
-                  }}
-                  value={introduction}
-                />
-                <span>{introduction.length}/100</span>
+                {modify ? (
+                  <>
+                    <textarea
+                      placeholder="소개글을 작성해주세요."
+                      type="text"
+                      maxLength={100}
+                      onChange={(e) => {
+                        const { value, name } = e.target;
+                        setUpdate({
+                          ...update,
+                          [name]: value,
+                        });
+                      }}
+                      name="introduce"
+                      value={update.introduce}
+                    />
+                    <span>{introduction.length}/100</span>
+                  </>
+                ) : (
+                  <span>
+                    {user.introduce
+                      ? user.introduce
+                      : "한줄 소개가 비어있습니다."}
+                  </span>
+                )}
               </ContentsInput>
             </Introduction>
           </Introduce>
           <Title>내 작품</Title>
           <MyWork>
-            <Works workname="우주혁명" authorname="232" like="2.1K" />
-            <Works workname="우주혁명" authorname="232" like="2.1K" />
+            {user.notice_list.map((e, i) => (
+              <Works
+                key={i}
+                workname={e.title}
+                authorname={e.nickname}
+                image={e.image}
+                id={i}
+              />
+            ))}
             <RegistrationBtn to="/mywork">
               <img src={Plus} alt="등록 버튼" />
               <Explanation>새 작품 등록하기</Explanation>
@@ -68,21 +167,14 @@ const MyPage = () => {
           </MyWork>
           <Title>구매 내역</Title>
           <Purchases>
-            <Purchase
-              title="우주혁명 3화"
-              subtitle="아름다운 행성"
-              price="300글자"
-            />
-            <Purchase
-              title="우주혁명 8화"
-              subtitle="아름다운 행성"
-              price="300글자"
-            />
-            <Purchase
-              title="우주혁명 12화"
-              subtitle="집에가고싶다"
-              price="300글자"
-            />
+            {user.purchase_list.map((e, i) => (
+              <Purchase
+                key={i}
+                title={e.series_title}
+                subtitle={e.episode_title}
+                price={e.cost}
+              />
+            ))}
           </Purchases>
         </MyInfo>
       </MyPageContainer>
@@ -91,6 +183,32 @@ const MyPage = () => {
 };
 
 export default MyPage;
+
+const FileInput = styled.input`
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  margin: 10px 35px 0px 0px;
+  display: none;
+`;
+
+const CompleteButton = styled.button`
+  padding: 8px 21px;
+  border-radius: 5px;
+  color: ${({ theme }) => theme.color.white};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${({ theme }) => theme.color.c03};
+`;
+
+const NameInput = styled.input`
+  margin-left: 10px;
+`;
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -116,15 +234,23 @@ const UserImage = styled.div`
   position: relative;
   display: flex;
   justify-content: end;
+  input {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const CameraImage = styled.img`
   position: absolute;
   margin: 5px 35px 0px 0px;
+  cursor: pointer;
 `;
 
 const Picture = styled.img`
+  width: 240px;
+  height: 240px;
   margin-right: 30px;
+  border-radius: 10px;
 `;
 
 const Introduction = styled.div`
@@ -149,7 +275,8 @@ const Name = styled.p`
 `;
 
 const CheckBtn = styled.img`
-  margin: 0px 315px 0px 15px;
+  margin-right: 45%;
+  margin-left: 5%;
 `;
 
 const UserCreateIcon = styled.img`
@@ -186,8 +313,11 @@ const ContentsInput = styled.div`
 
   span {
     font-size: 14px;
-    color: ${({theme}) => theme.color.gray02};
-    color: ${(props) => props.length < 100 ? ({ theme }) => theme.color.gray02 : ({ theme }) => theme.color.error};
+    color: ${({ theme }) => theme.color.gray02};
+    color: ${(props) =>
+      props.length < 100
+        ? ({ theme }) => theme.color.gray02
+        : ({ theme }) => theme.color.error};
   }
 `;
 

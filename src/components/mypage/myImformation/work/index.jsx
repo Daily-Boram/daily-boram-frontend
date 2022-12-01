@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { SpacePhoto, Good } from "../../../../assets/Img";
 import { Link } from "react-router-dom";
 
-const Works = ({ workname, authorname, like }) => {
+const Works = ({ workname, authorname, like, image, id }) => {
   return (
-    <WorkContainer to="/work">
-      <Photo src={SpacePhoto} />
+    <WorkContainer to={`/work/${id}`}>
+      <Photo src={image ? image : SpacePhoto} />
       <Line>
         <Writer>
           <WorkName>{workname}</WorkName>

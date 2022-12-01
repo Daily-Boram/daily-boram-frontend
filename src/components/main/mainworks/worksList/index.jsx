@@ -18,9 +18,9 @@ const Works = ({ workname, authorname, genre }) => {
           </Like>
         </FirstLine>
         <SecondLine>
-          <Genre>{genre}</Genre>
-          <Genre>{genre}</Genre>
-          <Genre>{genre}</Genre>
+          {genre.map((v, i) => (
+            <Genre key={i}>{v}</Genre>
+          ))}
         </SecondLine>
       </WorkBackground>
     </Link>
