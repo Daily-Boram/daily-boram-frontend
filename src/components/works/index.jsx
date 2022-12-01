@@ -1,13 +1,24 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SpacePhoto2, BigGood, TrueGood } from "../../assets/Img";
 import Header from "../common/header";
-import ContatsList from "./contantsList";
+import ContentsList from "../common/contents";
+import Pagination from "../common/pagination";
 
 const WorkPage = () => {
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(0);
   const [textColor, setTextColor] = useState("#A7A7A7");
+  const [posts, setPosts] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  }, []);
 
   const onIncrease = () => {
     setLike(!like);
@@ -44,35 +55,35 @@ const WorkPage = () => {
           </Right>
         </AboutWork>
         <div>
-          <ContatsList
+          <ContentsList
             number="01"
             title="맞은편의 행성"
             date="2022.10.16"
             likenumber="121"
             price="무료"
           />
-          <ContatsList
+          <ContentsList
             number="02"
             title="가까운 듯 먼 그곳의 기억"
             date="2022.10.20"
             likenumber="78"
             price="무료"
           />
-          <ContatsList
+          <ContentsList
             number="03"
             title="아름다운 행성"
             date="2022.10.24"
             likenumber="90"
             price="200글자"
           />
-          <ContatsList
+          <ContentsList
             number="04"
             title="차가운 공기, 따뜻한 마음"
             date="2022.10.28"
             likenumber="211"
             price="300글자"
           />
-          <ContatsList
+          <ContentsList
             number="05"
             title="김민성,털"
             date="2022.11.4"
@@ -80,17 +91,21 @@ const WorkPage = () => {
             price="300글자"
           />
         </div>
+        <Pagination
+          total={posts.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
       </WorkContainer>
-      <SelectPage>
-        <SelectBtn>1</SelectBtn>
-      </SelectPage>
     </>
   );
 };
 
+export default WorkPage;
+
 const WorkContainer = styled.div`
   width: 100%;
-  height: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,7 +124,7 @@ const Photo = styled.img`
 
 const Right = styled.div`
   height: 400px;
-  margin-left: 27px;
+  margin-left: 40px;
 `;
 
 const Writer = styled.div`
@@ -168,27 +183,6 @@ const GoodIcon = styled.img`
 const Number = styled.p`
   font-size: 20px;
   font-weight: bold;
+  color: ${({ theme }) => theme.color.main};
   margin-left: 15px;
-  color: ${({ theme }) => theme.color.gray02};
 `;
-
-const SelectPage = styled.div`
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SelectBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.c02};
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-`;
-
-export default WorkPage;

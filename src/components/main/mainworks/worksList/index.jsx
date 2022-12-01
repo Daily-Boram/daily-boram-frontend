@@ -27,6 +27,8 @@ const Works = ({ workname, authorname, genre }) => {
   );
 };
 
+export default Works;
+
 const WorkBackground = styled.div`
   width: 240px;
   cursor: pointer;
@@ -92,5 +94,3 @@ const Genre = styled.div`
   color: ${({ theme }) => theme.color.black};
   background-color: ${({ theme }) => theme.color.graymain};
 `;
-
-export default Works;

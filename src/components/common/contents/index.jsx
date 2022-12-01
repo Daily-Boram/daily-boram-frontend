@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { SpacePhoto3, BigGood } from "../../../assets/Img";
 
-const ContantsList = ({ number, title, date, likenumber, price }) => {
+const ContentsList = ({ number, title, date, likenumber, price }) => {
   return (
-    <ContantsListContainer>
+    <ContentsListContainer>
       <Photo src={SpacePhoto3} alt="우주 사진" />
       <Information>
         <Left>
@@ -17,11 +17,11 @@ const ContantsList = ({ number, title, date, likenumber, price }) => {
         </Left>
         <Price>{price}</Price>
       </Information>
-    </ContantsListContainer>
+    </ContentsListContainer>
   );
 };
 
-const ContantsListContainer = styled.div`
+const ContentsListContainer = styled.div`
   width: 1050px;
   height: 170px;
   border-top: 1px solid ${({ theme }) => theme.color.gray02};
@@ -91,4 +91,4 @@ const Price = styled.p`
   color: ${({ theme }) => theme.color.main};
 `;
 
-export default ContantsList;
+export default ContentsList;
