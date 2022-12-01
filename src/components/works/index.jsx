@@ -10,6 +10,7 @@ import Header from "../common/header";
 import ContentsList from "../common/contents";
 import Pagination from "../common/pagination";
 import { Link } from "react-router-dom";
+import { getList } from "../../api/getList";
 
 const WorkPage = () => {
   const [writer, setWriter] = useState(true);
@@ -20,12 +21,6 @@ const WorkPage = () => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
-  }, []);
 
   const onIncrease = () => {
     setLike(!like);
@@ -41,7 +36,7 @@ const WorkPage = () => {
           <Photo src={SpacePhoto2} />
           <Right>
             <Writer>
-              <Title>우주혁명</Title>
+              <Title>우주 전사</Title>
               <AuthorName>242작가</AuthorName>
             </Writer>
             <Explanation>
@@ -228,7 +223,7 @@ const ContentsRegistrationBtn = styled.div`
   background-color: ${({ theme }) => theme.color.c02};
   transition: 0.5s;
   :hover {
-    background-color: ${({theme}) => theme.color.c04};
+    background-color: ${({ theme }) => theme.color.c04};
   }
 
   div {
