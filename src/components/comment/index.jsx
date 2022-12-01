@@ -1,15 +1,38 @@
 import Header from "../common/header";
 import BottomNavigate from "../common/bottomNavigate";
 import styled from "styled-components";
-import { useState } from "react";
-import CommentDummy from "../../constance/comment";
+import { useState, useEffect } from "react";
 import { User } from "../../assets/Img";
+import { postComment } from "../../api/postComment";
+import { getComment } from "../../api/getComment";
 
 const Comment = () => {
   const [commentValue, setCommentValue] = useState("");
+  const [comment, setComment] = useState([]);
   const onChangeComment = (e) => {
     setCommentValue(e.target.value);
   };
+
+  const commentPost = () => {
+    postComment(1).then((res) => {
+      setComment({
+        content: res.data,
+      }).catch((err) => console.error(err));
+    });
+  };
+
+  useEffect(() => {
+    getComment(1)
+      .then((res) => {
+        setComment(res.data);
+      })
+      .catch((err) => console.error(err));
+    console.log("댓글 불러옴");
+    return () => {
+      console.log("컴포넌트 사라짐");
+    };
+  }, []);
+
   return (
     <Wrapper>
       <Header />
@@ -25,9 +48,11 @@ const Comment = () => {
             onChange={onChangeComment}
             type="text"
           />
-          <Registration text={commentValue}>등록</Registration>
+          <Registration onClick={commentPost} text={commentValue}>
+            등록
+          </Registration>
         </CommentInputWrapper>
-        {CommentDummy.map((e) => (
+        {comment.map((e) => (
           <CommentItem key={e.id}>
             <UserImage src={User} alt="profile" />
             <InformationWrapper>
