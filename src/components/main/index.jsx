@@ -47,6 +47,15 @@ const Main = () => {
     }
   }, []);
 
+  useEffect(() => {
+    seeSeries("", "")
+      .then((res) => {
+        setSeeSeriesState(res);
+        console.log(seeSeries);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <>
       <Header />
