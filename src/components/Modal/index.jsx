@@ -147,4 +147,5 @@ const Text = styled.p`
   font-weight: 700;
   font-size: 20px;
   color: ${({ theme }) => theme.color.white};
+  text-decoration: none;
 `;
