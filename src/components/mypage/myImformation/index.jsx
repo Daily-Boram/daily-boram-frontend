@@ -328,9 +328,9 @@ const Title = styled.p`
 `;
 
 const MyWork = styled.p`
-  height: 300px;
   display: flex;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
+  flex-wrap: wrap;
 `;
 
 const RegistrationBtn = styled(Link)`

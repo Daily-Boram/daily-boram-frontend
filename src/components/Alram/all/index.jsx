@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { MeatBalls } from "../../../assets/Img";
 import Element from "../element";
+import { AlarmDummyData } from "../../../constance/alarm";
 
 const Alram = () => {
   return (
@@ -9,13 +10,9 @@ const Alram = () => {
         <AlramText>알람</AlramText>
         <GumList src={MeatBalls} alt="점리스트" />
       </Head>
-      <Button>
-        <All>모두</All>
-        <NotRead>읽지 않음</NotRead>
-      </Button>
-      <NewNotifications>새로운 알림</NewNotifications>
-      <Element workname="우주 혁명" day="3일 전"/>
-      <Element workname="은하 혁명" day="1주 전"/>
+      {AlarmDummyData.new_alarm.map((v) => {
+        <Element key={v.id} workname={v.introduce} day={v.date} />;
+      })}
     </AlramContainer>
   );
 };
@@ -50,7 +47,7 @@ const AlramText = styled.p`
 const GumList = styled.img`
   cursor: pointer;
   :hover {
-    color: ${({theme}) => theme.color.black};
+    color: ${({ theme }) => theme.color.black};
   }
 `;
 

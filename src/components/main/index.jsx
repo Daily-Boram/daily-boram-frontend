@@ -37,7 +37,10 @@ const Main = () => {
 
   useEffect(() => {
     seeAllSeries(selected, "")
-      .then((res) => setList(res.data))
+      .then((res) => {
+        console.log(res.data);
+        setList(res.data);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -78,6 +81,7 @@ const Main = () => {
                   list.popular_list.map((e, i) => (
                     <PopularWorks
                       key={i}
+                      id={e.id}
                       workname={e.title}
                       authorname={e.nickname}
                       story={e.introduce}
@@ -116,6 +120,8 @@ const Main = () => {
                       workname={e.title}
                       authorname={e.nickname}
                       genre={e.genre}
+                      like={e.like}
+                      image={e.image}
                     />
                   ))}
               </WorksBackground>
@@ -139,6 +145,7 @@ const Main = () => {
                       workname={ele.title}
                       authorname={ele.nickname}
                       genre={ele.genre}
+                      like={ele.like}
                     />
                   ))
                 ) : (

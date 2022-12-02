@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { SpacePhoto, Good } from "../../../../assets/Img";
 import { Link } from "react-router-dom";
 
-const Works = ({ workname, authorname, genre }) => {
+const Works = ({ workname, authorname, genre, like, image }) => {
   return (
     <Link to="/work" style={{ textDecoration: "none" }}>
       <WorkBackground>
-        <Photo src={SpacePhoto} />
+        <Photo src={image ? image : SpacePhoto} />
         <FirstLine>
           <Writer>
             <WorkName>{workname}</WorkName>
@@ -14,7 +14,7 @@ const Works = ({ workname, authorname, genre }) => {
           </Writer>
           <Like>
             <GoodPhoto src={Good} />
-            <LikeNumber>1.1K</LikeNumber>
+            <LikeNumber>{like}</LikeNumber>
           </Like>
         </FirstLine>
         <SecondLine>
