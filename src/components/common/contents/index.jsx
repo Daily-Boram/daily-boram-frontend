@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { SpacePhoto3, BigGood } from "../../../assets/Img";
 
 const ContentsList = ({ number, title, date, likenumber, price }) => {
   return (
-    <ContentsListContainer>
+    <ContentsListContainer to="/paymentpage">
       <Photo src={SpacePhoto3} alt="우주 사진" />
       <Information>
         <Left>
@@ -21,9 +22,10 @@ const ContentsList = ({ number, title, date, likenumber, price }) => {
   );
 };
 
-const ContentsListContainer = styled.div`
+const ContentsListContainer = styled(Link)`
   width: 1050px;
   height: 170px;
+  text-decoration: none;
   border-top: 1px solid ${({ theme }) => theme.color.gray02};
   display: flex;
   align-items: center;
