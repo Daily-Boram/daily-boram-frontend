@@ -1,4 +1,4 @@
-export { default as AlramBtn } from "./alrambtn.svg";
+export { default as AlarmBtn } from "./alarmbtn.svg";
 export { default as ContentsBtn } from "./contentsBtn.svg";
 export { default as HeadLogo } from "./headlogo.svg";
 export { default as MainRefresh } from "./main_refresh.svg";
