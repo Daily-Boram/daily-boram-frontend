@@ -21,6 +21,10 @@ const ElementContainer = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
+  :hover {
+    background-color: ${({theme}) => theme.color.gray01};
+    cursor: pointer;
+  }
 `;
 
 const WorkImage = styled.img`

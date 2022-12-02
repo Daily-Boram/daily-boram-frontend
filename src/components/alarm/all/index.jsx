@@ -2,22 +2,41 @@ import styled from "styled-components";
 import { MeatBalls } from "../../../assets/Img";
 import Element from "../element";
 import { AlarmDummyData } from "../../../constance/alarm";
+import { useState } from "react";
+import AlarmNotread from "../notread";
 
-const Alram = () => {
+const AlarmAll = () => {
+  const [notreadOpen, setNotreadOpen] = useState(false);
+
+  const showNotread = () => {
+    setNotreadOpen(true);
+  };
   return (
-    <AlramContainer onClick={(e) => e.stopPropagation()}>
-      <Head>
-        <AlramText>알람</AlramText>
-        <GumList src={MeatBalls} alt="점리스트" />
-      </Head>
-      {AlarmDummyData.new_alarm.map((v) => {
-        <Element key={v.id} workname={v.introduce} day={v.date} />;
-      })}
-    </AlramContainer>
+    <>
+      <AlarmContainer onClick={(e) => e.stopPropagation()}>
+        <Head>
+          <AlramText>알람</AlramText>
+          <GumList src={MeatBalls} alt="점리스트" />
+        </Head>
+        {AlarmDummyData.new_alarm.map((v) => {
+          <Element key={v.id} workname={v.introduce} day={v.date} />;
+        })}
+        <Button>
+          <All>모두</All>
+          <NotRead onClick={showNotread}>읽지 않음</NotRead>
+        </Button>
+        <NewNotifications>새로운 알림</NewNotifications>
+        <Element workname="우주 혁명" day="3일 전" />
+        <Element workname="은하 혁명" day="1주 전" />
+      </AlarmContainer>
+      {notreadOpen && <AlarmNotread notreadOpen={notreadOpen} />}
+    </>
   );
 };
 
-const AlramContainer = styled.div`
+export default AlarmAll;
+
+const AlarmContainer = styled.div`
   width: 370px;
   height: 307px;
   position: fixed;
@@ -66,7 +85,6 @@ const All = styled.button`
   margin-right: 10px;
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.c02};
-  cursor: pointer;
 `;
 
 const NotRead = styled.button`
@@ -92,5 +110,3 @@ const NewNotifications = styled.p`
   color: ${({ theme }) => theme.color.gray02};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
-
-export default Alram;

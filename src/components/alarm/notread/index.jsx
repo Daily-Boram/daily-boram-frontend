@@ -1,24 +1,38 @@
 import styled from "styled-components";
 import { MeatBalls } from "../../../assets/Img";
 import Element from "../element";
+import AlarmAll from "../all";
+import { useState } from "react";
 
-const Alram = () => {
+const AlarmNotread = ({setNotreadOpen}) => {
+  const [allOpen, setAllOpen] = useState(false);
+
+  const showAll = () => {
+    setAllOpen(true);
+    setNotreadOpen(false);
+  };
+
   return (
-    <AlramContainer onClick={(e) => e.stopPropagation()}>
-      <Head>
-        <AlramText>알람</AlramText>
-        <GumList src={MeatBalls} alt="점리스트" />
-      </Head>
-      <Button>
-        <All>모두</All>
-        <NotRead>읽지 않음</NotRead>
-      </Button>
-      <NewNotifications>새로운 알림</NewNotifications>
-      <Element workname="우주 혁명" day="3일 전"/>
-      <Element workname="은하 혁명" day="1주 전"/>
-    </AlramContainer>
+    <>
+      <AlramContainer onClick={(e) => e.stopPropagation()}>
+        <Head>
+          <AlramText>알람</AlramText>
+          <GumList src={MeatBalls} alt="점리스트" />
+        </Head>
+        <Button>
+          <All onClick={showAll}>모두</All>
+          <NotRead>읽지 않음</NotRead>
+        </Button>
+        <NewNotifications>새로운 알림</NewNotifications>
+        <Element workname="맹태 혁명" day="5일 전" />
+        <Element workname="핳하 혁명" day="3주 전" />
+      </AlramContainer>
+      {allOpen && <AlarmAll allOpen={allOpen} />}
+    </>
   );
 };
+
+export default AlarmNotread;
 
 const AlramContainer = styled.div`
   width: 370px;
@@ -50,7 +64,7 @@ const AlramText = styled.p`
 const GumList = styled.img`
   cursor: pointer;
   :hover {
-    color: ${({theme}) => theme.color.black};
+    color: ${({ theme }) => theme.color.black};
   }
 `;
 
@@ -70,8 +84,10 @@ const All = styled.button`
   color: ${({ theme }) => theme.color.gray02};
   background-color: ${({ theme }) => theme.color.white};
   transition: 0.8s;
+  cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.color.c01};
+    color: ${({theme}) => theme.color.white};
   }
 `;
 
@@ -84,9 +100,7 @@ const NotRead = styled.button`
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.c02};
   transition: 0.8s;
-  :hover {
-    background-color: ${({ theme }) => theme.color.c01};
-  }
+
 `;
 
 const NewNotifications = styled.p`
@@ -96,5 +110,3 @@ const NewNotifications = styled.p`
   color: ${({ theme }) => theme.color.gray02};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
-
-export default Alram;
