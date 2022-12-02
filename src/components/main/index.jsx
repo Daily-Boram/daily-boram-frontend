@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../main/mainworks/popular";
 import Works from "../main/mainworks/worksList";
-import seeSeries from "../../api/main/seeSeries";
 import { MainRefresh, Search } from "../../assets/Img";
 import { auth } from "../../api/auth";
 import { choose } from "../../constance/choose";
 import { seeAllSeries } from "../../api/seeAllSeris";
+import { search } from "../../api/search";
 
 const Main = () => {
   const [selected, setSelected] = useState("");
@@ -15,6 +15,9 @@ const Main = () => {
     popular_list: [],
     series_list: [],
   });
+  const [searchBool, setSearchBool] = useState(false);
+  const [searchList, setSearchList] = useState([]);
+  const [title, setTitle] = useState("");
 
   const handleSelect = (e) => {
     setSelected(e.target.value);
@@ -29,8 +32,6 @@ const Main = () => {
           window.location.replace("/");
         })
         .catch((err) => console.error(err));
-    } else {
-      console.log("로그인이 되어있지 않음");
     }
   }, []);
 
@@ -45,62 +46,124 @@ const Main = () => {
       <Header />
       <MainPage>
         <SearchBar>
-          <Input placeholder="제목/작가를 검색하세요." />
+          <Input
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              if (e.target.value !== "") {
+                console.log("비어있지 않음");
+                search(title)
+                  .then((res) => {
+                    setSearchList(res.data.series_list);
+                    setSearchBool(true);
+                  })
+                  .catch((err) => console.error(err));
+              } else setSearchBool(false);
+            }}
+            placeholder="제목/작가를 검색하세요."
+          />
           <SearchBtn src={Search} />
         </SearchBar>
-        <BestWorkBackground>
-          <BestWork>
-            <LeftDiv>
-              <Daily>늘보람</Daily>
-              <Popular>인기글</Popular>
-            </LeftDiv>
-          </BestWork>
-          <WorksBackground>
-            {list.popular_list.map((e, i) => (
-              <PopularWorks
-                key={i}
-                workname={e.title}
-                authorname={e.nickname}
-                story={e.introduce}
-                like={e.like}
-                image={e.image}
-              />
-            ))}
-          </WorksBackground>
-        </BestWorkBackground>
-        <AllWorks>
-          <BestWork>
-            <LeftDiv>
-              <Daily>늘보람</Daily>
-              <Popular>추천 글 보기</Popular>
-              <RefreshBtn>
-                <BtnName>새로고침</BtnName>
-                <RefreshIcon src={MainRefresh} />
-              </RefreshBtn>
-            </LeftDiv>
-            <Select onChange={handleSelect} value={selected}>
-              <Option>랜덤</Option>
-              <Option>인기순</Option>
-              <Option>최신순</Option>
-            </Select>
-          </BestWork>
-          <Choose>
-            {choose.map((v, i) => (
-              <Genre key={i}>{v}</Genre>
-            ))}
-          </Choose>
-          <WorksBackground>
-            {list.series_list.map((e) => (
-              <Works key={e.id} workname={e.title} authorname={e.nickname} genre={e.genre}/>
-            ))}
-          </WorksBackground>
-        </AllWorks>
+        {!searchBool ? (
+          <>
+            <BestWorkBackground>
+              <BestWork>
+                <LeftDiv>
+                  <Daily>늘보람</Daily>
+                  <Popular>인기글</Popular>
+                </LeftDiv>
+              </BestWork>
+              <WorksBackground>
+                {list.popular_list.map((e, i) => (
+                  <PopularWorks
+                    key={i}
+                    workname={e.title}
+                    authorname={e.nickname}
+                    story={e.introduce}
+                    like={e.like}
+                    image={e.image}
+                  />
+                ))}
+              </WorksBackground>
+            </BestWorkBackground>
+            <AllWorks>
+              <BestWork>
+                <LeftDiv>
+                  <Daily>늘보람</Daily>
+                  <Popular>추천 글 보기</Popular>
+                  <RefreshBtn>
+                    <BtnName>새로고침</BtnName>
+                    <RefreshIcon src={MainRefresh} />
+                  </RefreshBtn>
+                </LeftDiv>
+                <Select onChange={handleSelect} value={selected}>
+                  <Option>랜덤</Option>
+                  <Option>인기순</Option>
+                  <Option>최신순</Option>
+                </Select>
+              </BestWork>
+              <Choose>
+                {choose.map((v, i) => (
+                  <Genre key={i}>{v}</Genre>
+                ))}
+              </Choose>
+              <WorksBackground>
+                {list.series_list.map((e) => (
+                  <Works
+                    key={e.id}
+                    workname={e.title}
+                    authorname={e.nickname}
+                    genre={e.genre}
+                  />
+                ))}
+              </WorksBackground>
+            </AllWorks>
+          </>
+        ) : (
+          <>
+            <BestWorkBackground>
+              <BestWork>
+                <LeftDiv>
+                  <Daily>늘보람</Daily>
+                  <Popular>검색결과</Popular>
+                  <span>{searchList.length}건</span>
+                </LeftDiv>
+              </BestWork>
+              <WorksBackground>
+                {searchList.length !== 0 ? (
+                  searchList.map((ele) => (
+                    <Works
+                      key={ele.id}
+                      workname={ele.title}
+                      authorname={ele.nickname}
+                      genre={ele.genre}
+                    />
+                  ))
+                ) : (
+                  <NoSearchList>검색 결과가 없습니다.</NoSearchList>
+                )}
+              </WorksBackground>
+            </BestWorkBackground>
+          </>
+        )}
       </MainPage>
     </>
   );
 };
 
 export default Main;
+
+const NoSearchList = styled.span`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #a7a7a7;
+`;
 
 const MainPage = styled.div`
   width: 100%;

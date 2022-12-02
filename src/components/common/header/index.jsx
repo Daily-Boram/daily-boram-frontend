@@ -4,7 +4,7 @@ import { HeadLogo, AlramBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
 import Alram from "../../Alram/all";
 import { my } from "../../../api/my";
-import Modal from "../../Modal";
+import Modal from "../../modal";
 
 const Header = () => {
   const [login, setLogin] = useState(false);
