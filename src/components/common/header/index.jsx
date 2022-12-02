@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { HeadLogo, AlramBtn, User } from "../../../assets/Img";
+import { HeadLogo, AlarmBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
-import Alram from "../../Alram/all";
-import { my } from "../../../api/my";
 import Modal from "../../modal";
+import AlarmAll from "../../alarm/all";
+import { my } from "../../../api/my";
 
 const Header = () => {
   const [login, setLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [alramOpen, setAlramOpen] = useState(false);
+  const [alarmOpen, setAlarmOpen] = useState(false);
   const [user, setUser] = useState({
     nickname: "",
     image: "",
@@ -22,8 +22,8 @@ const Header = () => {
     setModalOpen(modalOpen ? null : true);
   };
 
-  const showAlram = () => {
-    setAlramOpen(alramOpen ? false : true);
+  const showAlarm = () => {
+    setAlarmOpen(alarmOpen ? false : true);
   };
 
   useEffect(() => {
@@ -44,13 +44,13 @@ const Header = () => {
         <HeaderItems>
           {!login ? (
             <>
-              <Item src={AlramBtn} alt="알람" onClick={showModal} />
+              <Item src={AlarmBtn} alt="알람" onClick={showModal} />
               <Item src={User} alt="유저" onClick={showModal} />
               <LoginP onClick={showModal}>로그인</LoginP>
             </>
           ) : (
             <>
-              <Item onClick={showAlram} src={AlramBtn} alt="알람" />
+              <Item onClick={showAlarm} src={AlarmBtn} alt="알람" />
               <MyPageLink to="/mypage">
                 <Item src={User} alt="유저" />
                 <NameText setLogin={setLogin}>{user.nickname}</NameText>
@@ -60,7 +60,7 @@ const Header = () => {
         </HeaderItems>
       </HeaderContainer>
       {modalOpen && <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />}
-      {alramOpen && <Alram alramOpen={alramOpen} setAlramOpen={setAlramOpen} />}
+      {alarmOpen && <AlarmAll alarmOpen={alarmOpen} setAlarmOpen={setAlarmOpen} />}
     </>
   );
 };
