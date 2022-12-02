@@ -1,23 +1,18 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { havingState } from "../../store/having";
 
-const LetterModal = ({
-  setLetterModalOpen,
-  letterModalOpen,
-  textData,
-
-}) => {
-  
-  const [Have, setHave] = useState(0);
-
+const LetterModal = ({ setLetterModalOpen, letterModalOpen, textData }) => {
+  const [having, setHaving] = useRecoilState(havingState);
   const closeModal = () => {
     setLetterModalOpen(false);
   };
-  
+
   const Having = () => {
-    setHave(Number(Have + textData));
+    setHaving(having + Number(textData));
     setLetterModalOpen(false);
-  }
+  };
 
   return (
     <ModalContainer modalVisible={letterModalOpen} onClick={closeModal}>
@@ -29,7 +24,9 @@ const LetterModal = ({
         <Line></Line>
         <div>
           <button onClick={closeModal}>취소</button>
-          <button onClick={Having}>구매</button>    
+          <button onClick={Having} Have={having}>
+            구매
+          </button>
         </div>
       </LoginModal>
     </ModalContainer>
