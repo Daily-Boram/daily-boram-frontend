@@ -74,16 +74,17 @@ const Main = () => {
                 </LeftDiv>
               </BestWork>
               <WorksBackground>
-                {list.popular_list.map((e, i) => (
-                  <PopularWorks
-                    key={i}
-                    workname={e.title}
-                    authorname={e.nickname}
-                    story={e.introduce}
-                    like={e.like}
-                    image={e.image}
-                  />
-                ))}
+                {list.popular_list &&
+                  list.popular_list.map((e, i) => (
+                    <PopularWorks
+                      key={i}
+                      workname={e.title}
+                      authorname={e.nickname}
+                      story={e.introduce}
+                      like={e.like}
+                      image={e.image}
+                    />
+                  ))}
               </WorksBackground>
             </BestWorkBackground>
             <AllWorks>
@@ -108,14 +109,15 @@ const Main = () => {
                 ))}
               </Choose>
               <WorksBackground>
-                {list.series_list.map((e) => (
-                  <Works
-                    key={e.id}
-                    workname={e.title}
-                    authorname={e.nickname}
-                    genre={e.genre}
-                  />
-                ))}
+                {list.series_list &&
+                  list.series_list.map((e) => (
+                    <Works
+                      key={e.id}
+                      workname={e.title}
+                      authorname={e.nickname}
+                      genre={e.genre}
+                    />
+                  ))}
               </WorksBackground>
             </AllWorks>
           </>
