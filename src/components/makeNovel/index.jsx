@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { episodePost } from "../../api/makeNovel";
+import { episodePost } from "../../api/episodePost";
 import Character from "../character";
 import Header from "../common/header";
 import PickImage from "../pickImage";
 import Script from "../_script";
-import { Narrator } from "../../assets/Img";
 
 function MakeNovel() {
   const [characterState, setCharacterState] = useState([]);
