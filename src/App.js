@@ -8,6 +8,7 @@ import SeeNovel from "./components/seeNovel";
 import Comment from "./components/comment";
 import MyWork from "./components/mypage/mywork";
 import MyPage from "./components/mypage/myImformation";
+import Paymentpage from "./components/paymentPage";
 
 const App = () => {
   return (
@@ -21,6 +22,8 @@ const App = () => {
           <Route path="/comment" element={<Comment />} />
           <Route path="/seeNovel" element={<SeeNovel />} />
           <Route path="/makeNovel" element={<MakeNovel />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/paymentpage" element={<Paymentpage />} />
         </Routes>
       </BrowserRouter>
     </StyleProvider>
