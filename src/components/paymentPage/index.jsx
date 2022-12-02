@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Header from "../common/header";
 import GljaButton from "./gljabutton";
-import { useState, useMemo } from "react";
-import ReactApexCharts from "react-apexcharts";
+import { useState } from "react";
+import Oneday from "./charts/oneday";
+import { useRecoilValue } from "recoil";
+import { havingState } from "../../store/having";
 
 const dates = ["1일", "7일", "1개월", "3개월", "6개월", "1년"];
 
-const Paymentpage = ({ Have }) => {
+const Paymentpage = () => {
   const [timer, setTimer] = useState("0000000000");
 
   const currentTimer = () => {
@@ -25,48 +27,7 @@ const Paymentpage = ({ Have }) => {
 
   startTimer();
 
-  const [chartData, setChartData] = useState({
-    series: [
-      {
-        name: "Desktops",
-        data: [130.4, 103, 135, 107.2, 120.5, 142.7, 110],
-      },
-    ],
-    options: {
-      chart: {
-        height: 350,
-        type: "line",
-        zoom: {
-          enabled: false,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "straight",
-      },
-      title: {
-        text: "Product Trends by Month",
-        align: "left",
-      },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5,
-        },
-      },
-      xaxis: {
-        categories: ["일", "월", "화", "수", "목", "금", "토"],
-      },
-    },
-  });
-
-  const [money, setMoney] = useState(0);
-  
-  const useMoney = useMemo(() => {
-    return <span>{money}</span>;
-  }, [money]);
+  const havingCount = useRecoilValue(havingState);
 
   return (
     <>
@@ -82,20 +43,15 @@ const Paymentpage = ({ Have }) => {
           <Sort>
             {dates.map((v, i) => (
               <div>
-                <Dates key={i}>{v}</Dates>
+                <Dates type="oneday" key={i}>
+                  {v}
+                </Dates>
               </div>
             ))}
           </Sort>
-          <div id="chart">
-            <ReactApexCharts
-              options={chartData.options}
-              series={chartData.series}
-              type="line"
-              height={350}
-            />
-          </div>
+          <Oneday />
           <Title>
-            보유 중인 <span>글자 {useMoney}개</span>
+            보유 중인 <span>글자{havingCount}개</span>
           </Title>
           <Explan>
             ‘글자’란? 작품 감상을 위해 필요한 전용 결제 코인입니다.
