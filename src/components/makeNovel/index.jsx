@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { episodePost } from "../../api/makeNovel";
 import Character from "../character";
 import Header from "../common/header";
 import PickImage from "../pickImage";
 import Script from "../_script";
+import { Narrator } from "../../assets/Img";
 
 function MakeNovel() {
   const [characterState, setCharacterState] = useState([]);
   const [scriptState, setScriptState] = useState([]);
   const [novelState, setNovelState] = useState({
     title: "",
-    price: 0,
-    thumbnail: "",
-    characters: characterState,
-    scripts: scriptState,
+    cost: 0,
+    image: "",
   });
 
   useEffect(() => {
@@ -35,10 +35,23 @@ function MakeNovel() {
     });
   }, []);
 
+  const onSubmit = () => {
+    let temp = scriptState;
+    temp.map((v) => {
+      delete v.id;
+    });
+    episodePost(1, novelState, characterState, temp);
+  };
+
   return (
     <>
       <Header />
-      <Wrapper>
+      <Wrapper
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit();
+        }}
+      >
         <Input length={novelState.title.length}>
           <label htmlFor="title">회차 제목</label>
           <div>
@@ -58,20 +71,20 @@ function MakeNovel() {
         </Input>
 
         <Range>
-          <label htmlFor="price">가격</label>
+          <label htmlFor="cost">가격</label>
           <div>
             <input
-              id="price"
+              id="cost"
               type="range"
               min="100"
               max="1100"
               step="100"
               onChange={(e) => {
                 let temp = Object.assign({}, novelState);
-                temp.price = e.currentTarget.value - 100;
+                temp.cost = e.currentTarget.value - 100;
                 setNovelState(temp);
               }}
-              value={novelState.price + 100}
+              value={novelState.cost + 100}
             />
             <ul>
               <li>무료</li>
@@ -94,10 +107,10 @@ function MakeNovel() {
           subTitle="입력하신 정보를 기반으로 A.I.가 일러스트를 그립니다. 원하는 그림을
         선택해주세요!"
           type="thumbnail"
-          image={novelState.thumbnail}
-          setImage={(thumbnail) => {
+          image={novelState.image}
+          setImage={(image) => {
             let temp = Object.assign({}, novelState);
-            temp.thumbnail = thumbnail;
+            temp.image = image;
             setNovelState(temp);
           }}
         />
@@ -121,7 +134,7 @@ function MakeNovel() {
 
 export default MakeNovel;
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   padding-top: 180px;
 
   display: flex;

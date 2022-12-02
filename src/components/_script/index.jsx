@@ -39,9 +39,9 @@ function Script({ characterState, scriptState, setScriptState }) {
             onDragEnd={sortLines}
             onDragOver={(e) => e.preventDefault()}
           >
-            <img src={v.character.characterImage} alt="character profile" />
+            <img src={v.image} alt="character profile" />
             <div>
-              <strong>{v.character.characterName}</strong>
+              <strong>{v.name}</strong>
               <p>{v.line}</p>
               <span>
                 <img
@@ -67,7 +67,7 @@ function Script({ characterState, scriptState, setScriptState }) {
           />
 
           {scriptAddState &&
-            (inputState.character ? (
+            (inputState.name ? (
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -80,11 +80,8 @@ function Script({ characterState, scriptState, setScriptState }) {
                   setScriptAddState(false);
                 }}
               >
-                <img
-                  src={inputState.character.characterImage}
-                  alt={inputState.character.characterName}
-                />
-                <strong>{inputState.character.characterName}</strong>
+                <img src={inputState.image} alt={inputState.name} />
+                <strong>{inputState.name}</strong>
                 <input
                   onChange={(e) => {
                     let temp = Object.assign({}, inputState);
@@ -92,17 +89,32 @@ function Script({ characterState, scriptState, setScriptState }) {
                     setInputState(temp);
                   }}
                 />
-                <button type="submit">대사 추가</button>
+                <button
+                  type="submit"
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    let temp = structuredClone(scriptState);
+                    inputState.id = Date.now();
+                    temp = [...temp, inputState];
+                    setScriptState(temp);
+                    setInputState({});
+                    setScriptAddState(false);
+                  }}
+                >
+                  대사 추가
+                </button>
               </form>
             ) : (
               <div>
                 {characterState.map((v, i) => (
                   <img
-                    src={v.characterImage}
-                    alt={v.characterName}
+                    src={v.image}
+                    alt={v.name}
                     onClick={() => {
                       let temp = Object.assign({}, inputState);
-                      temp.character = characterState[i];
+                      temp.image = characterState[i].image;
+                      temp.name = characterState[i].name;
                       setInputState(temp);
                     }}
                   />
@@ -112,10 +124,9 @@ function Script({ characterState, scriptState, setScriptState }) {
                   alt="narrator"
                   onClick={() => {
                     let temp = Object.assign({}, inputState);
-                    temp.character = {
-                      characterName: "해설자",
-                      characterImage: Narrator,
-                    };
+                    temp.name = "해설자";
+                    temp.image = Narrator;
+
                     setInputState(temp);
                   }}
                 />

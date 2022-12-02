@@ -35,10 +35,6 @@ function PickImage({
     <Wrapper
       onSubmit={(e) => {
         e.preventDefault();
-        if (name && image) {
-          onSubmit();
-          setSelectedIndex(-1);
-        } else alert("등장인물에 대한 정보가 부족합니다.");
       }}
       type={type}
     >
@@ -112,9 +108,20 @@ function PickImage({
               새로운 사진 만들기
             </span>
             {type === "character" ? (
-              <button type="submit">인물 생성</button>
+              <button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (name && image) {
+                    onSubmit();
+                    setSelectedIndex(-1);
+                  } else alert("등장인물에 대한 정보가 부족합니다.");
+                }}
+              >
+                인물 생성
+              </button>
             ) : (
-              <button>사진 선택</button>
+              <button type="button">사진 선택</button>
             )}
           </div>
         </Samples>

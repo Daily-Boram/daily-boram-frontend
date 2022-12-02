@@ -6,8 +6,8 @@ import PickImage from "../pickImage";
 function Character({ characterState, setCharacterState, type }) {
   const [characterAddState, setCharacterAddState] = useState(false);
   const [inputState, setInputState] = useState({
-    characterName: "",
-    characterImage: "",
+    name: "",
+    image: "",
   });
 
   return (
@@ -17,8 +17,8 @@ function Character({ characterState, setCharacterState, type }) {
         <ul>
           {characterState.map((v, i) => (
             <li key={i}>
-              <img src={v.characterImage} alt="character profile" />
-              <span>{v.characterName}</span>
+              <img src={v.image} alt="character profile" />
+              <span>{v.name}</span>
             </li>
           ))}
           <li onClick={() => setCharacterAddState(!characterAddState)}>
@@ -33,16 +33,16 @@ function Character({ characterState, setCharacterState, type }) {
           title="등장인물 만들기"
           subTitle="입력하신 정보를 기반으로 AI가 일러스트를 그립니다. 원하는 그림을 선택해 주세요!"
           type={type ? type : "character"}
-          name={inputState.characterName}
-          setName={(characterName) => {
+          name={inputState.name}
+          setName={(name) => {
             let temp = Object.assign({}, inputState);
-            temp.characterName = characterName;
+            temp.name = name;
             setInputState(temp);
           }}
-          image={inputState.characterImage}
-          setImage={(characterImage) => {
+          image={inputState.image}
+          setImage={(image) => {
             let temp = Object.assign({}, inputState);
-            temp.characterImage = characterImage;
+            temp.image = image;
             setInputState(temp);
           }}
           onSubmit={() => {
@@ -50,8 +50,8 @@ function Character({ characterState, setCharacterState, type }) {
             temp = [...temp, inputState];
             setCharacterState(temp);
             setInputState({
-              characterName: "",
-              characterImage: "",
+              name: "",
+              image: "",
             });
           }}
         />
@@ -74,7 +74,7 @@ const Wrapper = styled.div`
   ul {
     margin-top: 10px;
 
-    width: 780px;
+    width: 1050px;
 
     display: flex;
 

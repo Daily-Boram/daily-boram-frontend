@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { HeadLogo, AlramBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
-import Modal from "../../modal";
 import Alram from "../../Alram/all";
 import { my } from "../../../api/my";
+import Modal from "../../Modal";
 
 const Header = () => {
   const [login, setLogin] = useState(false);
