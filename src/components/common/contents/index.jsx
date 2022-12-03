@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { SpacePhoto3, BigGood } from "../../../assets/Img";
 
-const ContentsList = ({ number, title, date, likenumber, price }) => {
+const ContentsList = ({ number, title, date, likenumber, price, image }) => {
   return (
     <ContentsListContainer to="/paymentpage">
-      <Photo src={SpacePhoto3} alt="우주 사진" />
+      <Photo src={image} alt="image" />
       <Information>
         <Left>
           <Number>{number}</Number>

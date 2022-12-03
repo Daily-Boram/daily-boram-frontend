@@ -3,8 +3,10 @@ import Header from "../../common/header";
 import Character from "../../character";
 import TagBox from "./tagbox";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PickImage from "../../pickImage";
+import { addSeries } from "../../../api/addSeries";
+import { my } from "../../../api/my";
 
 const MyWork = () => {
   const [characterState, setCharacterState] = useState([]);
@@ -14,6 +16,22 @@ const MyWork = () => {
     thumbnail: "",
     characters: characterState,
   });
+  const [myData, setMyData] = useState("");
+  const onSubmitClick = () => {
+    console.log(myWorkState);
+    addSeries(
+      myData,
+      myWorkState.title,
+      myWorkState.thumbnail,
+      myWorkState.contents,
+      myWorkState.characters
+    ).then((res) => console.log(res));
+  };
+  useEffect(() => {
+    my()
+      .then((res) => setMyData(res.data.nickname))
+      .catch((err) => console.error(err));
+  }, []);
   return (
     <>
       <Header />
@@ -69,7 +87,9 @@ const MyWork = () => {
               setCharacterState={setCharacterState}
             />
           </CharacterWrapper>
-          <RegistrationBtn>새 작품 등록하기</RegistrationBtn>
+          <RegistrationBtn onClick={onSubmitClick}>
+            새 작품 등록하기
+          </RegistrationBtn>
         </MyInfo>
       </MyWorkContainer>
     </>
@@ -116,7 +136,7 @@ const InputBackground = styled.div`
     margin-left: 30px;
 
     color: ${({ theme, length }) =>
-      length < 25 ? theme.color.gray02 : theme.color.error}
+      length < 25 ? theme.color.gray02 : theme.color.error};
   }
 `;
 

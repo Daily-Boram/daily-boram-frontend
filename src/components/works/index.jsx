@@ -73,7 +73,7 @@ const WorkPage = () => {
         {!writer ? (
           <></>
         ) : (
-          <BtnContainer to="/makeNovel" setWriter={setWriter}>
+          <BtnContainer to={`/makeNovel/${id}`} setWriter={setWriter}>
             <Line></Line>
             <ContentsRegistrationBtn>
               <div>

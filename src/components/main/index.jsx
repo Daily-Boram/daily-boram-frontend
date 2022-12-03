@@ -117,6 +117,7 @@ const Main = () => {
                   list.series_list.map((e) => (
                     <Works
                       key={e.id}
+                      id={e.id}
                       workname={e.title}
                       authorname={e.nickname}
                       genre={e.genre}
