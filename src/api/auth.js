@@ -5,6 +5,9 @@ export const auth = async (code) => {
     params: {
       code: code,
     },
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   return response;
 };
