@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { SpacePhoto3, BigGood } from "../../../assets/Img";
+import { Link } from "react-router-dom";
 
 const ContentsList = ({ number, title, date, likenumber, price, image }) => {
   return (
-    <ContentsListContainer to="/paymentpage">
-      <Photo src={image} alt="image" />
+    <ContentsListContainer to="/work/:id">
+      <img src={image} alt="image" />
       <Information>
         <Left>
           <Number>{number}</Number>
@@ -22,6 +22,8 @@ const ContentsList = ({ number, title, date, likenumber, price, image }) => {
   );
 };
 
+export default ContentsList;
+
 const ContentsListContainer = styled(Link)`
   width: 1050px;
   height: 170px;
@@ -30,17 +32,14 @@ const ContentsListContainer = styled(Link)`
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
   :hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
 `;
 
-const Photo = styled.img`
-  margin-left: 65px;
-`;
-
 const Information = styled.div`
-  width: 750px;
+  width: 800px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,5 +91,3 @@ const Price = styled.p`
   font-weight: bold;
   color: ${({ theme }) => theme.color.main};
 `;
-
-export default ContentsList;
