@@ -23,6 +23,16 @@ const WorkPage = () => {
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   const id = useParams().id;
+  const [information, setInformation] = useState({
+    title: "",
+    image: "",
+    summary: "",
+    like: 0,
+    nickname: "",
+    is_like: false,
+    genre: [],
+    episode_list: [],
+  });
 
   const onIncrease = () => {
     setLike(!like);
@@ -32,35 +42,31 @@ const WorkPage = () => {
 
   useEffect(() => {
     getSeries(id, 1, 5)
-      .then((res) => console.log(res))
+      .then((res) => setInformation(res.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [information]);
 
   return (
     <>
       <Header />
       <WorkContainer>
         <AboutWork>
-          <Photo src={SpacePhoto2} />
+          <Photo src={information.image} />
           <Right>
             <Writer>
-              <Title>우주 전사</Title>
-              <AuthorName>242작가</AuthorName>
+              <Title>{information.title}</Title>
+              <AuthorName>{information.nickname} 작가</AuthorName>
             </Writer>
-            <Explanation>
-              핵전쟁 이후 지구는 망했고, 남은 지구인들은 달로 이주했다. 이후
-              100년 “다시 지구로 돌아가자!” 라는 마음을 가진 청년들이 모여
-              혁명을 이룩하는데...
-            </Explanation>
+            <Explanation>{information.summary}</Explanation>
             <GenreList>
-              <Genre>#일상</Genre>
-              <Genre>#개그</Genre>
-              <Genre>#판타지</Genre>
-              <Genre>#로맨스</Genre>
+              {information.genre &&
+                information.genre.map((str, index) => (
+                  <Genre key={index}>#{str}</Genre>
+                ))}
             </GenreList>
             <Like onClick={onIncrease}>
-              <GoodIcon src={like ? TrueGood : BigGood} />
-              <Number style={{ color: textColor }}>{likeNum}</Number>
+              <GoodIcon src={information.is_like ? TrueGood : BigGood} />
+              <Number style={{ color: textColor }}>{information.like}</Number>
             </Like>
           </Right>
         </AboutWork>
@@ -78,41 +84,17 @@ const WorkPage = () => {
           </BtnContainer>
         )}
         <div>
-          <ContentsList
-            number="01"
-            title="맞은편의 행성"
-            date="2022.10.16"
-            likenumber="121"
-            price="무료"
-          />
-          <ContentsList
-            number="02"
-            title="가까운 듯 먼 그곳의 기억"
-            date="2022.10.20"
-            likenumber="78"
-            price="무료"
-          />
-          <ContentsList
-            number="03"
-            title="아름다운 행성"
-            date="2022.10.24"
-            likenumber="90"
-            price="200글자"
-          />
-          <ContentsList
-            number="04"
-            title="차가운 공기, 따뜻한 마음"
-            date="2022.10.28"
-            likenumber="211"
-            price="300글자"
-          />
-          <ContentsList
-            number="05"
-            title="김민성,털"
-            date="2022.11.4"
-            likenumber="700"
-            price="300글자"
-          />
+          {information.episode_list &&
+            information.episode_list.map((v) => (
+              <ContentsList
+                key={v.id}
+                image={v.image}
+                title={v.title}
+                price={v.cost}
+                likenumber={v.like}
+                date={v.date}
+              />
+            ))}
         </div>
         <Pagination
           total={posts.length}

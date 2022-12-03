@@ -31,6 +31,7 @@ const WorkContainer = styled(Link)`
 
 const Photo = styled.img`
   width: 240px;
+  height: 240px;
 `;
 
 const Line = styled.div`

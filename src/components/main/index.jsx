@@ -142,6 +142,7 @@ const Main = () => {
                   searchList.map((ele) => (
                     <Works
                       key={ele.id}
+                      id={ele.id}
                       workname={ele.title}
                       authorname={ele.nickname}
                       genre={ele.genre}
