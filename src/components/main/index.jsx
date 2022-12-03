@@ -35,6 +35,20 @@ const Main = () => {
     }
   }, []);
 
+  const searchOnChange = (e) => {
+    e.preventDefault();
+    setTitle(e.target.value);
+    if (e.target.value !== "" && e.target.value.length !== 0) {
+      console.log("비어있지 않음");
+      search(title)
+        .then((res) => {
+          setSearchList(res.data.series_list);
+          setSearchBool(true);
+        })
+        .catch((err) => console.error(err));
+    } else setSearchBool(false);
+  };
+
   useEffect(() => {
     seeAllSeries(selected, "")
       .then((res) => {
@@ -51,18 +65,7 @@ const Main = () => {
         <SearchBar>
           <Input
             value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-              if (e.target.value !== "" && e.target.value.length !== 0) {
-                console.log("비어있지 않음");
-                search(title)
-                  .then((res) => {
-                    setSearchList(res.data.series_list);
-                    setSearchBool(true);
-                  })
-                  .catch((err) => console.error(err));
-              } else setSearchBool(false);
-            }}
+            onChange={searchOnChange}
             placeholder="제목/작가를 검색하세요."
           />
           <SearchBtn src={Search} />
