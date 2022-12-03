@@ -9,8 +9,9 @@ import {
 import Header from "../common/header";
 import ContentsList from "../common/contents";
 import Pagination from "../common/pagination";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getList } from "../../api/getList";
+import { getSeries } from "../../api/getSeries";
 
 const WorkPage = () => {
   const [writer, setWriter] = useState(true);
@@ -21,12 +22,19 @@ const WorkPage = () => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
+  const id = useParams().id;
 
   const onIncrease = () => {
     setLike(!like);
     setLikeNum(like ? likeNum - 1 : likeNum + 1);
     setTextColor(textColor === "#A7A7A7" ? "#4E9EFD" : "#A7A7A7");
   };
+
+  useEffect(() => {
+    getSeries(id, 1, 5)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <>

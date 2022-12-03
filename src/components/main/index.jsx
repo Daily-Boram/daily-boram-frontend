@@ -53,7 +53,7 @@ const Main = () => {
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
-              if (e.target.value !== "") {
+              if (e.target.value !== "" && e.target.value.length !== 0) {
                 console.log("비어있지 않음");
                 search(title)
                   .then((res) => {
@@ -146,6 +146,7 @@ const Main = () => {
                       authorname={ele.nickname}
                       genre={ele.genre}
                       like={ele.like}
+                      image={ele.image}
                     />
                   ))
                 ) : (
