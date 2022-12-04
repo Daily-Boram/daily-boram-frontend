@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 import Modal from "../../modal";
 import AlarmAll from "../../alarm/all";
 import { my } from "../../../api/my";
+import { profileImage } from "../../../api/imageCreate/profileImage";
 
 const Header = () => {
   const [login, setLogin] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [alarmOpen, setAlarmOpen] = useState(false);
+  const [profile, setProfile] = useState({
+    image: ""
+  });
   const [user, setUser] = useState({
     nickname: "",
     image: "",
@@ -33,6 +37,15 @@ const Header = () => {
         setUser(res.data);
       })
       .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    profileImage()
+      .then((res) => {
+        console.log(res.data);
+        setProfile(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
