@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Purchase = ({ title, subtitle, price }) => {
   return (
@@ -7,7 +8,9 @@ const Purchase = ({ title, subtitle, price }) => {
         <Title>{title}</Title>
         <Title>{subtitle}</Title>
       </TitleWrapper>
-      <Price>{price}</Price>
+      <PayLink to="/paymentpage">
+        <Price>{price}</Price>
+      </PayLink>
     </PurchaseContainer>
   );
 };
@@ -33,6 +36,10 @@ const Title = styled.p`
   font-size: 20px;
   font-weight: bold;
   color: ${({ theme }) => theme.color.gray03};
+`;
+
+const PayLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const Price = styled.p`

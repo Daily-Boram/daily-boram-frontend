@@ -5,7 +5,7 @@ export const profileImage = async () => {
   const response = await axios.get(
     `${process.env.REACT_APP_BASE_URL}/image/profile`,
     {
-      image: "임시의 값",
+      image: "",
       headers: { Authorization: `Bearer ${access_token}` },
     }
   );

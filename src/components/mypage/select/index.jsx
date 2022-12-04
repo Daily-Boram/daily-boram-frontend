@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 
 const Select = () => {
+
+  const notData = () => {
+    alert("아직 데이터가 없습니다.");
+  }
+
   const location = useLocation();
   return (
     <SelectContainer>
@@ -11,7 +16,7 @@ const Select = () => {
       <MyLink to="/mywork">
         <Option isSelected={location.pathname === "/mywork"}>내 작품</Option>
       </MyLink>
-      <Option>구매 내역</Option>
+      <Option onClick={notData}>구매 내역</Option>
     </SelectContainer>
   );
 };

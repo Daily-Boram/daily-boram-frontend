@@ -5,8 +5,8 @@ import Character from "../character";
 import Header from "../common/header";
 import PickImage from "../pickImage";
 import Script from "../_script";
-import { Narrator } from "../../assets/Img";
-import { getCoverImage } from "../../api/imageCreate/coverImage";
+import { Narrator } from '../../assets/Img'; 
+import { coverImage } from "../../api/imageCreate/coverImage";
 
 function MakeNovel() {
   const [characterState, setCharacterState] = useState([]);
@@ -33,7 +33,7 @@ function MakeNovel() {
     rangeInputs.forEach((input) => {
       input.addEventListener("input", handleInputChange);
     });
-    const a = getCoverImage()
+    const a = coverImage()
       .then((res) => res)
       .catch((err) => console.error(err));
   }, []);

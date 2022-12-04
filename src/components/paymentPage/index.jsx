@@ -43,7 +43,7 @@ const Paymentpage = () => {
           <Sort>
             {dates.map((v, i) => (
               <div>
-                <Dates type="oneday" key={i}>
+                <Dates key={i}>
                   {v}
                 </Dates>
               </div>

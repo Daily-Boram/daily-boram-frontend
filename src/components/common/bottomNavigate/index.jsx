@@ -54,7 +54,7 @@ const _NotFocusText = styled.span`
 `;
 
 const _Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 80px;
   display: flex;
   align-items: center;

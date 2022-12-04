@@ -1,12 +1,27 @@
 import Select from "../select";
 import Header from "../../common/header";
 import Character from "../../character";
-import TagBox from "./tagbox";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import PickImage from "../../pickImage";
 import { addSeries } from "../../../api/addSeries";
 import { my } from "../../../api/my";
+import { Link } from "react-router-dom";
+
+const FirstCheckLabel = [
+  { key: "일상" },
+  { key: "개그" },
+  { key: "액션" },
+  { key: "감성" },
+  { key: "순정" },
+];
+
+const SecondCheckLabel = [
+  { key: "드라마" },
+  { key: "스릴러" },
+  { key: "스포츠" },
+  { key: "무협/사극" },
+];
 
 const MyWork = () => {
   const [characterState, setCharacterState] = useState([]);
@@ -54,7 +69,24 @@ const MyWork = () => {
             <span>{myWorkState.title.length} / 25</span>
           </InputBackground>
           <Title>태그</Title>
-          <TagBox />
+          <CheckBox>
+            <Line>
+              {FirstCheckLabel.map((check) => (
+                <FirstCheckBtn>
+                  <Check type="checkbox" />
+                  <Label>{check.key}</Label>
+                </FirstCheckBtn>
+              ))}
+            </Line>
+            <Line>
+              {SecondCheckLabel.map((check) => (
+                <SecondCheckBtn>
+                  <Check type="checkbox" />
+                  <Label>{check.key}</Label>
+                </SecondCheckBtn>
+              ))}
+            </Line>
+          </CheckBox>
           <Title>줄거리</Title>
           <ContentsBackground length={myWorkState.contents.length}>
             <ContentsInput
@@ -87,7 +119,7 @@ const MyWork = () => {
               setCharacterState={setCharacterState}
             />
           </CharacterWrapper>
-          <RegistrationBtn onClick={onSubmitClick}>
+          <RegistrationBtn onClick={onSubmitClick} to="/mypage">
             새 작품 등록하기
           </RegistrationBtn>
         </MyInfo>
@@ -99,9 +131,9 @@ const MyWork = () => {
 export default MyWork;
 
 const MyWorkContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
+  margin-left: 270px;
 `;
 
 const MyInfo = styled.div`
@@ -188,13 +220,17 @@ const ContentsInput = styled.textarea`
   }
 `;
 
-const RegistrationBtn = styled.button`
+const RegistrationBtn = styled(Link)`
   width: 780px;
   height: 56px;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 25px;
   font-weight: bold;
   margin-top: 15px;
+  text-decoration: none;
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.main};
   cursor: pointer;
@@ -210,4 +246,45 @@ const CharacterWrapper = styled.div`
   form {
     transform: translateX(-270px);
   }
+`;
+
+const CheckBox = styled.div`
+  width: 780px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  border-top: 1px solid ${({ theme }) => theme.color.gray02};
+  border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
+`;
+
+const Line = styled.div`
+  width: 800px;
+  display: flex;
+`;
+
+const FirstCheckBtn = styled.div`
+  height: 32px;
+  display: flex;
+  align-items: center;
+  margin-right: 80px;
+`;
+
+const SecondCheckBtn = styled.div`
+  height: 32px;
+  display: flex;
+  align-items: center;
+  margin-right: 58px;
+`;
+
+const Check = styled.input`
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+`;
+
+const Label = styled.label`
+  font-size: 22px;
+  font-weight: bold;
 `;

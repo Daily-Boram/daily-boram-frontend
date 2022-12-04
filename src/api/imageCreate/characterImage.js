@@ -5,7 +5,7 @@ export const charaterImage = async () => {
   const response = await axios.get(
     `${process.env.REACT_APP_BASE_URL}/image/character`,
     {
-      content: "장발의 초특급 미녀",
+      content: "",
       headers: { Authorization: `Bearer ${access_token}` },
     }
   );
