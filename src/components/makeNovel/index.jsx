@@ -5,8 +5,8 @@ import Character from "../character";
 import Header from "../common/header";
 import PickImage from "../pickImage";
 import Script from "../_script";
-import { Narrator } from '../../assets/Img'; 
-import { getCoverImage } from "../../api/coverImage";
+import { Narrator } from "../../assets/Img";
+import { getCoverImage } from "../../api/imageCreate/coverImage";
 
 function MakeNovel() {
   const [characterState, setCharacterState] = useState([]);
