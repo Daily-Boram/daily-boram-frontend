@@ -27,6 +27,7 @@ const PopularBackground = styled(Link)`
   width: 330px;
   cursor: pointer;
   text-decoration: none;
+  margin-right: 30px;
 `;
 
 const Img = styled.img`

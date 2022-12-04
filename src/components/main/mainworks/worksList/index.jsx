@@ -31,6 +31,7 @@ export default Works;
 
 const WorkBackground = styled.div`
   width: 240px;
+  margin-right: 30px;
   cursor: pointer;
 `;
 
@@ -80,6 +81,7 @@ const LikeNumber = styled.p`
 
 const SecondLine = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const Genre = styled.div`
@@ -90,7 +92,6 @@ const Genre = styled.div`
   font-size: 12px;
   font-weight: bold;
   border-radius: 5px;
-  margin-right: 13px;
   color: ${({ theme }) => theme.color.black};
   background-color: ${({ theme }) => theme.color.graymain};
 `;
