@@ -9,6 +9,7 @@ import Comment from "./components/comment";
 import MyWork from "./components/mypage/mywork";
 import MyPage from "./components/mypage/myImformation";
 import Paymentpage from "./components/paymentPage";
+import UpdateNovel from "./components/updateNovel";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/comment" element={<Comment />} />
           <Route path="/seeNovel" element={<SeeNovel />} />
           <Route path="/makeNovel/:id" element={<MakeNovel />} />
+          <Route path="/updateNovel/:id" element={<UpdateNovel />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/paymentpage" element={<Paymentpage />} />
         </Routes>

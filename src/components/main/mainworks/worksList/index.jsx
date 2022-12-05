@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { SpacePhoto, Good } from "../../../../assets/Img";
 import { Link } from "react-router-dom";
 
-const Works = ({ id,workname, authorname, genre, like, image }) => {
+const Works = ({ id, workname, authorname, genre, like, image }) => {
   return (
     <Link to={`/work/${id}`} style={{ textDecoration: "none" }}>
       <WorkBackground>

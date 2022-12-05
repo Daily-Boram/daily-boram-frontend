@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { HeadLogo, AlarmBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
-import Modal from "../../Modal";
+import Modal from "../../modal";
 import AlarmAll from "../../alarm/all";
 import { my } from "../../../api/my";
 import { profileImage } from "../../../api/imageCreate/profileImage";
