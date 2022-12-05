@@ -107,6 +107,7 @@ const MyWork = () => {
           <PickImage
             type="imageOnly"
             title="작품 대표 이미지"
+            values={myWorkState.contents}
             subTitle="위 입력하신 정보를 기반으로 AI가 일러스트를 그립니다. 원하는 그림을 선택해 주세요!"
             image={myWorkState.characterImage}
             setImage={(characterImage) => {

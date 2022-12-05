@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { BlueCheck, GreyRefresh } from "../../assets/Img";
 
@@ -7,6 +7,7 @@ function PickImage({
   title,
   subTitle,
   type,
+  values,
   name,
   setName,
   image,
@@ -15,12 +16,10 @@ function PickImage({
 }) {
   const [sendingState, setSendingState] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
   const [inputState, setInputState] = useState({
     characterName: "",
     description: "",
   });
-
   const [imageState, setImageState] = useState([
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
@@ -32,14 +31,8 @@ function PickImage({
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
   ]);
-
   return (
-    <Wrapper
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      type={type}
-    >
+    <Wrapper onSubmit={(e) => e.preventDefault()} type={type}>
       <h1>{title}</h1>
       <h2>{subTitle}</h2>
       <div>
@@ -94,20 +87,18 @@ function PickImage({
         <Samples selectedIndex={selectedIndex}>
           <div>
             {imageState.length > 0 &&
-              imageState.map((v, i) => {
-                return (
-                  <strong
-                    key={i}
-                    onClick={(e) => {
-                      if (selectedIndex === i) setSelectedIndex(-1);
-                      else setSelectedIndex(i);
-                      setImage(e.target.src);
-                    }}
-                  >
-                    <img src={v} alt="sample" />
-                  </strong>
-                );
-              })}
+              imageState.map((v, i) => (
+                <strong
+                  key={i}
+                  onClick={(e) => {
+                    if (selectedIndex === i) setSelectedIndex(-1);
+                    else setSelectedIndex(i);
+                    setImage(e.target.src);
+                  }}
+                >
+                  <img src={v} alt="sample" />
+                </strong>
+              ))}
           </div>
           <div>
             <span
@@ -137,6 +128,22 @@ function PickImage({
                         `${process.env.REACT_APP_LOCAL_HOST}/image/character`,
                         {
                           params: { content: inputState.description },
+                        },
+                        {
+                          headers: { Authorization: `Bearer ${access_token}` },
+                        }
+                      )
+                      .then((response) => {
+                        setImageState(response.data);
+                        setSendingState(false);
+                      });
+                  } else if (type === "imageOnly") {
+                    const access_token = localStorage.getItem("access_token");
+                    await axios
+                      .get(
+                        `${process.env.REACT_APP_LOCAL_HOST}/image/thumb`,
+                        {
+                          params: { content: values },
                         },
                         {
                           headers: { Authorization: `Bearer ${access_token}` },
