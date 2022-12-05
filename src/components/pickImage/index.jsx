@@ -176,7 +176,7 @@ function PickImage({
                   } else alert("등장인물에 대한 정보가 부족합니다.");
                 }}
               >
-                사진 생성
+                인물 생성
               </button>
             ) : (
               <button type="button" onClick={yesCheck}>사진 선택</button>

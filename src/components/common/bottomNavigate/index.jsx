@@ -1,7 +1,26 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { BeforeEpisode, Good, Comment, NextEpisode } from "../../../assets/Img";
 
 const BottomNavigate = () => {
+  const [likes, setLike] = useState({
+    like: 0,
+    likeState: false,
+  });
+  const { like, likeState } = likes;
+  const onlike = () => {
+    if (likeState == false) {
+      setLike({
+        like: like + 1,
+        likeState: true,
+      });
+    } else {
+      setLike({
+        like: like - 1,
+        likeState: false,
+      });
+    }
+  };
   return (
     <_Wrapper>
       <_OptionWrapper>
@@ -13,8 +32,8 @@ const BottomNavigate = () => {
         <_FocusText>2</_FocusText>
       </_OptionWrapper>
       <_OptionWrapper>
-        <_IconImage src={Good} alt="before_episode" />
-        <_FocusText>106</_FocusText>
+        <_IconImage onClick={onlike} src={Good} alt="before_episode" />
+        <_FocusText onClick={onlike}>{like}</_FocusText>
       </_OptionWrapper>
       <_OptionWrapper>
         <_NotFocusText>다음화</_NotFocusText>
@@ -40,6 +59,7 @@ const _FocusText = styled.span`
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
+  margin-top: 5px;
   line-height: 29px;
   color: ${({ theme }) => theme.color.main};
 `;
