@@ -33,8 +33,21 @@ const Main = () => {
         })
         .catch((err) => console.error(err));
     }
+    seeAllSeries(selected, "")
+      .then((res) => {
+        console.log(res.data);
+        setList(res.data);
+      })
+      .catch((err) => console.error(err));
   }, []);
-
+  const refreshOnClick = () => {
+    seeAllSeries("", selected)
+      .then((res) => {
+        console.log(res.data);
+        setList(res.data);
+      })
+      .catch((err) => console.error(err));
+  };
   const searchOnChange = (e) => {
     e.preventDefault();
     setTitle(e.target.value);
@@ -48,16 +61,6 @@ const Main = () => {
         .catch((err) => console.error(err));
     } else setSearchBool(false);
   };
-
-  useEffect(() => {
-    seeAllSeries(selected, "")
-      .then((res) => {
-        console.log(res.data);
-        setList(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
   return (
     <>
       <Header />
@@ -99,7 +102,7 @@ const Main = () => {
                 <LeftDiv>
                   <Daily>늘보람</Daily>
                   <Popular>추천 글 보기</Popular>
-                  <RefreshBtn>
+                  <RefreshBtn onClick={refreshOnClick}>
                     <BtnName>새로고침</BtnName>
                     <RefreshIcon src={MainRefresh} />
                   </RefreshBtn>
