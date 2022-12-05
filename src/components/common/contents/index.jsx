@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ContentsList = ({ number, title, date, likenumber, price, image }) => {
   return (
     <ContentsListContainer to="/seeNovel">
-      <img src={image} alt="image" />
+      <img src={SpacePhoto3} alt="image" />
       <Information>
         <Left>
           <Number>{number}</Number>
