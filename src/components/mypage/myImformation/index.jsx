@@ -40,6 +40,7 @@ const MyPage = (setWriter) => {
     my()
       .then((res) => {
         setUser(res.data);
+        console.log(user)
       })
       .catch((err) => console.error(err));
   };
@@ -164,7 +165,7 @@ const MyPage = (setWriter) => {
                 workname={e.title}
                 authorname={e.nickname}
                 image={e.image}
-                id={i}
+                id={e.id}
                 onClick={() => setWriter(true)}
               />
             ))}

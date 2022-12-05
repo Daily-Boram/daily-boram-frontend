@@ -82,11 +82,11 @@ const LikeNumber = styled.p`
 
 const SecondLine = styled.div`
   display: flex;
-  justify-content: space-between;
 `;
 
 const Genre = styled.div`
   display: grid;
+  margin-right: 10px;
   place-content: center;
   width: 50px;
   height: 20px;
