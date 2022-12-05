@@ -20,6 +20,7 @@ function PickImage({
     characterName: "",
     description: "",
   });
+
   const [imageState, setImageState] = useState([
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
@@ -171,10 +172,10 @@ function PickImage({
                   } else alert("등장인물에 대한 정보가 부족합니다.");
                 }}
               >
-                사진 생성
+                인물 생성
               </button>
             ) : (
-              <button type="button">사진 선택</button>
+              <button type="button" onClick={() => alert("사진이 선택되었습니다.")}>사진 선택</button>
             )}
           </div>
         </Samples>
