@@ -33,7 +33,7 @@ const WorkPage = () => {
     genre: [],
     episode_list: [],
   });
-
+  
   const onIncrease = () => {
     setLike(!like);
     setLikeNum(like ? likeNum - 1 : likeNum + 1);

@@ -18,7 +18,7 @@ import {
 import { my } from "../../../api/my";
 import { updateProfileAxios } from "../../../api/updateProfile";
 
-const MyPage = () => {
+const MyPage = (setWriter) => {
   const havingCount = useRecoilValue(havingState);
   const [check, setCheck] = useState(true);
   const [modify, setModify] = useState(false);
@@ -40,6 +40,7 @@ const MyPage = () => {
     my()
       .then((res) => {
         setUser(res.data);
+        console.log(user)
       })
       .catch((err) => console.error(err));
   };
@@ -164,7 +165,8 @@ const MyPage = () => {
                 workname={e.title}
                 authorname={e.nickname}
                 image={e.image}
-                id={i}
+                id={e.id}
+                onClick={() => setWriter(true)}
               />
             ))}
             <RegistrationBtn to="/mywork">

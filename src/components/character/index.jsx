@@ -50,15 +50,6 @@ function Character({ characterState, setCharacterState, type }) {
             temp.image = image;
             setInputState(temp);
           }}
-          onSubmit={() => {
-            let temp = structuredClone(characterState);
-            temp = [...temp, inputState];
-            setCharacterState(temp);
-            setInputState({
-              name: "",
-              image: "",
-            });
-          }}
         />
       )}
     </>

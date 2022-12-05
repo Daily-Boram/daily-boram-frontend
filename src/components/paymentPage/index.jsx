@@ -43,9 +43,7 @@ const Paymentpage = () => {
           <Sort>
             {dates.map((v, i) => (
               <div>
-                <Dates key={i}>
-                  {v}
-                </Dates>
+                <Dates key={i}>{v}</Dates>
               </div>
             ))}
           </Sort>
@@ -60,6 +58,7 @@ const Paymentpage = () => {
           <GljaButton />
         </Wrapper>
       </PaymentpageContainer>
+      
     </>
   );
 };

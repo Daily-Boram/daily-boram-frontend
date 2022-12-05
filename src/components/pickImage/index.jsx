@@ -1,45 +1,38 @@
+import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
 import { BlueCheck, GreyRefresh } from "../../assets/Img";
-import { coverImage } from "../../api/imageCreate/coverImage.js";
-import { characterImage } from "../../api/imageCreate/characterImage.js";
 
 function PickImage({
   title,
   subTitle,
   type,
+  values,
   name,
   setName,
   image,
   setImage,
   onSubmit,
 }) {
+  const [sendingState, setSendingState] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
   const [inputState, setInputState] = useState({
     characterName: "",
     description: "",
   });
-
-  const dummyImages = [
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-    "https://thumbs.dreamstime.com/b/spaceman-wiitch-mission-wireless-internet-spaceman-wiitch-mission-wireless-internet-outer-space-128800693.jpg",
-  ];
-
+  const [imageState, setImageState] = useState([
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+    "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
+  ]);
   return (
-    <Wrapper
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      type={type}
-    >
+    <Wrapper onSubmit={(e) => e.preventDefault()} type={type}>
       <h1>{title}</h1>
       <h2>{subTitle}</h2>
       <div>
@@ -83,7 +76,9 @@ function PickImage({
         )}
         <img
           src={
-            image
+            sendingState === true
+              ? "https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator_square_large.gif"
+              : image
               ? image
               : "https://thumbs.dreamstime.com/b/imitation-transparent-background-seamless-vector-illustration-69028332.jpg"
           }
@@ -91,26 +86,74 @@ function PickImage({
         />
         <Samples selectedIndex={selectedIndex}>
           <div>
-            {dummyImages.map((v, i) => (
-              <strong
-                key={i}
-                onClick={(e) => {
-                  if (selectedIndex === i) setSelectedIndex(-1);
-                  else setSelectedIndex(i);
-                  setImage(e.target.src);
-                }}
-              >
-                <img src={v} alt="sample" />
-              </strong>
-            ))}
+            {imageState.length > 0 &&
+              imageState.map((v, i) => (
+                <strong
+                  key={i}
+                  onClick={(e) => {
+                    if (selectedIndex === i) setSelectedIndex(-1);
+                    else setSelectedIndex(i);
+                    setImage(e.target.src);
+                  }}
+                >
+                  <img src={v} alt="sample" />
+                </strong>
+              ))}
           </div>
           <div>
             <span
-              onClick={() => {
-                if (type === "thumbnail") {
-                  coverImage(inputState.description);
-                } else if (type === "character") {
-                  characterImage(inputState.description);
+              onClick={async () => {
+                if (sendingState === false) {
+                  setSendingState(true);
+                  if (type === "thumbnail") {
+                    const access_token = localStorage.getItem("access_token");
+                    await axios
+                      .get(
+                        `${process.env.REACT_APP_LOCAL_HOST}/image/thumb`,
+                        {
+                          params: { content: inputState.description },
+                        },
+                        {
+                          headers: { Authorization: `Bearer ${access_token}` },
+                        }
+                      )
+                      .then((response) => {
+                        setImageState(response.data);
+                        setSendingState(false);
+                      });
+                  } else if (type === "character") {
+                    const access_token = localStorage.getItem("access_token");
+                    await axios
+                      .get(
+                        `${process.env.REACT_APP_LOCAL_HOST}/image/character`,
+                        {
+                          params: { content: inputState.description },
+                        },
+                        {
+                          headers: { Authorization: `Bearer ${access_token}` },
+                        }
+                      )
+                      .then((response) => {
+                        setImageState(response.data);
+                        setSendingState(false);
+                      });
+                  } else if (type === "imageOnly") {
+                    const access_token = localStorage.getItem("access_token");
+                    await axios
+                      .get(
+                        `${process.env.REACT_APP_LOCAL_HOST}/image/thumb`,
+                        {
+                          params: { content: values },
+                        },
+                        {
+                          headers: { Authorization: `Bearer ${access_token}` },
+                        }
+                      )
+                      .then((response) => {
+                        setImageState(response.data);
+                        setSendingState(false);
+                      });
+                  }
                 }
               }}
             >
@@ -128,7 +171,7 @@ function PickImage({
                   } else alert("등장인물에 대한 정보가 부족합니다.");
                 }}
               >
-                인물 생성
+                사진 생성
               </button>
             ) : (
               <button type="button">사진 선택</button>
