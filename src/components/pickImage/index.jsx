@@ -21,6 +21,10 @@ function PickImage({
     description: "",
   });
 
+  const yesCheck = () => {
+    alert("사진이 선택이 되었습니다.");
+  }
+
   const [imageState, setImageState] = useState([
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
@@ -156,7 +160,7 @@ function PickImage({
                 인물 생성
               </button>
             ) : (
-              <button type="button">사진 선택</button>
+              <button type="button" onClick={yesCheck}>사진 선택</button>
             )}
           </div>
         </Samples>
