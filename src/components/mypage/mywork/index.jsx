@@ -97,7 +97,7 @@ const MyWork = () => {
                 let temp = Object.assign({}, myWorkState);
                 temp.contents = e.currentTarget.value;
                 setMyWorkState(temp);
-              }}
+              }}  
               value={myWorkState.contents}
             />
             <span>{myWorkState.contents.length} / 400</span>
