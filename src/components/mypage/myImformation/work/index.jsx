@@ -2,9 +2,13 @@ import styled from "styled-components";
 import { SpacePhoto, Good } from "../../../../assets/Img";
 import { Link } from "react-router-dom";
 
-const Works = ({ workname, authorname, like, image, id }) => {
+const Works = ({ workname, authorname, like, image, id, setWriter }) => {
+  const YesWriter = () => {
+    setWriter(true);
+  };
+
   return (
-    <WorkContainer to={`/work/${id}`}>
+    <WorkContainer to={`/work/${id}`} onClick={YesWriter}>
       <Photo src={image ? image : SpacePhoto} />
       <Line>
         <Writer>

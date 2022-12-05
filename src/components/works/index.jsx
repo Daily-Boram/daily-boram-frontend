@@ -14,7 +14,7 @@ import { getList } from "../../api/getList";
 import { getSeries } from "../../api/getSeries";
 
 const WorkPage = () => {
-  const [writer, setWriter] = useState(true);
+  const [writer, setWriter] = useState(false);
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(0);
   const [textColor, setTextColor] = useState("#A7A7A7");
@@ -33,7 +33,7 @@ const WorkPage = () => {
     genre: [],
     episode_list: [],
   });
-
+  
   const onIncrease = () => {
     setLike(!like);
     setLikeNum(like ? likeNum - 1 : likeNum + 1);

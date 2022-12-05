@@ -18,7 +18,7 @@ import {
 import { my } from "../../../api/my";
 import { updateProfileAxios } from "../../../api/updateProfile";
 
-const MyPage = () => {
+const MyPage = (setWriter) => {
   const havingCount = useRecoilValue(havingState);
   const [check, setCheck] = useState(true);
   const [modify, setModify] = useState(false);
@@ -165,6 +165,7 @@ const MyPage = () => {
                 authorname={e.nickname}
                 image={e.image}
                 id={i}
+                onClick={() => setWriter(true)}
               />
             ))}
             <RegistrationBtn to="/mywork">
