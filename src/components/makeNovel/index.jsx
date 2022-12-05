@@ -5,7 +5,7 @@ import Character from "../character";
 import Header from "../common/header";
 import PickImage from "../pickImage";
 import Script from "../_script";
-import { coverImage } from "../../api/imageCreate/coverImage";
+import { useParams } from "react-router-dom";
 
 function MakeNovel() {
   const [characterState, setCharacterState] = useState([]);
@@ -18,7 +18,6 @@ function MakeNovel() {
 
   useEffect(() => {
     const rangeInputs = document.querySelectorAll('input[type="range"]');
-
     function handleInputChange(e) {
       const target = e.target;
 
@@ -33,13 +32,14 @@ function MakeNovel() {
       input.addEventListener("input", handleInputChange);
     });
   }, []);
+  const id = useParams().id;
 
   const onSubmit = () => {
     let temp = scriptState;
     temp.map((v) => {
       delete v.id;
     });
-    episodePost(1, novelState, characterState, temp);
+    episodePost(id, novelState, characterState, temp);
   };
 
   return (

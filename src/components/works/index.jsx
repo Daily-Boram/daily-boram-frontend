@@ -44,8 +44,8 @@ const WorkPage = () => {
     getSeries(id, 1, 5)
       .then((res) => setInformation(res.data))
       .catch((err) => console.error(err));
-  }, [information]);
-
+  }, []);
+console.log(information);
   return (
     <>
       <Header />
