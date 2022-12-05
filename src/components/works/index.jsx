@@ -33,7 +33,7 @@ const WorkPage = () => {
     genre: [],
     episode_list: [],
   });
-  
+
   const onIncrease = () => {
     setLike(!like);
     setLikeNum(like ? likeNum - 1 : likeNum + 1);
@@ -45,13 +45,14 @@ const WorkPage = () => {
       .then((res) => setInformation(res.data))
       .catch((err) => console.error(err));
   }, []);
-console.log(information);
+  console.log(information);
   return (
     <>
       <Header />
       <WorkContainer>
         <AboutWork>
-          <Photo src={information.image} />
+          <Photo src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo0AfzgE-198nE2dMY8yR3A22bRI3ITPrdNA&usqp=CAU" />
+          {/* <Photo src={information.image} /> */}
           <Right>
             <Writer>
               <Title>{information.title}</Title>
