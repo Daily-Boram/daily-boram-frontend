@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Add } from "../../assets/Img";
 import PickImage from "../pickImage";
+import character from "../../api/character/character";
 
 function Character({ characterState, setCharacterState, type }) {
   const [characterAddState, setCharacterAddState] = useState(false);
@@ -9,7 +10,11 @@ function Character({ characterState, setCharacterState, type }) {
     name: "",
     image: "",
   });
-
+  const [characterJson, setCharacterJson] = useState({
+    image: "",
+    name: "",
+  });
+  
   return (
     <>
       <Wrapper>

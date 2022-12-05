@@ -328,7 +328,7 @@ const MyHave = styled(Link)`
 `;
 
 const MyWork = styled.p`
-  width: 780px;
+  width: 810px;
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};

@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import axios from "react";
-
 
 const Pagination = ({ total, limit, page, setPage }) => {
   const numPages = Math.ceil(total / limit);
