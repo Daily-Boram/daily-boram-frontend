@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { HeadLogo, AlarmBtn, User } from "../../../assets/Img";
 import { Link } from "react-router-dom";
-import Modal from "../../modal";
+import Modal from "../../Modal";
 import AlarmAll from "../../alarm/all";
 import { my } from "../../../api/my";
 import { profileImage } from "../../../api/imageCreate/profileImage";
@@ -12,7 +12,7 @@ const Header = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [alarmOpen, setAlarmOpen] = useState(false);
   const [profile, setProfile] = useState({
-    image: ""
+    image: "",
   });
   const [user, setUser] = useState({
     nickname: "",
@@ -73,7 +73,9 @@ const Header = () => {
         </HeaderItems>
       </HeaderContainer>
       {modalOpen && <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />}
-      {alarmOpen && <AlarmAll alarmOpen={alarmOpen} setAlarmOpen={setAlarmOpen} />}
+      {alarmOpen && (
+        <AlarmAll alarmOpen={alarmOpen} setAlarmOpen={setAlarmOpen} />
+      )}
     </>
   );
 };

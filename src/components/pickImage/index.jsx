@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { BlueCheck, GreyRefresh } from "../../assets/Img";
+import { coverImage } from "../../api/imageCreate/coverImage.js";
+import { characterImage } from "../../api/imageCreate/characterImage.js";
 
 function PickImage({
   title,
@@ -103,7 +105,15 @@ function PickImage({
             ))}
           </div>
           <div>
-            <span>
+            <span
+              onClick={() => {
+                if (type === "thumbnail") {
+                  coverImage(inputState.description);
+                } else if (type === "character") {
+                  characterImage(inputState.description);
+                }
+              }}
+            >
               <img src={GreyRefresh} alt="create more thumbnails" />
               새로운 사진 만들기
             </span>
