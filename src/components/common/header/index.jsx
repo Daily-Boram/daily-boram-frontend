@@ -37,9 +37,6 @@ const Header = () => {
         setUser(res.data);
       })
       .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
     profileImage()
       .then((res) => {
         console.log(res.data);

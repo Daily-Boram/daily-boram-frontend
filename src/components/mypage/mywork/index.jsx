@@ -8,38 +8,41 @@ import { addSeries } from "../../../api/addSeries";
 import { my } from "../../../api/my";
 import { Link } from "react-router-dom";
 
-const FirstCheckLabel = [
-  { key: "일상" },
-  { key: "개그" },
-  { key: "액션" },
-  { key: "감성" },
-  { key: "순정" },
-];
-
-const SecondCheckLabel = [
-  { key: "드라마" },
-  { key: "스릴러" },
-  { key: "스포츠" },
-  { key: "무협/사극" },
-];
-
 const MyWork = () => {
   const [characterState, setCharacterState] = useState([]);
   const [myWorkState, setMyWorkState] = useState({
     title: "",
     contents: "",
     thumbnail: "",
-    characters: characterState,
   });
   const [myData, setMyData] = useState("");
+  const [checkState, setCheckState] = useState([]);
+  const valueLabel = [
+    { id: 0, data: "일상" },
+    { id: 1, data: "개그" },
+    { id: 2, data: "액션" },
+    { id: 3, data: "감성" },
+    { id: 4, data: "순정" },
+    { id: 5, data: "드라마" },
+    { id: 6, data: "스릴러" },
+    { id: 7, data: "스포츠" },
+    { id: 8, data: "무협/사극" },
+  ];
+  const onCheckedElement = (checked, item, value) => {
+    console.log(item, checked, value);
+    if (checked) {
+      setCheckState([...checkState, value]);
+    } else if (!checked) {
+      setCheckState(checkState.filter((el) => el !== value));
+    }
+  };
   const onSubmitClick = () => {
-    console.log(myWorkState);
     addSeries(
       myData,
       myWorkState.title,
       myWorkState.thumbnail,
       myWorkState.contents,
-      myWorkState.characters
+      checkState
     ).then((res) => console.log(res));
   };
   useEffect(() => {
@@ -70,22 +73,21 @@ const MyWork = () => {
           </InputBackground>
           <Title>태그</Title>
           <CheckBox>
-            <Line>
-              {FirstCheckLabel.map((check) => (
-                <FirstCheckBtn>
-                  <Check type="checkbox" />
-                  <Label>{check.key}</Label>
-                </FirstCheckBtn>
-              ))}
-            </Line>
-            <Line>
-              {SecondCheckLabel.map((check) => (
-                <SecondCheckBtn>
-                  <Check type="checkbox" />
-                  <Label>{check.key}</Label>
-                </SecondCheckBtn>
-              ))}
-            </Line>
+            {valueLabel.map((item) => (
+              <FirstCheckBtn key={item.id}>
+                <Check
+                  type="checkbox"
+                  onClick={(e) => {
+                    onCheckedElement(
+                      e.target.checked,
+                      e.target.value,
+                      item.data
+                    );
+                  }}
+                />
+                <Label>{item.data}</Label>
+              </FirstCheckBtn>
+            ))}
           </CheckBox>
           <Title>줄거리</Title>
           <ContentsBackground length={myWorkState.contents.length}>
@@ -97,7 +99,7 @@ const MyWork = () => {
                 let temp = Object.assign({}, myWorkState);
                 temp.contents = e.currentTarget.value;
                 setMyWorkState(temp);
-              }}  
+              }}
               value={myWorkState.contents}
             />
             <span>{myWorkState.contents.length} / 400</span>
@@ -156,17 +158,12 @@ const InputBackground = styled.div`
   border: 1px solid ${({ theme }) => theme.color.gray02};
   span {
     position: absolute;
-
     transform: translateX(${(props) => (props.length < 10 ? "-65px" : "-76px")})
       translateY(13px);
-
     width: max-content;
-
     font-size: 18px;
     font-weight: bold;
-
     margin-left: 30px;
-
     color: ${({ theme, length }) =>
       length < 25 ? theme.color.gray02 : theme.color.error};
   }
@@ -188,17 +185,12 @@ const ContentsBackground = styled.div`
   border: 1px solid ${({ theme }) => theme.color.gray02};
   span {
     position: absolute;
-
     transform: translateX(${(props) => (props.length < 10 ? "-65px" : "-76px")})
       translateY(13px);
-
     width: max-content;
-
     font-size: 18px;
     font-weight: bold;
-
     margin-left: 45px;
-
     color: ${(props) =>
       props.length < 400
         ? ({ theme }) => theme.color.gray02
@@ -242,7 +234,6 @@ const RegistrationBtn = styled(Link)`
 
 const CharacterWrapper = styled.div`
   margin-top: 40px;
-
   form {
     transform: translateX(-270px);
   }
@@ -253,29 +244,17 @@ const CheckBox = styled.div`
   height: 112px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-bottom: 40px;
   border-top: 1px solid ${({ theme }) => theme.color.gray02};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
 `;
 
-const Line = styled.div`
-  width: 800px;
-  display: flex;
-`;
-
 const FirstCheckBtn = styled.div`
   height: 32px;
   display: flex;
   align-items: center;
-  margin-right: 80px;
-`;
-
-const SecondCheckBtn = styled.div`
-  height: 32px;
-  display: flex;
-  align-items: center;
-  margin-right: 58px;
 `;
 
 const Check = styled.input`
