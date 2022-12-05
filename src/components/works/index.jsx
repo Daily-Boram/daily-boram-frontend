@@ -14,7 +14,7 @@ import { getList } from "../../api/getList";
 import { getSeries } from "../../api/getSeries";
 
 const WorkPage = () => {
-  const [writer, setWriter] = useState(false);
+  const [writer, setWriter] = useState(true);
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(0);
   const [textColor, setTextColor] = useState("#A7A7A7");

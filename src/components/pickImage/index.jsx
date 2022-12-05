@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { BlueCheck, GreyRefresh } from "../../assets/Img";
 
@@ -7,15 +7,15 @@ function PickImage({
   title,
   subTitle,
   type,
+  values,
   name,
   setName,
   image,
   setImage,
   onSubmit,
 }) {
-  const [sendingState, setSendingState] = useState(false)
+  const [sendingState, setSendingState] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
   const [inputState, setInputState] = useState({
     characterName: "",
     description: "",
@@ -35,15 +35,9 @@ function PickImage({
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
-])
-
+  ]);
   return (
-    <Wrapper
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      type={type}
-    >
+    <Wrapper onSubmit={(e) => e.preventDefault()} type={type}>
       <h1>{title}</h1>
       <h2>{subTitle}</h2>
       <div>
@@ -85,11 +79,11 @@ function PickImage({
             <span>{inputState.description.length} / 300</span>
           </Text>
         )}
-        <img 
-
+        <img
           src={
-            sendingState===true ? "https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator_square_large.gif" :
-            image
+            sendingState === true
+              ? "https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator_square_large.gif"
+              : image
               ? image
               : "https://thumbs.dreamstime.com/b/imitation-transparent-background-seamless-vector-illustration-69028332.jpg"
           }
@@ -97,51 +91,76 @@ function PickImage({
         />
         <Samples selectedIndex={selectedIndex}>
           <div>
-            {imageState.length>0&&imageState.map((v,i) => { return(
-              <strong
-                key={i}
-                onClick={(e) => {
-                  if (selectedIndex === i) setSelectedIndex(-1);
-                  else setSelectedIndex(i);
-                  setImage(e.target.src);
-                }}
-              >
-                <img src={v} alt="sample" />
-              </strong>
-            )})}
+            {imageState.length > 0 &&
+              imageState.map((v, i) => (
+                <strong
+                  key={i}
+                  onClick={(e) => {
+                    if (selectedIndex === i) setSelectedIndex(-1);
+                    else setSelectedIndex(i);
+                    setImage(e.target.src);
+                  }}
+                >
+                  <img src={v} alt="sample" />
+                </strong>
+              ))}
           </div>
           <div>
             <span
               onClick={async () => {
-                if (sendingState=== false)
-                {
-                  setSendingState(true)
-                if (type === "thumbnail") {
-                  const access_token = localStorage.getItem("access_token");
-                  await axios.get(
-                    `${process.env.REACT_APP_LOCAL_HOST}/image/thumb`,
-                    {
-                      params:{content: inputState.description}},{
-                      headers: { Authorization: `Bearer ${access_token}` },
-                    }
-                  ).then((response) => {
-                    setImageState(response.data);
-                    setSendingState(false)
-                  })
-                } else if (type === "character") {
-                  const access_token = localStorage.getItem("access_token");
-                  await axios.get(
-                    `${process.env.REACT_APP_LOCAL_HOST}/image/character`,
-                    {
-                      params:{content: inputState.description}},{
-                      headers: { Authorization: `Bearer ${access_token}` },
-                    }
-                  ).then((response) => {
-                    setImageState(response.data);
-                    setSendingState(false)
-                  })
+                if (sendingState === false) {
+                  setSendingState(true);
+                  if (type === "thumbnail") {
+                    const access_token = localStorage.getItem("access_token");
+                    await axios
+                      .get(
+                        `${process.env.REACT_APP_LOCAL_HOST}/image/thumb`,
+                        {
+                          params: { content: inputState.description },
+                        },
+                        {
+                          headers: { Authorization: `Bearer ${access_token}` },
+                        }
+                      )
+                      .then((response) => {
+                        setImageState(response.data);
+                        setSendingState(false);
+                      });
+                  } else if (type === "character") {
+                    const access_token = localStorage.getItem("access_token");
+                    await axios
+                      .get(
+                        `${process.env.REACT_APP_LOCAL_HOST}/image/character`,
+                        {
+                          params: { content: inputState.description },
+                        },
+                        {
+                          headers: { Authorization: `Bearer ${access_token}` },
+                        }
+                      )
+                      .then((response) => {
+                        setImageState(response.data);
+                        setSendingState(false);
+                      });
+                  } else if (type === "imageOnly") {
+                    const access_token = localStorage.getItem("access_token");
+                    await axios
+                      .get(
+                        `${process.env.REACT_APP_LOCAL_HOST}/image/thumb`,
+                        {
+                          params: { content: values },
+                        },
+                        {
+                          headers: { Authorization: `Bearer ${access_token}` },
+                        }
+                      )
+                      .then((response) => {
+                        setImageState(response.data);
+                        setSendingState(false);
+                      });
+                  }
                 }
-              }}}
+              }}
             >
               <img src={GreyRefresh} alt="create more thumbnails" />
               새로운 사진 만들기
@@ -157,7 +176,7 @@ function PickImage({
                   } else alert("등장인물에 대한 정보가 부족합니다.");
                 }}
               >
-                인물 생성
+                사진 생성
               </button>
             ) : (
               <button type="button" onClick={yesCheck}>사진 선택</button>
