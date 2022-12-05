@@ -52,12 +52,9 @@ const WorkPage = ({ image }) => {
       <Header />
       <WorkContainer>
         <AboutWork>
-<<<<<<< HEAD
           <Photo src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo0AfzgE-198nE2dMY8yR3A22bRI3ITPrdNA&usqp=CAU" />
           {/* <Photo src={information.image} /> */}
-=======
-          <Photo src={SpacePhoto} />
->>>>>>> main
+
           <Right>
             <Writer>
               <Title>{information.title}</Title>
@@ -103,40 +100,40 @@ const WorkPage = ({ image }) => {
             ))}
         </div>
         <ContentsList
-                number="01"
-                title="불행의 시작"
-                price="무료"
-                likenumber="1023"
-                date="2022.10.04"
-              />
-              <ContentsList
-                number="02"
-                title="노력은 배신하지 않는다"
-                price="무료"
-                likenumber="1023"
-                date="2022.10.11"
-              />
-              <ContentsList
-                number="03"
-                title="다시 도전"
-                price="200글자"
-                likenumber="1023"
-                date="2022.10.18"
-              />
-              <ContentsList
-                number="04"
-                title="높은 상대"
-                price="200글자"
-                likenumber="1023"
-                date="2022.10.25"
-              />
-              <ContentsList
-                number="05"
-                title="언제나 긍정적"
-                price="300글자"
-                likenumber="1023"
-                date="2022.11.02"
-              />
+          number="01"
+          title="불행의 시작"
+          price="무료"
+          likenumber="1023"
+          date="2022.10.04"
+        />
+        <ContentsList
+          number="02"
+          title="노력은 배신하지 않는다"
+          price="무료"
+          likenumber="1023"
+          date="2022.10.11"
+        />
+        <ContentsList
+          number="03"
+          title="다시 도전"
+          price="200글자"
+          likenumber="1023"
+          date="2022.10.18"
+        />
+        <ContentsList
+          number="04"
+          title="높은 상대"
+          price="200글자"
+          likenumber="1023"
+          date="2022.10.25"
+        />
+        <ContentsList
+          number="05"
+          title="언제나 긍정적"
+          price="300글자"
+          likenumber="1023"
+          date="2022.11.02"
+        />
       </WorkContainer>
     </>
   );
