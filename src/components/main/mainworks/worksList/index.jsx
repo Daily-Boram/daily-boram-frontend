@@ -33,6 +33,7 @@ const WorkBackground = styled.div`
   width: 240px;
   margin-right: 30px;
   cursor: pointer;
+  margin-bottom: 80px;
 `;
 
 const Photo = styled.img`

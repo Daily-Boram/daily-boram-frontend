@@ -79,7 +79,7 @@ const Main = () => {
                   <Popular>인기글</Popular>
                 </LeftDiv>
               </BestWork>
-              <WorksBackground>
+              <PopularWorksBackground>
                 {list.popular_list &&
                   list.popular_list.map((e, i) => (
                     <PopularWorks
@@ -92,7 +92,7 @@ const Main = () => {
                       image={e.image}
                     />
                   ))}
-              </WorksBackground>
+              </PopularWorksBackground>
             </BestWorkBackground>
             <AllWorks>
               <BestWork>
@@ -214,6 +214,13 @@ const BestWorkBackground = styled.div`
   margin-top: 80px;
 `;
 
+const PopularWorksBackground = styled.div`
+  width: 1050px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+`;
+
 const BestWork = styled.p`
   width: 1050px;
   display: flex;
@@ -244,12 +251,12 @@ const Popular = styled.p`
 `;
 
 const WorksBackground = styled.div`
-  width: 1050px;
+  width: 1080px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 50px;
   flex-wrap: wrap;
+  margin-left: 30px;
 `;
 
 const AllWorks = styled.div`
