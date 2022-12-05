@@ -11,7 +11,7 @@ const Sevenday = () => {
     ],
     options: {
       chart: {
-        height: 350,
+        height: 350,  
         type: "line",
         zoom: {
           enabled: false,

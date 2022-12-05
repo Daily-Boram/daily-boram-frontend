@@ -21,10 +21,6 @@ function PickImage({
     description: "",
   });
 
-  const yesCheck = () => {
-    alert("사진이 선택이 되었습니다.");
-  }
-
   const [imageState, setImageState] = useState([
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
@@ -179,7 +175,7 @@ function PickImage({
                 인물 생성
               </button>
             ) : (
-              <button type="button" onClick={yesCheck}>사진 선택</button>
+              <button type="button" onClick={() => alert("사진이 선택되었습니다.")}>사진 선택</button>
             )}
           </div>
         </Samples>
@@ -192,92 +188,67 @@ export default PickImage;
 
 const Text = styled.div`
   margin-right: 30px;
-
   width: 240px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   input,
   textarea,
   span {
     width: 240px;
   }
-
   > span {
     :last-of-type {
       text-align: right;
-
       color: ${(props) =>
         props.length < 300
           ? ({ theme }) => theme.color.gray02
           : ({ theme }) => theme.color.error};
     }
-
     :first-of-type {
       width: 240px;
-
       display: flex;
       flex-direction: column;
-
       > input {
         all: unset;
-
         padding: 10px;
         margin-bottom: 20px;
-
         height: 40px;
-
         font-size: 16px;
         white-space: pre-wrap;
-
         border: 1px solid ${({ theme }) => theme.color.graymain};
         box-sizing: border-box;
         border-radius: 5px;
-
         ::placeholder {
           color: ${({ theme }) => theme.color.gray02};
         }
       }
-
       > textarea {
         all: unset;
-
         padding: 10px;
-
         height: 310px;
-
         font-size: 16px;
         white-space: pre-wrap;
         overflow-wrap: break-word;
-
         border: 1px solid ${({ theme }) => theme.color.graymain};
         box-sizing: border-box;
         border-radius: 5px;
-
         ::placeholder {
           color: ${({ theme }) => theme.color.gray02};
         }
       }
     }
   }
-
   > textarea {
     all: unset;
-
     padding: 10px;
-
     height: 370px;
-
     font-size: 16px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-
     border: 1px solid ${({ theme }) => theme.color.graymain};
     box-sizing: border-box;
     border-radius: 5px;
-
     ::placeholder {
       color: ${({ theme }) => theme.color.gray02};
     }
@@ -286,43 +257,30 @@ const Text = styled.div`
 
 const Wrapper = styled.form`
   padding-bottom: 10px;
-
   width: ${(props) => (props.type === "imageOnly" ? "780px" : "1050px")};
-
   display: flex;
   flex-direction: column;
-
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
-
   h1 {
     color: ${({ theme }) => theme.color.gray03};
     font-size: 28px;
   }
-
   h2 {
     padding-bottom: 10px;
     margin-bottom: 10px;
-
     color: ${({ theme }) => theme.color.gray02};
     font-size: 20px;
-
     border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
   }
-
   > div {
     display: flex;
-
     > img {
       margin-right: 30px;
-
       width: 400px;
       height: 400px;
-
       object-fit: cover;
-
       border-radius: 5px;
     }
-
     > div:last-of-type {
       width: 350px;
       height: 400px;
@@ -333,84 +291,62 @@ const Wrapper = styled.form`
 const Samples = styled.div`
   div {
     width: 350px;
-
     :first-of-type {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-
       gap: 25px;
     }
-
     :last-of-type {
       margin-top: 10px;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
     strong {
       height: 100px;
-
       user-select: none;
       cursor: pointer;
-
       :nth-of-type(${(props) => props.selectedIndex + 1}) {
         ::before {
           background-color: ${({ theme }) => theme.color.main}70;
           background-image: url(${BlueCheck});
           background-repeat: no-repeat;
           background-position: center;
-
           position: absolute;
-
           width: 100px;
           height: 100px;
-
           border-radius: 5px;
           content: "";
           z-index: 1;
         }
       }
-
       > img {
         width: 100px;
         height: 100px;
-
         object-fit: cover;
-
         border-radius: 5px;
       }
     }
   }
-
   span {
     display: flex;
     align-items: center;
-
     color: ${({ theme }) => theme.color.graymain};
     font-size: 20px;
-
     cursor: pointer;
-
     > img {
       margin-right: 10px;
     }
   }
-
   button {
     background-color: ${({ theme }) => theme.color.main};
-
     width: 100px;
     height: 40px;
-
     color: ${({ theme }) => theme.color.white};
-
     border-radius: 10px;
     transition: background-color 0.25s ease;
     cursor: pointer;
-
     :hover {
       background-color: ${({ theme }) => theme.color.c04};
     }

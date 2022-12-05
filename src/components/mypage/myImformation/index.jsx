@@ -18,7 +18,7 @@ import {
 import { my } from "../../../api/my";
 import { updateProfileAxios } from "../../../api/updateProfile";
 
-const MyPage = (setWriter) => {
+const MyPage = ({writer, setWriter}) => {
   const havingCount = useRecoilValue(havingState);
   const [check, setCheck] = useState(true);
   const [modify, setModify] = useState(false);
@@ -70,13 +70,14 @@ const MyPage = (setWriter) => {
           <Introduce>
             <UserImage>
               <Picture
-                src={
-                  modify
-                    ? update.image
-                      ? update.image
-                      : user.image
-                    : DefaultProfile
-                }
+                src="static/media/profile.f63de62a12df1c94c6cc.png"
+                // {
+                //   modify
+                //     ? update.image
+                //       ? update.image
+                //       : user.image
+                //     : DefaultProfile
+                // }
                 alt="유저 이미지"
               />
             </UserImage>
@@ -166,7 +167,7 @@ const MyPage = (setWriter) => {
                 authorname={e.nickname}
                 image={e.image}
                 id={e.id}
-                onClick={() => setWriter(true)}
+                onClick={() => {setWriter(true)}}
               />
             ))}
             <RegistrationBtn to="/mywork">

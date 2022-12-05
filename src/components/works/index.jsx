@@ -14,10 +14,10 @@ import { getList } from "../../api/getList";
 import { getSeries } from "../../api/getSeries";
 import { SpacePhoto } from "../../assets/Img";
 
-const WorkPage = ({ image }) => {
-  const [writer, setWriter] = useState(true);
+const WorkPage = () => {
+  const [writer, setWriter] = useState(false);
   const [like, setLike] = useState(false);
-  const [likeNum, setLikeNum] = useState(0);
+  const [likeNum, setLikeNum] = useState(2301);
   const [textColor, setTextColor] = useState("#A7A7A7");
   const [posts, setPosts] = useState([]);
   const [limit, setLimit] = useState(10);
@@ -68,8 +68,10 @@ const WorkPage = ({ image }) => {
                 ))}
             </GenreList>
             <Like onClick={onIncrease}>
-              <GoodIcon src={information.is_like ? TrueGood : BigGood} />
-              <Number style={{ color: textColor }}>{information.like}</Number>
+                      {/* src={information.is_like ? TrueGood : BigGood} */}
+              <GoodIcon src={like ? TrueGood : BigGood} />
+                                                   {/* {information.like} */}
+              <Number style={{ color: textColor }}>{likeNum}</Number>
             </Like>
           </Right>
         </AboutWork>
@@ -186,13 +188,13 @@ const AuthorName = styled.p`
 const GenreList = styled.div`
   width: 300px;
   display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
 `;
 
 const Genre = styled.p`
   font-size: 20px;
   font-weight: bold;
+  margin-right: 15px;
   cursor: pointer;
   color: ${({ theme }) => theme.color.graymain};
   :hover {
