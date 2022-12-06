@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 
 const Works = ({ id, workname, authorname, genre, like, image }) => {
   return (
-    <Link to={`/work/${id}`} style={{ textDecoration: "none" }}>
+    <Link
+      to={`/work/${id}`}
+      onClick={() => window.scrollTo(0, 0)}
+      style={{ textDecoration: "none" }}
+    >
       <WorkBackground>
         <Photo src={image ? image : SpacePhoto} />
         <FirstLine>
