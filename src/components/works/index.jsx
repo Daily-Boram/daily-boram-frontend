@@ -7,14 +7,10 @@ import { Link, useParams } from "react-router-dom";
 import { getSeries } from "../../api/getSeries";
 
 const WorkPage = () => {
-  const [writer, setWriter] = useState(true);
+  const [writer, setWriter] = useState(false);
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(2301);
   const [textColor, setTextColor] = useState("#A7A7A7");
-  const [posts, setPosts] = useState([]);
-  const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
   const id = useParams().id;
   const [information, setInformation] = useState({
     title: "",
@@ -49,9 +45,7 @@ const WorkPage = () => {
       <Header />
       <WorkContainer>
         <AboutWork>
-          <Photo src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo0AfzgE-198nE2dMY8yR3A22bRI3ITPrdNA&usqp=CAU" />
-          {/* <Photo src={information.image} /> */}
-
+          <Photo src={information.image} />
           <Right>
             <Writer>
               <Title>{information.title}</Title>

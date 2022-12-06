@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Good } from "../../../../assets/Img";
+import { Good, SpacePhoto } from "../../../../assets/Img";
 
 const Popular = ({ workname, authorname, story, like, image, id }) => {
   return (
     <PopularBackground to={`/work/${id}`}>
-      <Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyuYDE0JcHPXRpfhDolv5RLAhnXqnOSkhEkA&usqp=CAU" />
-      {/* <Img src={image} /> */}
+      <Img src={image ? image : SpacePhoto} />
       <TopicBackground>
         <Writer>
           <WorkName>{workname}</WorkName>

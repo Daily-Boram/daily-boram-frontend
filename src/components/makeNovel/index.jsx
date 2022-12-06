@@ -5,7 +5,7 @@ import Character from "../character";
 import Header from "../common/header";
 import PickImage from "../pickImage";
 import Script from "../_script";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Narrator } from "../../assets/Img";
 
 function MakeNovel() {
@@ -131,7 +131,9 @@ function MakeNovel() {
           setScriptState={setScriptState}
         />
 
-          <button>등록하기</button>
+        <Link to="/work/:id">
+          <EpisodeButton>등록하기</EpisodeButton>
+        </Link>
       </Wrapper>
     </>
   );
@@ -157,24 +159,26 @@ const Wrapper = styled.form`
       margin-top: 0;
     }
   }
+`;
 
-  > button {
-    background-color: ${({ theme }) => theme.color.main};
+const EpisodeButton = styled.button`
+   background-color: ${({ theme }) => theme.color.main};
 
-    width: 1050px;
-    height: 56px;
+width: 1050px;
+height: 56px;
 
-    color: ${({ theme }) => theme.color.white};
-    font-size: 24px;
+margin-top: 20px;
 
-    border-radius: 10px;
-    transition: background-color 0.25s ease;
-    cursor: pointer;
+color: ${({ theme }) => theme.color.white};
+font-size: 24px;
 
-    :hover {
-      background-color: ${({ theme }) => theme.color.c04};
-    }
-  }
+border-radius: 10px;
+transition: background-color 0.25s ease;
+cursor: pointer;
+
+:hover {
+  background-color: ${({ theme }) => theme.color.c04};
+}
 `;
 
 const Input = styled.div`
