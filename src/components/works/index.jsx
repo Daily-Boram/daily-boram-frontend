@@ -1,24 +1,16 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import {
-  BigGood,
-  TrueGood,
-  ContentsRegistrationPlus,
-} from "../../assets/Img";
+import { BigGood, TrueGood, ContentsRegistrationPlus } from "../../assets/Img";
 import Header from "../common/header";
 import ContentsList from "../common/contents";
 import { Link, useParams } from "react-router-dom";
 import { getSeries } from "../../api/getSeries";
 
 const WorkPage = () => {
-  const [writer, setWriter] = useState(true);
+  const [writer, setWriter] = useState(false);
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(2301);
   const [textColor, setTextColor] = useState("#A7A7A7");
-  const [posts, setPosts] = useState([]);
-  const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
   const id = useParams().id;
   const [information, setInformation] = useState({
     title: "",
@@ -31,8 +23,7 @@ const WorkPage = () => {
     episode_list: [],
   });
 
-  const params = useParams()
-
+  const params = useParams();
 
   const onIncrease = () => {
     setLike(!like);
@@ -42,8 +33,10 @@ const WorkPage = () => {
 
   useEffect(() => {
     getSeries(id, 1, 5)
-      .then((res) => {console.log(res.data)
-        setInformation(res.data)})
+      .then((res) => {
+        console.log(res.data);
+        setInformation(res.data);
+      })
       .catch((err) => console.error(err));
   }, []);
   console.log(information);
@@ -52,9 +45,7 @@ const WorkPage = () => {
       <Header />
       <WorkContainer>
         <AboutWork>
-          <Photo src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo0AfzgE-198nE2dMY8yR3A22bRI3ITPrdNA&usqp=CAU" />
-          {/* <Photo src={information.image} /> */}
-
+          <Photo src={information.image} />
           <Right>
             <Writer>
               <Title>{information.title}</Title>
@@ -68,10 +59,9 @@ const WorkPage = () => {
                 ))}
             </GenreList>
             <Like onClick={onIncrease}>
-                      {/* src={information.is_like ? TrueGood : BigGood} */}
-              <GoodIcon src={like ? TrueGood : BigGood} />
-                                                   {/* {information.like} */}
-              <Number style={{ color: textColor }}>{likeNum}</Number>
+              {/* src={information.is_like ? TrueGood : BigGood} */}
+              <GoodIcon src={information.is_like ? TrueGood : BigGood} />
+              <Number style={{ color: textColor }}>{information.like}</Number>
             </Like>
           </Right>
         </AboutWork>

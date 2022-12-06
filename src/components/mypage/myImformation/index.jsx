@@ -195,13 +195,13 @@ const MyPage = ({writer, setWriter}) => {
 export default MyPage;
 
 const CompleteButton = styled.button`
-  width: 300px;
-  height: 45px;
-  margin-right: 6px;
+  width: 80px;
+  height: 40px;
+  margin-left: 30px;
   border-radius: 5px;
   color: ${({ theme }) => theme.color.white};
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 29px;
   cursor: pointer;
   display: flex;
@@ -211,6 +211,7 @@ const CompleteButton = styled.button`
 `;
 
 const NameInput = styled.input`
+  width: 142px;
   margin-left: 10px;
 `;
 
@@ -278,6 +279,7 @@ const CheckBtn = styled.img`
 
 const UserCreateIcon = styled.img`
   cursor: pointer;
+  margin-left: 80px; 
 `;
 
 const ContentsInput = styled.div`
