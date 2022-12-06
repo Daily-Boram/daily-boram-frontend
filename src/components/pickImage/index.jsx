@@ -142,6 +142,7 @@ function PickImage({
                         let temp = [...imageState];
                         temp[indexRef.current++] = response.data;
                         if (indexRef.current > 8) indexRef.current = 0;
+                        setImageState(temp);
                         setSendingState(temp);
                       });
                   } else if (type === "imageOnly") {
@@ -160,6 +161,7 @@ function PickImage({
                         let temp = [...imageState];
                         temp[indexRef.current++] = response.data;
                         if (indexRef.current > 8) indexRef.current = 0;
+                        setImageState(temp);
                         setSendingState(temp);
                       });
                   }
