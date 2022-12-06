@@ -9,7 +9,7 @@ const Element = ({ day, workname }) => {
         <Content>
           “{workname}” 새로운 회차가 등록되었어요. 서둘러 확인해 보세요!
         </Content>
-        <Day>{day}</Day>
+        <Day>{day}일 전</Day>
       </div>
     </ElementContainer>
   );
@@ -22,7 +22,7 @@ const ElementContainer = styled.div`
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
   :hover {
-    background-color: ${({theme}) => theme.color.gray01};
+    background-color: ${({ theme }) => theme.color.gray01};
     cursor: pointer;
   }
 `;

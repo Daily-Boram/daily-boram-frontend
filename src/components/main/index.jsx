@@ -18,7 +18,7 @@ const Main = () => {
   const [searchBool, setSearchBool] = useState(false);
   const [searchList, setSearchList] = useState([]);
   const [title, setTitle] = useState("");
-
+  
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
@@ -27,7 +27,6 @@ const Main = () => {
     if (urlParam) {
       auth(urlParam)
         .then((res) => {
-          console.log(res);
           localStorage.setItem("access_token", res.data.access_token);
           window.location.replace("/");
         })
@@ -52,14 +51,15 @@ const Main = () => {
     e.preventDefault();
     setTitle(e.target.value);
     if (e.target.value !== "" && e.target.value.length !== 0) {
-      console.log("비어있지 않음");
       search(title)
         .then((res) => {
           setSearchList(res.data.series_list);
           setSearchBool(true);
         })
         .catch((err) => console.error(err));
-    } else setSearchBool(false);
+    } else {
+      setSearchBool(false);
+    }
   };
   return (
     <>

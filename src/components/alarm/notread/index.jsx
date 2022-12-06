@@ -4,8 +4,12 @@ import Element from "../element";
 import AlarmAll from "../all";
 import { useState } from "react";
 
-const AlarmNotread = ({setNotreadOpen}) => {
+const AlarmNotread = ({ setNotreadOpen }) => {
   const [allOpen, setAllOpen] = useState(false);
+  const dummy = [
+    { id: 1, workname: "사랑의 시작", day: 5 },
+    { id: 2, workname: "진성이의 인생", day: 4 },
+  ];
 
   const showAll = () => {
     setAllOpen(true);
@@ -24,8 +28,13 @@ const AlarmNotread = ({setNotreadOpen}) => {
           <NotRead>읽지 않음</NotRead>
         </Button>
         <NewNotifications>새로운 알림</NewNotifications>
-        <Element workname="맹태 혁명" day="5일 전" />
-        <Element workname="핳하 혁명" day="3주 전" />
+        {dummy.map((element) => (
+          <Element
+            key={element.id}
+            workname={element.workname}
+            day={element.day}
+          />
+        ))}
       </AlramContainer>
       {allOpen && <AlarmAll allOpen={allOpen} />}
     </>
@@ -87,7 +96,7 @@ const All = styled.button`
   cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.color.c01};
-    color: ${({theme}) => theme.color.white};
+    color: ${({ theme }) => theme.color.white};
   }
 `;
 
@@ -100,7 +109,6 @@ const NotRead = styled.button`
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.c02};
   transition: 0.8s;
-
 `;
 
 const NewNotifications = styled.p`

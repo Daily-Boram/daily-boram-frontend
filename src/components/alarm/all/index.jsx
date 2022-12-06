@@ -7,7 +7,10 @@ import AlarmNotread from "../notread";
 
 const AlarmAll = () => {
   const [notreadOpen, setNotreadOpen] = useState(false);
-
+  const dummy = [
+    { id: 1, workname: "사랑의 시작", day: 5 },
+    { id: 2, workname: "진성이의 인생", day: 4 },
+  ];
   const showNotread = () => {
     setNotreadOpen(true);
   };
@@ -26,8 +29,13 @@ const AlarmAll = () => {
           <NotRead onClick={showNotread}>읽지 않음</NotRead>
         </Button>
         <NewNotifications>새로운 알림</NewNotifications>
-        <Element workname="우주 혁명" day="3일 전" />
-        <Element workname="은하 혁명" day="1주 전" />
+        {dummy.map((element) => (
+          <Element
+            key={element.id}
+            workname={element.workname}
+            day={element.day}
+          />
+        ))}
       </AlarmContainer>
       {notreadOpen && <AlarmNotread notreadOpen={notreadOpen} />}
     </>
