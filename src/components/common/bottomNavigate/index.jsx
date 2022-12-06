@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { BeforeEpisode, Good, Comment, NextEpisode } from "../../../assets/Img";
+import { useParams } from "react-router-dom";
 
 const BottomNavigate = () => {
   const [likes, setLike] = useState({
@@ -20,6 +21,11 @@ const BottomNavigate = () => {
         likeState: false,
       });
     }
+  };
+  const id = useParams();
+
+  const nextPage = () => {
+    window.location.href = `/seeNovel/${id + 1}`;
   };
   const gotoCommentPage = () => {
     window.location.href = "/comment";
@@ -42,7 +48,7 @@ const BottomNavigate = () => {
         <_IconImage onClick={onlike} src={Good} alt="before_episode" />
         <_FocusText onClick={onlike}>{like}</_FocusText>
       </_OptionWrapper>
-      <_OptionWrapper>
+      <_OptionWrapper onClick={nextPage}>
         <_NotFocusText>다음화</_NotFocusText>
         <_IconImage src={NextEpisode} alt="before_episode" />
       </_OptionWrapper>
@@ -62,6 +68,7 @@ const _BlankText = styled.span`
 `;
 
 const _FocusText = styled.span`
+  width: 14px;
   font-family: ${({ theme }) => theme.font.noto};
   font-style: normal;
   font-weight: 700;
