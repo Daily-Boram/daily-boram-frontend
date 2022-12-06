@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRef } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { BlueCheck, GreyRefresh } from "../../assets/Img";
@@ -20,6 +21,7 @@ function PickImage({
     characterName: "",
     description: "",
   });
+  const indexRef = useRef(0);
 
   const [imageState, setImageState] = useState([
     "https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg",
@@ -119,8 +121,10 @@ function PickImage({
                         }
                       )
                       .then((response) => {
-                        setImageState(response.data);
-                        setSendingState(false);
+                        let temp = [...imageState];
+                        temp[indexRef.current++] = response.data;
+                        if (indexRef.current > 8) indexRef.current = 0;
+                        setSendingState(temp);
                       });
                   } else if (type === "character") {
                     const access_token = localStorage.getItem("access_token");
@@ -135,8 +139,10 @@ function PickImage({
                         }
                       )
                       .then((response) => {
-                        setImageState(response.data);
-                        setSendingState(false);
+                        let temp = [...imageState];
+                        temp[indexRef.current++] = response.data;
+                        if (indexRef.current > 8) indexRef.current = 0;
+                        setSendingState(temp);
                       });
                   } else if (type === "imageOnly") {
                     const access_token = localStorage.getItem("access_token");
@@ -151,8 +157,10 @@ function PickImage({
                         }
                       )
                       .then((response) => {
-                        setImageState(response.data);
-                        setSendingState(false);
+                        let temp = [...imageState];
+                        temp[indexRef.current++] = response.data;
+                        if (indexRef.current > 8) indexRef.current = 0;
+                        setSendingState(temp);
                       });
                   }
                 }
@@ -167,7 +175,7 @@ function PickImage({
                 onClick={(e) => {
                   e.preventDefault();
                   if (name && image) {
-                    if(onSubmit) onSubmit();
+                    if (onSubmit) onSubmit();
                     setSelectedIndex(-1);
                   } else alert("등장인물에 대한 정보가 부족합니다.");
                 }}
@@ -175,7 +183,12 @@ function PickImage({
                 인물 생성
               </button>
             ) : (
-              <button type="button" onClick={() => alert("사진이 선택되었습니다.")}>사진 선택</button>
+              <button
+                type="button"
+                onClick={() => alert("사진이 선택되었습니다.")}
+              >
+                사진 선택
+              </button>
             )}
           </div>
         </Samples>

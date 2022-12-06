@@ -162,23 +162,23 @@ const Wrapper = styled.form`
 `;
 
 const EpisodeButton = styled.button`
-   background-color: ${({ theme }) => theme.color.main};
+  background-color: ${({ theme }) => theme.color.main};
 
-width: 1050px;
-height: 56px;
+  width: 1050px;
+  height: 56px;
 
-margin-top: 20px;
+  margin-top: 20px;
 
-color: ${({ theme }) => theme.color.white};
-font-size: 24px;
+  color: ${({ theme }) => theme.color.white};
+  font-size: 24px;
 
-border-radius: 10px;
-transition: background-color 0.25s ease;
-cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.25s ease;
+  cursor: pointer;
 
-:hover {
-  background-color: ${({ theme }) => theme.color.c04};
-}
+  :hover {
+    background-color: ${({ theme }) => theme.color.c04};
+  }
 `;
 
 const Input = styled.div`
