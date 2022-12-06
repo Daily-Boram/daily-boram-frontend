@@ -143,7 +143,7 @@ function PickImage({
                         temp[indexRef.current++] = response.data;
                         if (indexRef.current > 8) indexRef.current = 0;
                         setImageState(temp);
-                        setSendingState(temp);
+                        setSendingState(false);
                       });
                   } else if (type === "imageOnly") {
                     const access_token = localStorage.getItem("access_token");
@@ -162,7 +162,7 @@ function PickImage({
                         temp[indexRef.current++] = response.data;
                         if (indexRef.current > 8) indexRef.current = 0;
                         setImageState(temp);
-                        setSendingState(temp);
+                        setSendingState(false);
                       });
                   }
                 }
