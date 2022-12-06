@@ -8,7 +8,10 @@ export const ImageChange = async (file) => {
   });
   const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/image`, {
     formdata,
-    headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${access_token}` },
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${access_token}`,
+    },
   });
   return response;
 };

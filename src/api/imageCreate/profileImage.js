@@ -11,4 +11,3 @@ export const profileImage = async () => {
   );
   return response;
 };
-                                                                     
