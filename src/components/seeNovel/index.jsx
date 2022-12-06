@@ -87,8 +87,8 @@ function SeeNovel() {
             </NovelInfo>
           </NovelInfoContainer>
           <Line></Line>
-          {dummyScript.map((dummyScript) => (
-            <Script dummyScript={dummyScript}></Script>
+          {dummyScript.map((dummyScript, index) => (
+            <Script key={index} dummyScript={dummyScript}></Script>
           ))}
         </Wrapper>
       </MainContainer>

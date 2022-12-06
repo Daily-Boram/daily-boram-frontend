@@ -21,6 +21,9 @@ const BottomNavigate = () => {
       });
     }
   };
+  const gotoCommentPage = () => {
+    window.location.href = "/comment";
+  };
   return (
     <_Wrapper>
       <_OptionWrapper>
@@ -28,7 +31,11 @@ const BottomNavigate = () => {
         <_BlankText>이전화</_BlankText>
       </_OptionWrapper>
       <_OptionWrapper>
-        <_IconImage src={Comment} alt="comment_icon" />
+        <_IconImage
+          onClick={gotoCommentPage}
+          src={Comment}
+          alt="comment_icon"
+        />
         <_FocusText>2</_FocusText>
       </_OptionWrapper>
       <_OptionWrapper>
