@@ -7,18 +7,11 @@ import Select from "../select";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { havingState } from "../../../store/having";
-import {
-  Pencil,
-  DoubleCheck,
-  DoubleError,
-  UserPicture,
-  Plus,
-  DefaultProfile,
-} from "../../../assets/Img";
+import { Pencil, DoubleCheck, DoubleError, Plus } from "../../../assets/Img";
 import { my } from "../../../api/my";
 import { updateProfileAxios } from "../../../api/updateProfile";
 
-const MyPage = ({writer, setWriter}) => {
+const MyPage = ({ writer, setWriter }) => {
   const havingCount = useRecoilValue(havingState);
   const [check, setCheck] = useState(true);
   const [modify, setModify] = useState(false);
@@ -38,10 +31,7 @@ const MyPage = ({writer, setWriter}) => {
   });
   const userSet = () => {
     my()
-      .then((res) => {
-        setUser(res.data);
-        console.log(user)
-      })
+      .then((res) => setUser(res.data))
       .catch((err) => console.error(err));
   };
   useEffect(() => {
@@ -51,15 +41,17 @@ const MyPage = ({writer, setWriter}) => {
   const updateProfile = () => {
     updateProfileAxios(update.nickname, update.introduce)
       .then(() => {
-        console.log("nice");
         setUpdate({
           nickname: "",
           image: "",
           introduce: "",
         });
         userSet();
+        setModify(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+      });
   };
   return (
     <>
@@ -98,7 +90,7 @@ const MyPage = ({writer, setWriter}) => {
                 ) : (
                   <Name>{user.nickname}</Name>
                 )}
-                {!check ? (
+                {!update.nickname >= 25 ? (
                   <CheckBtn src={DoubleError} alt="에러버튼" />
                 ) : (
                   <CheckBtn
@@ -108,14 +100,7 @@ const MyPage = ({writer, setWriter}) => {
                   />
                 )}
                 {modify ? (
-                  <CompleteButton
-                    onClick={() => {
-                      updateProfile();
-                      setModify(false);
-                    }}
-                  >
-                    완료
-                  </CompleteButton>
+                  <CompleteButton onClick={updateProfile}>완료</CompleteButton>
                 ) : (
                   <UserCreateIcon
                     onClick={() => setModify(true)}
@@ -167,7 +152,9 @@ const MyPage = ({writer, setWriter}) => {
                 authorname={e.nickname}
                 image={e.image}
                 id={e.id}
-                onClick={() => {setWriter(true)}}
+                onClick={() => {
+                  setWriter(true);
+                }}
               />
             ))}
             <RegistrationBtn to="/mywork">
@@ -195,13 +182,13 @@ const MyPage = ({writer, setWriter}) => {
 export default MyPage;
 
 const CompleteButton = styled.button`
-  width: 300px;
-  height: 45px;
-  margin-right: 6px;
+  width: 80px;
+  height: 40px;
+  margin-left: 30px;
   border-radius: 5px;
   color: ${({ theme }) => theme.color.white};
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 29px;
   cursor: pointer;
   display: flex;
@@ -211,6 +198,7 @@ const CompleteButton = styled.button`
 `;
 
 const NameInput = styled.input`
+  width: 142px;
   margin-left: 10px;
 `;
 
@@ -273,11 +261,12 @@ const Name = styled.p`
 
 const CheckBtn = styled.img`
   margin-right: 200px;
-  margin-left: 10px;  
+  margin-left: 10px;
 `;
 
 const UserCreateIcon = styled.img`
   cursor: pointer;
+  margin-left: 80px;
 `;
 
 const ContentsInput = styled.div`
