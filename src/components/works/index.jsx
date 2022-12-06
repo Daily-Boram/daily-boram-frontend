@@ -1,21 +1,17 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import {
-  SpacePhoto2,
   BigGood,
   TrueGood,
   ContentsRegistrationPlus,
 } from "../../assets/Img";
 import Header from "../common/header";
 import ContentsList from "../common/contents";
-import Pagination from "../common/pagination";
 import { Link, useParams } from "react-router-dom";
-import { getList } from "../../api/getList";
 import { getSeries } from "../../api/getSeries";
-import { SpacePhoto } from "../../assets/Img";
 
 const WorkPage = () => {
-  const [writer, setWriter] = useState(false);
+  const [writer, setWriter] = useState(true);
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(2301);
   const [textColor, setTextColor] = useState("#A7A7A7");
@@ -35,6 +31,9 @@ const WorkPage = () => {
     episode_list: [],
   });
 
+  const params = useParams()
+
+
   const onIncrease = () => {
     setLike(!like);
     setLikeNum(like ? likeNum - 1 : likeNum + 1);
@@ -43,7 +42,8 @@ const WorkPage = () => {
 
   useEffect(() => {
     getSeries(id, 1, 5)
-      .then((res) => setInformation(res.data))
+      .then((res) => {console.log(res.data)
+        setInformation(res.data)})
       .catch((err) => console.error(err));
   }, []);
   console.log(information);

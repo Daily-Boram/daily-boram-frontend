@@ -167,7 +167,7 @@ function PickImage({
                 onClick={(e) => {
                   e.preventDefault();
                   if (name && image) {
-                    onSubmit();
+                    if(onSubmit) onSubmit();
                     setSelectedIndex(-1);
                   } else alert("등장인물에 대한 정보가 부족합니다.");
                 }}

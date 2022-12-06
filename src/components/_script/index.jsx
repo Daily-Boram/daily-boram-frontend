@@ -119,17 +119,6 @@ function Script({ characterState, scriptState, setScriptState }) {
                     }}
                   />
                 ))}
-                <img
-                  src={Narrator}
-                  alt="narrator"
-                  onClick={() => {
-                    let temp = Object.assign({}, inputState);
-                    temp.name = "해설자";
-                    temp.image = Narrator;
-
-                    setInputState(temp);
-                  }}
-                />
               </div>
             ))}
         </li>

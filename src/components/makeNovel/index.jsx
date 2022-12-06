@@ -6,15 +6,22 @@ import Header from "../common/header";
 import PickImage from "../pickImage";
 import Script from "../_script";
 import { useParams } from "react-router-dom";
+import { Narrator } from "../../assets/Img";
 
 function MakeNovel() {
-  const [characterState, setCharacterState] = useState([]);
+  const [characterState, setCharacterState] = useState([
+    {
+        "name": "해설자",
+        "image": Narrator
+    }
+]);
   const [scriptState, setScriptState] = useState([]);
   const [novelState, setNovelState] = useState({
     title: "",
     cost: 0,
     image: "",
   });
+
 
   useEffect(() => {
     const rangeInputs = document.querySelectorAll('input[type="range"]');
@@ -125,7 +132,9 @@ function MakeNovel() {
           setScriptState={setScriptState}
         />
 
+        <Link>
         <button>등록하기</button>
+        </Link>
       </Wrapper>
     </>
   );
