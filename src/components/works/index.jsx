@@ -22,8 +22,43 @@ const WorkPage = () => {
     genre: [],
     episode_list: [],
   });
-
-  const params = useParams();
+  const dummy = [
+    {
+      id: 1,
+      title: "불행의 시작",
+      price: "무료",
+      likenumber: 1023,
+      date: "2022.10.04",
+    },
+    {
+      id: 2,
+      title: "노력은 배신하지 않는다",
+      price: "무료",
+      likenumber: 1060,
+      date: "2022.10.11",
+    },
+    {
+      id: 3,
+      title: "다시 도전",
+      price: "200글자",
+      likenumber: 1322,
+      date: "2022.10.18",
+    },
+    {
+      id: 4,
+      title: "높은 상대",
+      price: "200글자",
+      likenumber: 1260,
+      date: "2022.10.26",
+    },
+    {
+      id: 5,
+      title: "언제나 긍정적",
+      price: "300글자",
+      likenumber: 1138,
+      date: "2022.11.02",
+    },
+  ];
 
   const onIncrease = () => {
     setLike(!like);
@@ -92,41 +127,18 @@ const WorkPage = () => {
               />
             ))}
         </div>
-        <ContentsList
-          number="01"
-          title="불행의 시작"
-          price="무료"
-          likenumber="1023"
-          date="2022.10.04"
-        />
-        <ContentsList
-          number="02"
-          title="노력은 배신하지 않는다"
-          price="무료"
-          likenumber="1023"
-          date="2022.10.11"
-        />
-        <ContentsList
-          number="03"
-          title="다시 도전"
-          price="200글자"
-          likenumber="1023"
-          date="2022.10.18"
-        />
-        <ContentsList
-          number="04"
-          title="높은 상대"
-          price="200글자"
-          likenumber="1023"
-          date="2022.10.25"
-        />
-        <ContentsList
-          number="05"
-          title="언제나 긍정적"
-          price="300글자"
-          likenumber="1023"
-          date="2022.11.02"
-        />
+        {dummy.map((element) => {
+          return (
+            <ContentsList
+              key={element.id}
+              number={element.id}
+              title={element.title}
+              price={element.price}
+              likenumber={element.likenumber}
+              date={element.date}
+            />
+          );
+        })}
       </WorkContainer>
     </>
   );
