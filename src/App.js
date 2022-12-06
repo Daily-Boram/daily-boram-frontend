@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mywork" element={<MyWork />} />
           <Route path="/comment" element={<Comment />} />
-          <Route path="/seeNovel" element={<SeeNovel />} />
+          <Route path="/seeNovel/:id" element={<SeeNovel />} />
           <Route path="/makeNovel/:id" element={<MakeNovel />} />
           <Route path="/updateNovel/:id" element={<UpdateNovel />} />
           <Route path="/posts" element={<Posts />} />
