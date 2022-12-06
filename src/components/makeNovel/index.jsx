@@ -11,17 +11,16 @@ import { Narrator } from "../../assets/Img";
 function MakeNovel() {
   const [characterState, setCharacterState] = useState([
     {
-        "name": "해설자",
-        "image": Narrator
-    }
-]);
+      name: "해설자",
+      image: Narrator,
+    },
+  ]);
   const [scriptState, setScriptState] = useState([]);
   const [novelState, setNovelState] = useState({
     title: "",
     cost: 0,
     image: "",
   });
-
 
   useEffect(() => {
     const rangeInputs = document.querySelectorAll('input[type="range"]');
@@ -132,9 +131,7 @@ function MakeNovel() {
           setScriptState={setScriptState}
         />
 
-        <Link>
-        <button>등록하기</button>
-        </Link>
+          <button>등록하기</button>
       </Wrapper>
     </>
   );

@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import {
-  BigGood,
-  TrueGood,
-  ContentsRegistrationPlus,
-} from "../../assets/Img";
+import { BigGood, TrueGood, ContentsRegistrationPlus } from "../../assets/Img";
 import Header from "../common/header";
 import ContentsList from "../common/contents";
 import { Link, useParams } from "react-router-dom";
@@ -31,8 +27,7 @@ const WorkPage = () => {
     episode_list: [],
   });
 
-  const params = useParams()
-
+  const params = useParams();
 
   const onIncrease = () => {
     setLike(!like);
@@ -42,8 +37,10 @@ const WorkPage = () => {
 
   useEffect(() => {
     getSeries(id, 1, 5)
-      .then((res) => {console.log(res.data)
-        setInformation(res.data)})
+      .then((res) => {
+        console.log(res.data);
+        setInformation(res.data);
+      })
       .catch((err) => console.error(err));
   }, []);
   console.log(information);
@@ -68,9 +65,9 @@ const WorkPage = () => {
                 ))}
             </GenreList>
             <Like onClick={onIncrease}>
-                      {/* src={information.is_like ? TrueGood : BigGood} */}
+              {/* src={information.is_like ? TrueGood : BigGood} */}
               <GoodIcon src={like ? TrueGood : BigGood} />
-                                                   {/* {information.like} */}
+              {/* {information.like} */}
               <Number style={{ color: textColor }}>{likeNum}</Number>
             </Like>
           </Right>
