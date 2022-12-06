@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { BeforeEpisode, Good, Comment, NextEpisode } from "../../../assets/Img";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BottomNavigate = () => {
   const [likes, setLike] = useState({
@@ -23,32 +24,23 @@ const BottomNavigate = () => {
     }
   };
   const id = useParams();
+  const number = Number(id.id.at(-1));
 
-  const nextPage = () => {
-    window.location.href = `/seeNovel/${id + 1}`;
-  };
-  const gotoCommentPage = () => {
-    window.location.href = "/comment";
-  };
   return (
     <_Wrapper>
-      <_OptionWrapper>
+      <_OptionWrapper to={`/seeNovel/${number > 0 ? number - 1 : number}`}>
         <_IconImage src={BeforeEpisode} alt="before_episode" />
         <_BlankText>이전화</_BlankText>
       </_OptionWrapper>
-      <_OptionWrapper>
-        <_IconImage
-          onClick={gotoCommentPage}
-          src={Comment}
-          alt="comment_icon"
-        />
+      <_OptionWrapper to={`/comment`}>
+        <_IconImage src={Comment} alt="comment_icon" />
         <_FocusText>2</_FocusText>
       </_OptionWrapper>
       <_OptionWrapper>
         <_IconImage onClick={onlike} src={Good} alt="before_episode" />
         <_FocusText onClick={onlike}>{like}</_FocusText>
       </_OptionWrapper>
-      <_OptionWrapper onClick={nextPage}>
+      <_OptionWrapper to={`/seeNovel/${number + 1}`}>
         <_NotFocusText>다음화</_NotFocusText>
         <_IconImage src={NextEpisode} alt="before_episode" />
       </_OptionWrapper>
@@ -102,8 +94,9 @@ const _IconImage = styled.img`
   margin-right: 10px;
 `;
 
-const _OptionWrapper = styled.div`
+const _OptionWrapper = styled(Link)`
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 `;
