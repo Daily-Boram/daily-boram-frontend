@@ -155,9 +155,9 @@ const Main = () => {
                     style={{ backgroundColor: isColor }}
                     onClick={onChangeColor}
                     key={i}
-                    id={v}
+                    id={v.genreName}
                   >
-                    {v}
+                    {v.genreName}
                   </Genre>
                 ))}
               </Choose>
