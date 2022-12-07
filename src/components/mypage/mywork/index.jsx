@@ -36,14 +36,15 @@ const MyWork = () => {
       setCheckState(checkState.filter((el) => el !== value));
     }
   };
-  const onSubmitClick = () => {
-    addSeries(
-      myData,
-      myWorkState.title,
-      myWorkState.thumbnail,
-      myWorkState.contents,
-      checkState
-    ).then((res) => console.log(res));
+  const onSubmitClick = (e) => {
+    if (myWorkState.contents.length > 0 && myWorkState.title.length > 0)
+      addSeries(
+        myData,
+        myWorkState.title,
+        myWorkState.thumbnail,
+        myWorkState.contents,
+        checkState
+      ).then((res) => console.log(res));
   };
   useEffect(() => {
     my()
@@ -109,10 +110,10 @@ const MyWork = () => {
             title="작품 대표 이미지"
             values={myWorkState.contents}
             subTitle="위 입력하신 정보를 기반으로 AI가 일러스트를 그립니다. 원하는 그림을 선택해 주세요!"
-            image={myWorkState.characterImage}
-            setImage={(characterImage) => {
+            image={myWorkState.thumbnail}
+            setImage={(thumbnail) => {
               let temp = Object.assign({}, myWorkState);
-              temp.characterImage = characterImage;
+              temp.thumbnail = thumbnail;
               setMyWorkState(temp);
             }}
           />
@@ -121,7 +122,7 @@ const MyWork = () => {
               characterState={characterState}
               setCharacterState={setCharacterState}
             />
-          </CharacterWrapper> 
+          </CharacterWrapper>
           <RegistrationBtn onClick={onSubmitClick} to="/mypage">
             새 작품 등록하기
           </RegistrationBtn>

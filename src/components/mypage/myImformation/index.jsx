@@ -76,30 +76,30 @@ const MyPage = ({ writer, setWriter }) => {
             <Introduction>
               <User>
                 <div>
-                {modify ? (
-                  <NameInput
-                    value={update.nickname}
-                    name="nickname"
-                    onChange={(e) => {
-                      const { value, name } = e.target;
-                      setUpdate({
-                        ...update,
-                        [name]: value,
-                      });
-                    }}
-                  />
-                ) : (
-                  <Name>{user.nickname}</Name>
-                )}
-                {!update.nickname >= 25 ? (
-                  <CheckBtn src={DoubleError} alt="에러버튼" />
-                ) : (
-                  <CheckBtn
-                    src={DoubleCheck}
-                    setCheck={setCheck}
-                    alt="체크버튼"
-                  />
-                )}
+                  {modify ? (
+                    <NameInput
+                      value={update.nickname}
+                      name="nickname"
+                      onChange={(e) => {
+                        const { value, name } = e.target;
+                        setUpdate({
+                          ...update,
+                          [name]: value,
+                        });
+                      }}
+                    />
+                  ) : (
+                    <Name>{user.nickname}</Name>
+                  )}
+                  {!update.nickname >= 25 ? (
+                    <CheckBtn src={DoubleError} alt="에러버튼" />
+                  ) : (
+                    <CheckBtn
+                      src={DoubleCheck}
+                      setCheck={setCheck}
+                      alt="체크버튼"
+                    />
+                  )}
                 </div>
                 {modify ? (
                   <CompleteButton onClick={updateProfile}>완료</CompleteButton>
@@ -159,7 +159,7 @@ const MyPage = ({ writer, setWriter }) => {
                 }}
               />
             ))}
-            <RegistrationBtn to="/mywork">
+            <RegistrationBtn onClick={() => window.scrollTo(0, 0)} to="/mywork">
               <img src={Plus} alt="등록 버튼" />
               <Explanation>새 작품 등록하기</Explanation>
             </RegistrationBtn>
