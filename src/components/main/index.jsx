@@ -1,11 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Header from "../common/header";
 import PopularWorks from "../main/mainworks/popular";
 import Works from "../main/mainworks/worksList";
 import { MainRefresh, Search } from "../../assets/Img";
 import { auth } from "../../api/auth";
-import { choose } from "../../constance/choose";
 import { seeAllSeries } from "../../api/seeAllSeris";
 import { search } from "../../api/search";
 
@@ -16,17 +15,20 @@ const Main = () => {
       {
         id: 1,
         image: "URL",
-        content: "어느날 언제나 맞고 있는 주인공 하지만 한 그녀가 도와주는데 그때부터 주인공의 사랑이 시작되었다.",
+        content:
+          "어느날 언제나 맞고 있는 주인공 하지만 한 그녀가 도와주는데 그때부터 주인공의 사랑이 시작되었다.",
       },
       {
         id: 2,
         image: "URL",
-        content: "기억을 계속 잃은 주인공의 기억이 되줄 일기가 있다. 주인공은 기억이 안나서 이후 계속 적게되었다.",
+        content:
+          "기억을 계속 잃은 주인공의 기억이 되줄 일기가 있다. 주인공은 기억이 안나서 이후 계속 적게되었다.",
       },
       {
         id: 3,
         image: "URL",
-        content: "진성이의 인생스토리이다. 태어나면서 죽을 떄까지의 무슨 스토리가 있는 말해주는 내용이다.",
+        content:
+          "진성이의 인생스토리이다. 태어나면서 죽을 떄까지의 무슨 스토리가 있는 말해주는 내용이다.",
       },
     ],
     series_list: [],
@@ -34,7 +36,7 @@ const Main = () => {
   const [searchBool, setSearchBool] = useState(false);
   const [searchList, setSearchList] = useState([]);
   const [title, setTitle] = useState("");
-  
+
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
@@ -77,6 +79,25 @@ const Main = () => {
       setSearchBool(false);
     }
   };
+
+  const [genreList, setGenre] = useState([
+    { id: 1, genreName: "전체" },
+    { id: 2, genreName: "일상" },
+    { id: 3, genreName: "개그" },
+    { id: 4, genreName: "판타지" },
+    { id: 5, genreName: "액션" },
+    { id: 6, genreName: "드라마" },
+    { id: 7, genreName: "순정" },
+    { id: 8, genreName: "감성" },
+    { id: 9, genreName: "스릴러" },
+    { id: 10, genreName: "스포츠" },
+    { id: 11, genreName: "무협/사극" },
+  ]);
+  const [isColor, setColor] = useState("#D3D3D3");
+  const onChangeColor = (e) => {
+    setColor(isColor == "#D3D3D3" ? "#4E9EFD" : "#D3D3D3");
+  };
+
   return (
     <>
       <Header />
@@ -129,8 +150,15 @@ const Main = () => {
                 </Select>
               </BestWork>
               <Choose>
-                {choose.map((v, i) => (
-                  <Genre key={i}>{v}</Genre>
+                {genreList.map((v, i) => (
+                  <Genre
+                    style={{ backgroundColor: isColor }}
+                    onClick={onChangeColor}
+                    key={i}
+                    id={v}
+                  >
+                    {v}
+                  </Genre>
                 ))}
               </Choose>
               <WorksBackground>
@@ -143,7 +171,7 @@ const Main = () => {
                       authorname={e.nickname}
                       genre={e.genre}
                       like={e.like}
-                      image={e.image} 
+                      image={e.image}
                     />
                   ))}
               </WorksBackground>
@@ -335,7 +363,6 @@ const Genre = styled.button`
   font-weight: bold;
   border-radius: 10px;
   color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.graymain};
   :hover {
     background-color: ${({ theme }) => theme.color.c02};
   }
