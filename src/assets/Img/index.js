@@ -31,7 +31,7 @@ export { default as Spacephoto4 } from "./spacephoto4.png";
 export { default as AngleBracket } from "./anglebracket.svg";
 export { default as Character1 } from "./Character1.png";
 export { default as Character2 } from "./Character2.png";
-export { default as GreyRefresh } from "./greyRefresh.png";
+export { default as GreyRefresh } from "./greyRefresh.svg";
 export { default as Add } from "./add.png";
 export { default as BlueCheck } from "./blueCheck.png";
 export { default as Narrator } from "./narrator.png";
