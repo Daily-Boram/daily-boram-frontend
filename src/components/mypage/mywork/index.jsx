@@ -38,19 +38,20 @@ const MyWork = () => {
   };
   const onSubmitClick = (e) => {
     if (myWorkState.contents.length > 0 && myWorkState.title.length > 0)
-      addSeries(
-        myData,
-        myWorkState.title,
-        myWorkState.thumbnail,
-        myWorkState.contents,
-        checkState
-      ).then((res) => console.log(res));
+      addSeries({
+        nickname: myData,
+        title: myWorkState.title,
+        image: myWorkState.thumbnail,
+        summary: myWorkState.contents,
+        genre: checkState,
+      }).then((res) => console.log(res));
   };
   useEffect(() => {
     my()
       .then((res) => setMyData(res.data.nickname))
       .catch((err) => console.error(err));
   }, []);
+  console.log(myWorkState);
   return (
     <>
       <Header />
