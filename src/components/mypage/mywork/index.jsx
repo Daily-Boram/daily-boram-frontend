@@ -37,7 +37,7 @@ const MyWork = () => {
     }
   };
   const onSubmitClick = (e) => {
-    if (myWorkState.contents.length > 0 && myWorkState` `.title.length > 0)
+    if (myWorkState.contents.length > 0 && myWorkState.title.length > 0)
       addSeries({
         nickname: myData,
         title: myWorkState.title,
@@ -51,6 +51,7 @@ const MyWork = () => {
       .then((res) => setMyData(res.data.nickname))
       .catch((err) => console.error(err));
   }, []);
+  console.log(myWorkState);
   return (
     <>
       <Header />
