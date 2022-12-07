@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const Works = ({ id, workname, authorname, genre, like, image }) => {
   return (
     <Link
-      to={`/work/${id}`}
+      to={`/work/${id-1}`}
       onClick={() => window.scrollTo(0, 0)}
-      style={{ textDecoration: "none" }}
+      style={{ textDecoration: "none" }}  
     >
       <WorkBackground>
         <Photo src={image ? image : SpacePhoto} />
@@ -43,6 +43,7 @@ const WorkBackground = styled.div`
 const Photo = styled.img`
   width: 240px;
   height: 240px;
+  object-fit: cover;
 `;
 
 const FirstLine = styled.div`

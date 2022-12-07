@@ -4,7 +4,7 @@ import { Good, SpacePhoto } from "../../../../assets/Img";
 
 const Popular = ({ workname, authorname, story, like, image, id }) => {
   return (
-    <PopularBackground to={`/work/${id}`}>
+    <PopularBackground to={`/work/${id-1}`}>
       <Img src={image ? image : SpacePhoto} />
       <TopicBackground>
         <Writer>
@@ -36,6 +36,7 @@ const Img = styled.img`
   background-color: ${({ theme }) => theme.color.graymain};
   border-radius: 5px;
   margin-bottom: 7px;
+  object-fit: cover;
 `;
 
 const TopicBackground = styled.div`

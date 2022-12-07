@@ -131,7 +131,7 @@ function MakeNovel() {
           setScriptState={setScriptState}
         />
 
-        <Link to="/work/:id">
+        <Link to={`/work/${id}`}>
           <EpisodeButton>등록하기</EpisodeButton>
         </Link>
       </Wrapper>

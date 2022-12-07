@@ -75,6 +75,7 @@ const MyPage = ({ writer, setWriter }) => {
             </UserImage>
             <Introduction>
               <User>
+                <div>
                 {modify ? (
                   <NameInput
                     value={update.nickname}
@@ -99,6 +100,7 @@ const MyPage = ({ writer, setWriter }) => {
                     alt="체크버튼"
                   />
                 )}
+                </div>
                 {modify ? (
                   <CompleteButton onClick={updateProfile}>완료</CompleteButton>
                 ) : (
@@ -184,7 +186,7 @@ export default MyPage;
 const CompleteButton = styled.button`
   width: 80px;
   height: 40px;
-  margin-left: 30px;
+  margin-right: 8px;
   border-radius: 5px;
   color: ${({ theme }) => theme.color.white};
   font-weight: 700;
@@ -249,8 +251,12 @@ const User = styled.div`
   width: 510px;
   height: 55px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
+  div {
+    display: flex;
+  }
 `;
 
 const Name = styled.p`
@@ -260,13 +266,12 @@ const Name = styled.p`
 `;
 
 const CheckBtn = styled.img`
-  margin-right: 200px;
   margin-left: 10px;
 `;
 
 const UserCreateIcon = styled.img`
   cursor: pointer;
-  margin-left: 80px;
+  margin-right: 20px;
 `;
 
 const ContentsInput = styled.div`

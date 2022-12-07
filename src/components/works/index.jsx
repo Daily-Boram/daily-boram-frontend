@@ -7,9 +7,9 @@ import { Link, useParams } from "react-router-dom";
 import { getSeries } from "../../api/getSeries";
 
 const WorkPage = () => {
-  const [writer, setWriter] = useState(false);
+  const [writer, setWriter] = useState(true);
   const [like, setLike] = useState(false);
-  const [likeNum, setLikeNum] = useState(2301);
+  const [likeNum, setLikeNum] = useState(0);
   const [textColor, setTextColor] = useState("#A7A7A7");
   const id = useParams().id;
   const [information, setInformation] = useState({
@@ -27,35 +27,35 @@ const WorkPage = () => {
       id: 1,
       title: "불행의 시작",
       price: "무료",
-      likenumber: 1023,
+      likenumber: 0,
       date: "2022.10.04",
     },
     {
       id: 2,
       title: "노력은 배신하지 않는다",
       price: "무료",
-      likenumber: 1060,
+      likenumber: 0,
       date: "2022.10.11",
     },
     {
       id: 3,
       title: "다시 도전",
       price: "200글자",
-      likenumber: 1322,
+      likenumber: 0,
       date: "2022.10.18",
     },
     {
       id: 4,
       title: "높은 상대",
       price: "200글자",
-      likenumber: 1260,
+      likenumber: 0,
       date: "2022.10.26",
     },
     {
       id: 5,
       title: "언제나 긍정적",
       price: "300글자",
-      likenumber: 1138,
+      likenumber: 0,
       date: "2022.11.02",
     },
   ];
@@ -67,7 +67,7 @@ const WorkPage = () => {
   };
 
   useEffect(() => {
-    getSeries(id, 1, 5)
+    getSeries(Math.abs(parseInt(id) + 1), 1, 5)
       .then((res) => {
         console.log(res.data);
         setInformation(res.data);
@@ -127,7 +127,7 @@ const WorkPage = () => {
               />
             ))}
         </div>
-        {dummy.map((element) => {
+        {/* {dummy.map((element) => {
           return (
             <ContentsList
               key={element.id}
@@ -138,7 +138,7 @@ const WorkPage = () => {
               date={element.date}
             />
           );
-        })}
+        })} */}
       </WorkContainer>
     </>
   );
@@ -162,6 +162,8 @@ const AboutWork = styled.div`
 const Photo = styled.img`
   width: 360px;
   height: 360px;
+  object-fit: cover;
+  border-radius: 5px;
 `;
 
 const Right = styled.div`
@@ -189,7 +191,7 @@ const AuthorName = styled.p`
 `;
 
 const GenreList = styled.div`
-  width: 300px;
+  width: 400px;
   display: flex;
   margin-bottom: 20px;
 `;
@@ -206,8 +208,9 @@ const Genre = styled.p`
 `;
 
 const Explanation = styled.p`
-  width: 450px;
-  font-size: 16px;
+  width: 500px;
+  font-size: 20px;
+  color: ${({theme}) => theme.color.gray02};
   margin-bottom: 10px;
 `;
 

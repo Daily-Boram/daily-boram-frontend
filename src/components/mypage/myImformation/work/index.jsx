@@ -8,7 +8,7 @@ const Works = ({ workname, authorname, like, image, id, setWriter }) => {
   };
 
   return (
-    <WorkContainer to={`/work/${id}`} onClick={YesWriter}>
+    <WorkContainer to={`/work/${id-1}`} onClick={YesWriter}>
       <Photo src={image ? image : SpacePhoto} />
       <Line>
         <Writer>

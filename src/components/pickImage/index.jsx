@@ -283,8 +283,8 @@ const Wrapper = styled.form`
   h2 {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    color: ${({ theme }) => theme.color.gray02};
-    font-size: 20px;
+    color: ${({ theme }) => theme.color.main};
+    font-size: 19px;
     border-bottom: 1px solid ${({ theme }) => theme.color.gray02};
   }
   > div {
@@ -347,7 +347,7 @@ const Samples = styled.div`
   span {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.color.graymain};
+    color: ${({ theme }) => theme.color.gray3};
     font-size: 20px;
     cursor: pointer;
     > img {

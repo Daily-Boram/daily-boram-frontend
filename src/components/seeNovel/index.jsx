@@ -80,7 +80,7 @@ function SeeNovel() {
             <img src={Spacephoto4} />
             <NovelInfo>
               <NovelPart>01</NovelPart>
-              <NovelTitle>맞은편의 행성</NovelTitle>
+              <NovelTitle>불행의 시작</NovelTitle>
               <GoHome to="/work">
                 작품 홈 가기 <Anglebracket src={AngleBracket}></Anglebracket>
               </GoHome>

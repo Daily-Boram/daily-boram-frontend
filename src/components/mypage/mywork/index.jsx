@@ -121,7 +121,7 @@ const MyWork = () => {
               characterState={characterState}
               setCharacterState={setCharacterState}
             />
-          </CharacterWrapper>
+          </CharacterWrapper> 
           <RegistrationBtn onClick={onSubmitClick} to="/mypage">
             새 작품 등록하기
           </RegistrationBtn>
@@ -220,6 +220,7 @@ const RegistrationBtn = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
   font-size: 25px;
   font-weight: bold;
   margin-top: 15px;

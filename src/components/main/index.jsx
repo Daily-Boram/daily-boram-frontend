@@ -12,7 +12,23 @@ import { search } from "../../api/search";
 const Main = () => {
   const [selected, setSelected] = useState("");
   const [list, setList] = useState({
-    popular_list: [],
+    popular_list: [
+      {
+        id: 1,
+        image: "URL",
+        content: "어느날 언제나 맞고 있는 주인공 하지만 한 그녀가 도와주는데 그때부터 주인공의 사랑이 시작되었다.",
+      },
+      {
+        id: 2,
+        image: "URL",
+        content: "기억을 계속 잃은 주인공의 기억이 되줄 일기가 있다. 주인공은 기억이 안나서 이후 계속 적게되었다.",
+      },
+      {
+        id: 3,
+        image: "URL",
+        content: "진성이의 인생스토리이다. 태어나면서 죽을 떄까지의 무슨 스토리가 있는 말해주는 내용이다.",
+      },
+    ],
     series_list: [],
   });
   const [searchBool, setSearchBool] = useState(false);
@@ -90,7 +106,6 @@ const Main = () => {
                       id={e.id}
                       workname={e.title}
                       authorname={e.nickname}
-                      story={e.introduce}
                       like={e.like}
                       image={e.image}
                     />
@@ -128,7 +143,7 @@ const Main = () => {
                       authorname={e.nickname}
                       genre={e.genre}
                       like={e.like}
-                      image={e.image}
+                      image={e.image} 
                     />
                   ))}
               </WorksBackground>
