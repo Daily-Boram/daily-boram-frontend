@@ -55,7 +55,7 @@ const Main = () => {
         console.log(res.data);
         setList(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))     ;
   }, []);
   const refreshOnClick = () => {
     seeAllSeries("", selected)

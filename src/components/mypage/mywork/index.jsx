@@ -44,7 +44,7 @@ const MyWork = () => {
         image: myWorkState.thumbnail,
         summary: myWorkState.contents,
         genre: checkState,
-      }).then((res) => console.log(res));
+      }).then((res) => console.log(res.data));
   };
   useEffect(() => {
     my()
@@ -124,7 +124,7 @@ const MyWork = () => {
               setCharacterState={setCharacterState}
             />
           </CharacterWrapper>
-          <RegistrationBtn onClick={onSubmitClick} to="/mypage">
+          <RegistrationBtn onClick={onSubmitClick} to="/mypage">  
             새 작품 등록하기
           </RegistrationBtn>
         </MyInfo>

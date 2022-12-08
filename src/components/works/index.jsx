@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { BigGood, TrueGood, ContentsRegistrationPlus } from "../../assets/Img";
 import Header from "../common/header";
 import ContentsList from "../common/contents";
 import { Link, useParams } from "react-router-dom";
 import { getSeries } from "../../api/getSeries";
 
-const WorkPage = () => {
+const WorkPage = ({ novelState, setNovelState }) => {
   const [writer, setWriter] = useState(true);
   const [like, setLike] = useState(false);
   const [likeNum, setLikeNum] = useState(0);
@@ -59,6 +59,20 @@ const WorkPage = () => {
       date: "2022.11.02",
     },
   ];
+  const nextId = useRef(4);
+  const onInsert = useCallback(
+    (text) => {
+      const content = {
+        id: nextId.current,
+        title: "",
+        cost: 0,
+        image: "",
+      };
+      setNovelState(novelState.concat(content));
+      nextId.current++;
+    },
+    [novelState]
+  );
 
   const onIncrease = () => {
     setLike(!like);
@@ -69,12 +83,10 @@ const WorkPage = () => {
   useEffect(() => {
     getSeries(Math.abs(parseInt(id) + 1), 1, 5)
       .then((res) => {
-        console.log(res.data);
         setInformation(res.data);
       })
       .catch((err) => console.error(err));
   }, []);
-  console.log(information);
   return (
     <>
       <Header />
@@ -118,6 +130,7 @@ const WorkPage = () => {
           {information.episode_list &&
             information.episode_list.map((v) => (
               <ContentsList
+                onInsert={onInsert}
                 key={v.id}
                 image={v.image}
                 title={v.title}
@@ -134,7 +147,7 @@ const WorkPage = () => {
               number={element.id}
               title={element.title}
               price={element.price}
-              likenumber={element.likenumber}
+              likenumber={element.likenumber} 
               date={element.date}
             />
           );
@@ -151,6 +164,7 @@ const WorkContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 `;
 
 const AboutWork = styled.div`
@@ -208,9 +222,9 @@ const Genre = styled.p`
 `;
 
 const Explanation = styled.p`
-  width: 500px;
-  font-size: 20px;
-  color: ${({theme}) => theme.color.gray02};
+  width: 450px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.color.gray02};
   margin-bottom: 10px;
 `;
 

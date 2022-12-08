@@ -8,7 +8,7 @@ import Script from "../_script";
 import { Link, useParams } from "react-router-dom";
 import { Narrator } from "../../assets/Img";
 
-function MakeNovel() {
+function MakeNovel({onInsert}) {
   const [characterState, setCharacterState] = useState([
     {
       name: "해설자",
@@ -21,7 +21,6 @@ function MakeNovel() {
     cost: 0,
     image: "",
   });
-
   useEffect(() => {
     const rangeInputs = document.querySelectorAll('input[type="range"]');
     function handleInputChange(e) {
@@ -37,7 +36,7 @@ function MakeNovel() {
     rangeInputs.forEach((input) => {
       input.addEventListener("input", handleInputChange);
     });
-  }, []);
+  }, []); 
   const id = useParams().id;
 
   const onSubmit = () => {
@@ -45,8 +44,9 @@ function MakeNovel() {
     temp.map((v) => {
       delete v.id;
     });
-    episodePost(id, novelState, characterState, temp);
-  };
+    episodePost(id-1, novelState, characterState, temp);
+    console.log(id, novelState, characterState, temp);
+  };  
 
   return (
     <>
@@ -168,6 +168,7 @@ const EpisodeButton = styled.button`
   height: 56px;
 
   margin-top: 20px;
+  margin-bottom: 50px;
 
   color: ${({ theme }) => theme.color.white};
   font-size: 24px;
